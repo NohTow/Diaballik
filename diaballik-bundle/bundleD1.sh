@@ -1,7 +1,7 @@
 #!/bin/sh
 
-name1="prenom-NOM"
-name2="prenom-NOM"
+name1="Antoine-CHAFFIN"
+name2="Adrien-BURIDANT"
 release="D1"-$name1-$name2
 
 rm -r $release 2> /dev/null

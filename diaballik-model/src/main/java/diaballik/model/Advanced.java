@@ -1,8 +1,9 @@
-package diaballik.model;
+package dialballik.model;
+import diaballik.model.Strategy;
 
 public class Advanced implements Strategy {
+	@Override
+	public void exec() {
 
-    public void exec(){
-
-    }
+	}
 }

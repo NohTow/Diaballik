@@ -2,5 +2,5 @@ package diaballik.model;
 
 public interface Command {
 
-    //public void commandDo();
+	//public void commandDo();
 }

@@ -1,17 +1,19 @@
 package diaballik.model;
 
-public class Humain extends Player{
+public class Humain extends Player {
 
-    public Humain(String name, Color color){
-        super(name, color);
-    }
-    public Color getColor(){
-        return this.color;
-    }
+	public Humain(final String name, final Color color) {
+		super(name, color);
+	}
 
-    @Override
-    public void play(Command command){
+	@Override
+	public Color getColor() {
+		return this.color;
+	}
 
-    }
+	@Override
+	public void play(final Command command) {
+
+	}
 
 }

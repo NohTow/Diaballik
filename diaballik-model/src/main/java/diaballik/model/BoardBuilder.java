@@ -2,10 +2,11 @@ package diaballik.model;
 
 public abstract class BoardBuilder {
 
-    public Board monterPlateau(){
-        Board board = new Board();
-        return board;
-    }
+	public Board monterPlateau() {
 
-    public abstract void placerPieces(Board board);
+		final Board board = new Board();
+		return board;
+	}
+
+	public abstract void placerPieces(final Board board);
 }

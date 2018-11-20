@@ -13,7 +13,7 @@ public class IA extends Player{
     }
 
     public void play(Command command){
-
+        test
     }
 
 }

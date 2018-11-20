@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.10.1">
-<file name="/home-reseau/achaffin/Bureau/DiabaGit/Diaballik/diaballik-model/src/main/java/diaballik/model/Random.java">
-</file>
-<file name="/home-reseau/achaffin/Bureau/DiabaGit/Diaballik/diaballik-model/src/main/java/diaballik/model/Standard.java">
+<file name="/home-reseau/achaffin/Bureau/DiabaGit/Diaballik/diaballik-model/src/main/java/diaballik/model/Board.java">
 </file>
 </checkstyle>

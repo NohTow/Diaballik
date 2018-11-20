@@ -1,6 +1,8 @@
 package diaballik.model;
 
-//import static diaballik.model.Color.*;
+import java.util.stream.IntStream;
+
+
 
 public class Standard extends BoardBuilder {
 
@@ -8,20 +10,16 @@ public class Standard extends BoardBuilder {
 	public void placerPieces(final Board board) {
 
 		//Placer les pions sur le plateau dans le scénario standard
-		for (int i = 0; i < 6; i++) {
-			board.plateau[0][i].color = Yellow;
-			board.plateau[0][i].hasBall = false;
-			board.plateau[0][i].x = 0;
-			board.plateau[0][i].y = i;
-			board.plateau[0][i].id = i;
-		}
-		IntStream.range() {
-			board.plateau[6][i].color = Green;
-			board.plateau[6][i].hasBall = false;
-			board.plateau[6][i].x = 6;
-			board.plateau[6][i].y = i;
-			board.plateau[6][i].id = i + 7;
-		}
+		IntStream.range(0, 6).forEach(i -> {
+			final Pawn temp = new Pawn(0, i, false, Color.Yellow);
+			board.setPiece(0, i, temp);
+			//board.plateau[6][i].id = i + 7;
+		});
+		IntStream.range(0, 6).forEach(i -> {
+			final Pawn temp = new Pawn(6, i, false, Color.Green);
+			board.setPiece(6, i, temp);
+		});
+
 
 		//Placer la balle sur le pion du milieu de chaque ligne
 		board.plateau[0][3].hasBall = true;

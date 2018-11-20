@@ -2,28 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c498bfc9-52fd-47f4-a039-40c4faf68300" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Advanced.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Advanced.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/AmongUs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/AmongUs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/BoardBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/BoardBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Color.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Element.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Element.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Humain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Humain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/IA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/IA.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/MoveBall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/MoveBall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/MovePion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/MovePion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Noob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Noob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Progressive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Progressive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Random.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Random.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Standard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Standard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/model/Strategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/diaballik/model/Strategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/diaballik/serialization/ObservableListDeconverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/checkstyle-cachefile" beforeDir="false" afterPath="$PROJECT_DIR$/target/checkstyle-cachefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/checkstyle-result.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/checkstyle-result.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/diaballik/model/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/diaballik/model/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/diaballik/model/Pawn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/diaballik/model/Pawn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/diaballik/model/Random.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/diaballik/model/Random.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/diaballik/model/Standard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/diaballik/model/Standard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/checkstyle.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/checkstyle.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/site/checkstyle.rss" beforeDir="false" afterPath="$PROJECT_DIR$/target/site/checkstyle.rss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/spotbugsXml.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/spotbugsXml.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,22 +36,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="38" />
+          <entry key="java" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="38" />
+          <entry key="JAVA" value="47" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="501" />
+          <entry key="java" value="1340" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="501" />
+          <entry key="JAVA" value="1340" />
         </counts>
       </usages-collector>
     </session>
@@ -67,28 +59,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/IA.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Command.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="14" column="39" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="39" />
+            <state relative-caret-position="90">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/MoveBall.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Element.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="74" selection-start-line="8" selection-start-column="74" selection-end-line="8" selection-end-column="74" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/MovePion.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="74" selection-start-line="8" selection-start-column="74" selection-end-line="8" selection-end-column="74" />
+            <state relative-caret-position="30">
+              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -103,19 +86,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Pawn.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Strategy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="30">
+              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -123,26 +97,36 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Random.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+            <state relative-caret-position="330">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Standard.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Pawn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+            <state relative-caret-position="360">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+              <folding>
+                <element signature="e#439#440#0" expanded="true" />
+                <element signature="e#457#458#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/AmongUs.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+            <state relative-caret-position="30">
+              <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+              <folding>
+                <element signature="e#373#374#0" expanded="true" />
+                <element signature="e#405#406#0" expanded="true" />
+                <element signature="e#469#470#0" expanded="true" />
+                <element signature="e#498#499#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,6 +140,24 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Standard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="43" lean-forward="true" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Color.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -164,8 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Board.java" />
-        <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Color.java" />
         <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Command.java" />
         <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Strategy.java" />
         <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Noob.java" />
@@ -176,13 +176,15 @@
         <option value="$PROJECT_DIR$/src/main/java/diaballik/model/IA.java" />
         <option value="$PROJECT_DIR$/src/main/java/diaballik/model/MoveBall.java" />
         <option value="$PROJECT_DIR$/src/main/java/diaballik/model/MovePion.java" />
-        <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Pawn.java" />
         <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/diaballik/model/AmongUs.java" />
         <option value="$PROJECT_DIR$/src/main/java/diaballik/model/BoardBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Game.java" />
-        <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Random.java" />
+        <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Color.java" />
+        <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Pawn.java" />
         <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Standard.java" />
+        <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Random.java" />
+        <option value="$PROJECT_DIR$/src/main/java/diaballik/model/Board.java" />
       </list>
     </option>
   </component>
@@ -282,7 +284,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542726899562" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542731739439" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RunDashboard">
@@ -308,18 +310,18 @@
       <option name="presentableId" value="Default" />
       <updated>1542726163132</updated>
       <workItem from="1542726165695" duration="750000" />
-      <workItem from="1542726946730" duration="1902000" />
+      <workItem from="1542726946730" duration="4791000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2652000" />
+    <option name="totallyTimeSpent" value="5541000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25262576" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25262576" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -328,7 +330,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -358,34 +360,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/serialization/ObservableListDeconverter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Color.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="17" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Strategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Noob.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -404,13 +378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Element.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
@@ -442,13 +409,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Pawn.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -463,10 +423,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/BoardBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Color.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
-          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
@@ -477,17 +437,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Random.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Element.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Strategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/BoardBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Random.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+          <folding>
+            <element signature="e#373#374#0" expanded="true" />
+            <element signature="e#405#406#0" expanded="true" />
+            <element signature="e#469#470#0" expanded="true" />
+            <element signature="e#498#499#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Standard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        <state relative-caret-position="375">
+          <caret line="25" column="43" lean-forward="true" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/diaballik/model/Pawn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#457#458#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

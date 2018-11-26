@@ -17,6 +17,6 @@ public abstract class Player {
 		return this.name;
 	}
 
-	public abstract void play(final Command command);
+	public abstract void play(final Command command, Game game);
 
 }

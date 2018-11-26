@@ -9,10 +9,8 @@
         <module name="diaballik-model" />
       </profile>
     </annotationProcessing>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="diaballik-model" options="-Xlint -Xlint:-unchecked -Xlint:-serial" />
-    </option>
+    <bytecodeTargetLevel>
+      <module name="diaballik-model" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

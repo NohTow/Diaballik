@@ -12,4 +12,12 @@ public class MoveBall implements Command {
 		this.newX = newX;
 		this.newY = newY;
 	}
+
+	public void commandDo(final Game game) {
+		//TODO
+	}
+
+	public void commandUndo(final Game game) {
+		//TODO
+	}
 }

@@ -1,5 +1,8 @@
 package diaballik.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pawn extends Element {
 	protected int x;
 	protected int y;
@@ -31,13 +34,31 @@ public class Pawn extends Element {
 		return this.id;
 	}*/
 
-	public boolean getHasBall() {
+	public boolean hasBall() {
 		return this.hasBall;
 	}
 
 	public void setPos(final int x, final int y) {
 		this.x = x;
 		this.y = y;
+	}
+
+	List<Command> moovePlayable(final Board gameBoard) {
+		final ArrayList<Command> res = new ArrayList<Command>();
+		if (gameBoard.getPiece(x + 1, y) == null) {
+			res.add(new MovePion(x, y, x + 1, y));
+		}
+		if (gameBoard.getPiece(x, y + 1) == null) {
+			res.add(new MovePion(x, y, x, y + 1));
+		}
+		if (gameBoard.getPiece(x - 1, y) == null) {
+			res.add(new MovePion(x, y, x - 1, y));
+		}
+		if (gameBoard.getPiece(x, y - 1) == null) {
+			res.add(new MovePion(x, y, x, y - 1));
+		}
+
+		return res;
 	}
 
 }

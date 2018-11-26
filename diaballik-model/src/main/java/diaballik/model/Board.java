@@ -13,9 +13,15 @@ public class Board {
 			});
 		});*/
 	}
+
 	public Pawn getPiece(final int x, final int y) {
-		return this.plateau[x][y];
+		if (x >= 0 && x < 7 && y >= 0 && y < 7) {
+			return this.plateau[x][y];
+		} else {
+			return null;
+		}
 	}
+
 	public void setPiece(final int x, final int y, final Pawn p) {
 		this.plateau[x][y] = p;
 	}

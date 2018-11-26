@@ -12,7 +12,8 @@ public class IA extends Player {
 		this.level = newLevel;
 	}
 	@Override
-	public void play(final Command command) {
+	public void play(final Command command, final Game game) {
+		command.commandDo(game);
 	}
 
 }

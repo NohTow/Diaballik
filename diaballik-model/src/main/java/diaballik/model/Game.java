@@ -16,4 +16,15 @@ public class Game {
 	private Player joueur1;
 	private Player joueur2;
 
+	public Board getBoard() {
+		return this.gameBoard;
+	}
+
+	public void addSave(final Command command) {
+		this.save.add(command);
+	}
+
+	public void addUndo(final Command command) {
+		this.undo.add(command);
+	}
 }

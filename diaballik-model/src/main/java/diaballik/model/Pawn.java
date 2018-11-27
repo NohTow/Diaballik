@@ -26,9 +26,15 @@ public class Pawn extends Element {
 		return this.y;
 	}
 
+	public void setColor(final Color color) {
+		this.color = color ;
+	}
+
+	/*
 	public void setX(final int x) {
 		this.x = x;
 	}
+	*/
 
 	/*public int getId() {
 		return this.id;

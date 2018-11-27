@@ -3,6 +3,7 @@ package diaballik.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.IntStream;
 
 public class Noob implements Strategy {
 	@Override
@@ -53,6 +54,16 @@ public class Noob implements Strategy {
 			}
 		} else {    //faire un MoveBall
 			//ToDo
+			final Pawn p = new Pawn(0, 0, false, Color.Yellow);
+			IntStream.range(0, 6).forEach(i -> {
+				if(pawns.get(i).hasBall) {		//Trouver le pion qui possede la balle
+					p.setPos(pawns.get(i).getX(), pawns.get(i).getY());
+					p.setHasBall(pawns.get(i).hasBall);
+					p.setColor(pawns.get(i).getColor());
+				}
+			});
+
+
 		}
 
 	}

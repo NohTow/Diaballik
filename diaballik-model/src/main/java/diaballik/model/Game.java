@@ -1,6 +1,7 @@
 package diaballik.model;
 
-import java.util.ArrayList;
+import java.util.ArrayDeque;
+import java.util.List;
 //import java.util.Map;
 
 public class Game {
@@ -8,8 +9,8 @@ public class Game {
 	private Color color;
 	private boolean hasIA;
 	private int idGame;
-	private ArrayList<Command> save;
-	private ArrayList<Command> undo;
+	private ArrayDeque<Command> save;
+	private ArrayDeque<Command> undo;
 
 	private Board gameBoard;
 
@@ -26,5 +27,21 @@ public class Game {
 
 	public void addUndo(final Command command) {
 		this.undo.add(command);
+	}
+
+	public void undo() {
+		Command c = save.pollLast();
+		c.commandUndo(this);
+		undo.add(c);
+	}
+
+	public void redo() {
+		Command c = undo.pollLast();
+		c.commandDo(this);
+		save.add(c);
+	}
+	public List<Command> getMoovePlayable(int x, int y){
+		return this.gameBoard.getPiece(x,y).moovePlayable(this.gameBoard);
+		// est-ce qu'on ne devrait pas mettre la fonction moovePlayable dans le gameBoard ?
 	}
 }

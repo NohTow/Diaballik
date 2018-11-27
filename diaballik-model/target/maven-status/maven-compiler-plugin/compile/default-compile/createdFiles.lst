@@ -1,5 +1,6 @@
 diaballik\serialization\ColorDeserializer.class
 diaballik\model\Game.class
+diaballik\model\Advanced.class
 diaballik\model\Player.class
 diaballik\model\Progressive.class
 diaballik\model\Standard.class
@@ -16,7 +17,6 @@ diaballik\model\Noob.class
 diaballik\model\Board.class
 diaballik\Main.class
 diaballik\resource\MyExceptionMapper.class
-dialballik\model\Advanced.class
 diaballik\serialization\ColorSerializer.class
 diaballik\model\MovePion.class
 diaballik\model\MoveBall.class

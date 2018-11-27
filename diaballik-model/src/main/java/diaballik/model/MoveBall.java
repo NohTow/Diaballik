@@ -15,19 +15,15 @@ public class MoveBall implements Command {
 
 	public void commandDo(final Game game) {
 		final Board board = game.getBoard();
-		final Pawn nouveau = board.getPiece(newX, newY);
-		final Pawn ancien = board.getPiece(oldX, oldY);
-		nouveau.setHasBall(true);
-		ancien.setHasBall(false);
+		board.getPiece(newX, newY).setHasBall(true);
+		board.getPiece(oldX, oldY).setHasBall(false);
 		game.addSave(this);
 	}
 
 	public void commandUndo(final Game game) {
 		final Board board = game.getBoard();
-		final Pawn nouveau = board.getPiece(newX, newY);
-		final Pawn ancien = board.getPiece(oldX, oldY);
-		nouveau.setHasBall(false);
-		ancien.setHasBall(true);
+		board.getPiece(newX, newY).setHasBall(false);
+		board.getPiece(oldX, oldY).setHasBall(true);
 		game.addUndo(this);
 	}
 }

@@ -22,9 +22,13 @@ public class Pawn extends Element {
 		return this.x;
 	}
 
-	public int getY() { return this.y; }
+	public int getY() {
+		return this.y;
+	}
 
-	public void setX(final int x) { this.x = x;	}
+	public void setX(final int x) {
+		this.x = x;
+	}
 
 	/*public int getId() {
 		return this.id;

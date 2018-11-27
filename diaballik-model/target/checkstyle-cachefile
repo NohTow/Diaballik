@@ -1,26 +1,27 @@
-#Mon Nov 26 19:11:29 CET 2018
+#Tue Nov 27 19:57:27 CET 2018
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\serialization\\ColorDeserializer.java=1543250259035
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Standard.java=1543250259032
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\MovePion.java=1543254468518
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\Main.java=1543250259019
-C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Advanced.java=1543250259019
+C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Advanced.java=1543344949985
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\IA.java=1543254512525
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Humain.java=1543254512538
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Player.java=1543254237881
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Element.java=1543250259024
-C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Noob.java=1543250259028
-C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Progressive.java=1543250259030
+C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Noob.java=1543344896538
+C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Game.java=1543345037934
+C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Progressive.java=1543344931001
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Random.java=1543250259031
-C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Pawn.java=1543254399169
+C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Pawn.java=1543344968167
 configuration*?=53E607C4E2928AA94AAA88A8D76F22F1D4D837B0
-C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\MoveBall.java=1543254468504
+C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\MoveBall.java=1543344268559
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Color.java=1543250259023
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\serialization\\ColorSerializer.java=1543250259036
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Ball.java=1543250259021
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\BoardBuilder.java=1543250259022
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Board.java=1543254558390
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\AmongUs.java=1543250259020
-C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Command.java=1543254131272
-C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Strategy.java=1543250259033
+C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Command.java=1543343879439
+C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Strategy.java=1543343879497
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\resource\\MyExceptionMapper.java=1543250259034
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\serialization\\DiabalikJacksonProvider.java=1543250259036

@@ -30,18 +30,19 @@ public class Game {
 	}
 
 	public void undo() {
-		Command c = save.pollLast();
+		final Command c = save.pollLast();
 		c.commandUndo(this);
 		undo.add(c);
 	}
 
 	public void redo() {
-		Command c = undo.pollLast();
+		final Command c = undo.pollLast();
 		c.commandDo(this);
 		save.add(c);
 	}
-	public List<Command> getMoovePlayable(int x, int y){
-		return this.gameBoard.getPiece(x,y).moovePlayable(this.gameBoard);
+
+	public List<Command> getMoovePlayable(final int x, final int y) {
+		return this.gameBoard.getPiece(x, y).movePlayable(this.gameBoard);
 		// est-ce qu'on ne devrait pas mettre la fonction moovePlayable dans le gameBoard ?
 	}
 }

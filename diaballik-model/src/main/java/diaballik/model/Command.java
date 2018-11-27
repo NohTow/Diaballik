@@ -8,6 +8,8 @@ public interface Command {
 
 	public void commandDo(Game game);
 	public void commandUndo(Game game);
+
+
 	/*public int getOldX();
 	public int getOldY();
 	public int getNewX();

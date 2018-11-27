@@ -14,10 +14,20 @@ public class MoveBall implements Command {
 	}
 
 	public void commandDo(final Game game) {
-		//TODO
+		final Board board = game.getBoard();
+		final Pawn nouveau = board.getPiece(newX, newY);
+		final Pawn ancien = board.getPiece(oldX, oldY);
+		nouveau.setHasBall(true);
+		ancien.setHasBall(false);
+		game.addSave(this);
 	}
 
 	public void commandUndo(final Game game) {
-		//TODO
+		final Board board = game.getBoard();
+		final Pawn nouveau = board.getPiece(newX, newY);
+		final Pawn ancien = board.getPiece(oldX, oldY);
+		nouveau.setHasBall(false);
+		ancien.setHasBall(true);
+		game.addUndo(this);
 	}
 }

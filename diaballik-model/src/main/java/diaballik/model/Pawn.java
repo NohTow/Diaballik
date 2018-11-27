@@ -22,13 +22,9 @@ public class Pawn extends Element {
 		return this.x;
 	}
 
-	public int getY() {
-		return this.y;
-	}
+	public int getY() { return this.y; }
 
-	public void setX(final int x) {
-		this.x = x;
-	}
+	public void setX(final int x) { this.x = x;	}
 
 	/*public int getId() {
 		return this.id;
@@ -43,7 +39,12 @@ public class Pawn extends Element {
 		this.y = y;
 	}
 
-	List<Command> moovePlayable(final Board gameBoard) {
+	public void setHasBall(final boolean ball) {
+		this.hasBall = ball;
+	}
+
+
+	List<Command> movePlayable(final Board gameBoard) {
 		final ArrayList<Command> res = new ArrayList<Command>();
 		if (gameBoard.getPiece(x + 1, y) == null) {
 			res.add(new MovePion(x, y, x + 1, y));

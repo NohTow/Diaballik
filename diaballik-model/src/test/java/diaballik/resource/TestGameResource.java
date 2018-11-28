@@ -1,4 +1,4 @@
-package diaballik.resource;
+/*package diaballik.resource;
 
 import com.github.hanleyt.JerseyExtension;
 import diaballik.serialization.DiabalikJacksonProvider;
@@ -44,3 +44,4 @@ public class TestGameResource {
 
 	}
 }
+*/

@@ -2,7 +2,6 @@ diaballik\serialization\ColorDeserializer.class
 diaballik\model\Game.class
 diaballik\model\Advanced.class
 diaballik\model\Player.class
-diaballik\model\Progressive.class
 diaballik\model\Standard.class
 diaballik\serialization\DiabalikJacksonProvider.class
 diaballik\model\Element.class

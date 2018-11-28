@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Random.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">diaballik-model</a> &gt; <a href="index.source.html" class="el_package">diaballik.model</a> &gt; <span class="el_source">Random.java</span></div><h1>Random.java</h1><pre class="source lang-java linenums">package diaballik.model;
+
+import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+
+<span class="nc" id="L9">public class Random extends BoardBuilder {</span>
+
+	@Override
+	public void placerPieces(final Board board) {
+
+		//Placer les pions sur le plateau dans le scénario standard
+<span class="nc" id="L15">		IntStream.range(0, 6).forEach(i -&gt; {</span>
+<span class="nc" id="L16">			final Pawn temp = new Pawn(0, i, false, Color.Yellow);</span>
+<span class="nc" id="L17">			board.setPiece(0, i, temp);</span>
+			//board.plateau[6][i].id = i + 7;
+<span class="nc" id="L19">		});</span>
+<span class="nc" id="L20">		IntStream.range(0, 6).forEach(i -&gt; {</span>
+<span class="nc" id="L21">			final Pawn temp = new Pawn(6, i, false, Color.Green);</span>
+<span class="nc" id="L22">			board.setPiece(6, i, temp);</span>
+<span class="nc" id="L23">		});</span>
+
+		//Placer la balle sur un pion au hasard de chaque ligne :
+<span class="nc" id="L26">		final ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;(Arrays.asList(0, 1, 2, 3, 4, 5, 6));</span>
+<span class="nc" id="L27">		Collections.shuffle(list);</span>
+
+<span class="nc" id="L29">		board.plateau[0][list.get(0)].hasBall = true; // A random value</span>
+<span class="nc" id="L30">		board.plateau[6][list.get(1)].hasBall = true; // A different random value</span>
+
+<span class="nc" id="L32">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

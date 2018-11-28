@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Pawn.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">diaballik-model</a> &gt; <a href="index.source.html" class="el_package">diaballik.model</a> &gt; <span class="el_source">Pawn.java</span></div><h1>Pawn.java</h1><pre class="source lang-java linenums">package diaballik.model;
+
+import java.util.ArrayList;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+/**
+ * Class of a pawn
+ */
+public class Pawn extends Element {
+	protected int x;
+	protected int y;
+	//protected int id;
+	protected boolean hasBall;
+
+	/**
+	 * @return if the Pawn is in the Board
+	 */
+	public boolean isInBoard() {
+<span class="nc bnc" id="L20" title="All 8 branches missed.">		if (this.getX() &lt; 0 || this.getX() &gt; 6 || this.getY() &lt; 0 || this.getY() &gt; 6) {</span>
+<span class="nc" id="L21">			return false;</span>
+		} else {
+<span class="nc" id="L23">			return true;</span>
+		}
+	}
+
+
+	/**
+	 * @param x the initial value of x position
+	 * @param y the initial value of y position
+	 * @param hasBall does the Pawn own the ball or not
+	 * @param color the color of the player to who belong this pawn
+	 */
+	public Pawn(final int x, final int y, final boolean hasBall, final Color color) {
+<span class="nc" id="L35">		super(color);</span>
+<span class="nc" id="L36">		this.x = x;</span>
+<span class="nc" id="L37">		this.y = y;</span>
+		//this.id = id;
+<span class="nc" id="L39">		this.hasBall = hasBall;</span>
+<span class="nc" id="L40">	}</span>
+
+	public int getX() {
+<span class="nc" id="L43">		return this.x;</span>
+	}
+
+	public int getY() {
+<span class="nc" id="L47">		return this.y;</span>
+	}
+
+	public void setColor(final Color color) {
+<span class="nc" id="L51">		this.color = color;</span>
+<span class="nc" id="L52">	}</span>
+
+	/*
+	public void setX(final int x) {
+		this.x = x;
+	}
+	*/
+
+	/*public int getId() {
+		return this.id;
+	}*/
+
+	public boolean hasBall() {
+<span class="nc" id="L65">		return this.hasBall;</span>
+	}
+
+	public void setPos(final int x, final int y) {
+<span class="nc" id="L69">		this.x = x;</span>
+<span class="nc" id="L70">		this.y = y;</span>
+<span class="nc" id="L71">	}</span>
+
+	public void setHasBall(final boolean ball) {
+<span class="nc" id="L74">		this.hasBall = ball;</span>
+<span class="nc" id="L75">	}</span>
+
+
+	ArrayList&lt;Command&gt; movePlayable(final Board gameBoard) {
+<span class="nc" id="L79">		final ArrayList&lt;Command&gt; res = new ArrayList&lt;Command&gt;();</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">		if (this.hasBall) {</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">			final Stream&lt;Pawn&gt; streamPiece = gameBoard.getList().stream().filter(p -&gt; p.getColor() == this.color);</span>
+<span class="nc" id="L82">			streamPiece.forEach(p -&gt; {</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">				if (this.canPassTo(p, gameBoard)) {</span>
+<span class="nc" id="L84">					res.add(new MoveBall(this.x, this.y, p.getX(), p.getY()));</span>
+				}
+				/*if (this.x == p.getX() &amp;&amp; this.y != p.getY() &amp;&amp; this.canPassLineX(p.getY(), gameBoard)) {
+					res.add(new MoveBall(this.x, this.y, p.getX(), p.getY()));
+				} else if (this.y == p.getY() &amp;&amp; this.x != p.getX() &amp;&amp; this.canPassLineY(p.getX(), gameBoard)) {
+					res.add(new MoveBall(this.x, this.y, p.getX(), p.getY()));
+				} else if (Math.abs(this.x - p.getX()) == Math.abs(this.y - p.getY()) &amp;&amp; this.canPassDiag(p.getX(), p.getY(), gameBoard)) {
+					res.add(new MoveBall(this.x, this.y, p.getX(), p.getY()));
+				}*/
+
+
+<span class="nc" id="L95">			});</span>
+		}
+
+<span class="nc bnc" id="L98" title="All 2 branches missed.">		if (gameBoard.getPiece(x + 1, y) == null) {</span>
+<span class="nc" id="L99">			res.add(new MovePion(x, y, x + 1, y));</span>
+		}
+<span class="nc bnc" id="L101" title="All 2 branches missed.">		if (gameBoard.getPiece(x, y + 1) == null) {</span>
+<span class="nc" id="L102">			res.add(new MovePion(x, y, x, y + 1));</span>
+		}
+<span class="nc bnc" id="L104" title="All 2 branches missed.">		if (gameBoard.getPiece(x - 1, y) == null) {</span>
+<span class="nc" id="L105">			res.add(new MovePion(x, y, x - 1, y));</span>
+		}
+<span class="nc bnc" id="L107" title="All 2 branches missed.">		if (gameBoard.getPiece(x, y - 1) == null) {</span>
+<span class="nc" id="L108">			res.add(new MovePion(x, y, x, y - 1));</span>
+		}
+
+<span class="nc" id="L111">		return res;</span>
+	}
+
+	/*List&lt;Command&gt; moveBallPossible(final Board gameBoard) {
+		final ArrayList&lt;Command&gt; res = new ArrayList&lt;Command&gt;();
+		IntStream.range(1, 6).forEach(i -&gt; {
+			if (gameBoard.getPiece(x - i, y - i).isInBoard()) {
+				if (gameBoard.getPiece(x - i, y - i) != null) {
+					if (gameBoard.getPiece(x - i, y - i).color == this.getColor()) {
+						res.add(new MoveBall(x, y, x - i, y - i));
+					}
+				}
+			}
+			if (gameBoard.getPiece(x + i, y + i).isInBoard()) {
+				if (gameBoard.getPiece(x + i, y + i) != null) {
+					if (gameBoard.getPiece(x + i, y + i).color == this.getColor()) {
+						res.add(new MoveBall(x, y, x + i, y + i));
+					}
+				}
+			}
+			if (gameBoard.getPiece(x - i, y + i).isInBoard()) {
+				if (gameBoard.getPiece(x - i, y + i) != null) {
+					if (gameBoard.getPiece(x - i, y + i).color == this.getColor()) {
+						res.add(new MoveBall(x, y, x - i, y + i));
+					}
+				}
+			}
+			if (gameBoard.getPiece(x + i, y - i).isInBoard()) {
+				if (gameBoard.getPiece(x + i, y - i) != null) {
+					if (gameBoard.getPiece(x + i, y - i).color == this.getColor()) {
+						res.add(new MoveBall(x, y, x + i, y - i));
+					}
+				}
+			}
+
+			if (gameBoard.getPiece(x, y - i).isInBoard()) {
+				if (gameBoard.getPiece(x, y - i) != null) {
+					if (gameBoard.getPiece(x, y - i).color == this.getColor()) {
+						res.add(new MoveBall(x, y, x, y - i));
+					}
+				}
+			}
+			if (gameBoard.getPiece(x - i, y).isInBoard()) {
+				if (gameBoard.getPiece(x - i, y) != null) {
+					if (gameBoard.getPiece(x - i, y).color == this.getColor()) {
+						res.add(new MoveBall(x, y, x - i, y));
+					}
+				}
+			}
+			if (gameBoard.getPiece(x, y + i).isInBoard()) {
+				if (gameBoard.getPiece(x, y + i) != null) {
+					if (gameBoard.getPiece(x, y + i).color == this.getColor()) {
+						res.add(new MoveBall(x, y, x, y + i));
+					}
+				}
+			}
+			if (gameBoard.getPiece(x + i, y).isInBoard()) {
+				if (gameBoard.getPiece(x + i, y) != null) {
+					if (gameBoard.getPiece(x + i, y).color == this.getColor()) {
+						res.add(new MoveBall(x, y, x + i, y));
+					}
+				}
+			}
+
+		});
+		return res;
+	}*/
+
+	public boolean canPassDiag(final int newX, final int newY, final Board gameBoard) {
+<span class="nc" id="L180">		final ArrayList&lt;Pawn&gt; ennemie = new ArrayList&lt;Pawn&gt;();</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">		final int dx = (newX &gt; this.x) ? 1 : -1;</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">		final int dy = (newY &gt; this.y) ? 1 : -1;</span>
+<span class="nc" id="L183">		IntStream.iterate(this.x, x -&gt; x + dx).limit(Math.abs(this.x - newX)).forEach((int valX) -&gt; {</span>
+<span class="nc" id="L184">			IntStream.iterate(this.y, y -&gt; y + dy).limit(Math.abs(this.y - newY)).forEach((int valY) -&gt; {</span>
+<span class="nc bnc" id="L185" title="All 4 branches missed.">				if (gameBoard.getPiece(valX, valY) != null &amp;&amp; gameBoard.getPiece(valX, valY).getColor() != this.color) {</span>
+<span class="nc" id="L186">					ennemie.add(gameBoard.getPiece(valX, valY));</span>
+				}
+<span class="nc" id="L188">			});</span>
+<span class="nc" id="L189">		});</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">		return ennemie.size() &lt;= 0;</span>
+	}
+
+	public boolean canPassLineX(final int newY, final Board gameBoard) {
+<span class="nc" id="L194">		final ArrayList&lt;Pawn&gt; ennemie = new ArrayList&lt;Pawn&gt;();</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">		final int dy = (newY &gt; this.y) ? 1 : -1;</span>
+<span class="nc" id="L196">		IntStream.iterate(this.y, y -&gt; y + dy).limit(Math.abs(this.y - newY)).forEach((int valY) -&gt; {</span>
+<span class="nc bnc" id="L197" title="All 4 branches missed.">			if (gameBoard.getPiece(this.x, valY) != null &amp;&amp; gameBoard.getPiece(this.x, valY).getColor() != this.color) {</span>
+<span class="nc" id="L198">				ennemie.add(gameBoard.getPiece(this.x, valY));</span>
+			}
+<span class="nc" id="L200">		});</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">		return ennemie.size() &lt;= 0;</span>
+	}
+
+	public boolean canPassLineY(final int newX, final Board gameBoard) {
+<span class="nc" id="L205">		final ArrayList&lt;Pawn&gt; ennemie = new ArrayList&lt;Pawn&gt;();</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">		final int dx = (newX &gt; this.x) ? 1 : -1;</span>
+<span class="nc" id="L207">		IntStream.iterate(this.x, x -&gt; x + dx).limit(Math.abs(this.x - newX)).forEach((int valX) -&gt; {</span>
+<span class="nc bnc" id="L208" title="All 4 branches missed.">			if (gameBoard.getPiece(valX, this.y) != null &amp;&amp; gameBoard.getPiece(valX, this.y).getColor() != this.color) {</span>
+<span class="nc" id="L209">				ennemie.add(gameBoard.getPiece(valX, this.y));</span>
+			}
+<span class="nc" id="L211">		});</span>
+<span class="nc bnc" id="L212" title="All 2 branches missed.">		return ennemie.size() &lt;= 0;</span>
+	}
+
+	public boolean canPassTo(final Pawn p, final Board gameBoard) {
+<span class="nc bnc" id="L216" title="All 6 branches missed.">		if (this.x == p.getX() &amp;&amp; this.y != p.getY() &amp;&amp; this.canPassLineX(p.getY(), gameBoard)) {</span>
+<span class="nc" id="L217">			return true;</span>
+<span class="nc bnc" id="L218" title="All 6 branches missed.">		} else if (this.y == p.getY() &amp;&amp; this.x != p.getX() &amp;&amp; this.canPassLineY(p.getX(), gameBoard)) {</span>
+<span class="nc" id="L219">			return true;</span>
+<span class="nc bnc" id="L220" title="All 4 branches missed.">		} else if (Math.abs(this.x - p.getX()) == Math.abs(this.y - p.getY()) &amp;&amp; this.canPassDiag(p.getX(), p.getY(), gameBoard)) {</span>
+<span class="nc" id="L221">			return true;</span>
+		}
+<span class="nc" id="L223">		return false;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.1.201803210924</span></div></body></html>

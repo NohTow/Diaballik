@@ -16,6 +16,20 @@ public class Game {
 
 	private Player joueur1;
 	private Player joueur2;
+	//Constructeur factice pour virer les unused TODO
+	public Game() {
+		this.numTurn = 0;
+		this.color = Color.Yellow;
+		this.hasIA = false;
+		this.idGame = 0;
+		this.save = new ArrayDeque<Command>();
+		this.undo = new ArrayDeque<Command>();
+		this.gameBoard = new Board();
+		this.joueur1 = new Humain("Antoine", Color.Yellow);
+		this.joueur2 = new Humain("Adrien", Color.Green);
+
+
+	}
 
 	public Board getBoard() {
 		return this.gameBoard;

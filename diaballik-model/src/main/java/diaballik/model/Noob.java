@@ -53,7 +53,6 @@ public class Noob implements Strategy {
 					//ToDo
 			}
 		} else {    //faire un MoveBall
-			//ToDo
 			final Pawn p = new Pawn(0, 0, false, Color.Yellow);
 			IntStream.range(0, 6).forEach(i -> {
 				if(pawns.get(i).hasBall) {		//Trouver le pion qui possede la balle
@@ -62,8 +61,9 @@ public class Noob implements Strategy {
 					p.setColor(pawns.get(i).getColor());
 				}
 			});
-
-
+			Collections.shuffle(p.moveBallPossible(board));
+			final Command com = p.moveBallPossible(board).get(0);
+			com.commandDo(game);
 		}
 
 	}

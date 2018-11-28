@@ -1,9 +1,6 @@
 package diaballik.model;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.stream.IntStream;
 
 public class Noob implements Strategy {
 	@Override
@@ -14,13 +11,13 @@ public class Noob implements Strategy {
 		//ArrayList<Command> comList = new ArrayList<Command>();
 		Collections.shuffle(pawns);
 		final Pawn p = pawns.get(0);
-		ArrayList<Command> comList = p.movePlayable(board);
+		final ArrayList<Command> comList = p.movePlayable(board);
 		Collections.shuffle(comList);
 		//Peut beuger si comList vide peut être faire un if sur la taille, et appeller un exec avec la mm liste et le pion en moins
-		if(comList.size() == 0){
+		if (comList.size() == 0) {
 			//exec différent
 			return;
-		}else{
+		} else {
 			final Command c = comList.get(0);
 			c.commandDo(game);
 		}

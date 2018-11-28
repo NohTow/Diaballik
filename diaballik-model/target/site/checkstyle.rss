@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#diaballik.model.Game.java">diaballik/model/Game.java</a>
+                  <a href="${project.url}/checkstyle.html#diaballik.model.Pawn.java">diaballik/model/Pawn.java</a>
                 </td>
                 <td>
                   0

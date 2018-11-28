@@ -28,7 +28,9 @@ public class MovePion implements Command {
 	@Override
 	public void commandDo(final Game game) {
 		final Board board = game.getBoard();
-		board.setPiece(this.newX, this.newY, board.getPiece(this.oldX, this.oldY));
+		final Pawn p = board.getPiece(this.oldX, this.oldY);
+		p.setPos(this.newX, this.newY);
+		board.setPiece(this.newX, this.newY, p);
 		board.setPiece(this.oldX, this.oldY, null);
 		game.addSave(this);
 	}
@@ -36,7 +38,9 @@ public class MovePion implements Command {
 	@Override
 	public void commandUndo(final Game game) {
 		final Board board = game.getBoard();
-		board.setPiece(this.oldX, this.oldY, board.getPiece(this.newX, this.newY));
+		final Pawn p =  board.getPiece(this.newX, this.newY);
+		p.setPos(this.oldX, this.oldY);
+		board.setPiece(this.oldX, this.oldY, p);
 		board.setPiece(this.newX, this.newY, null);
 		game.addUndo(this);
 

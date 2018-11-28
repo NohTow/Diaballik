@@ -2,9 +2,10 @@ package diaballik.model;
 
 //import java.util.stream.IntStream;
 
+import java.util.ArrayList;
+
 public class Board {
 	protected Pawn[][] plateau;
-
 	public Board() {
 		this.plateau = new Pawn[7][7];
 		/*IntStream.range(0, 6).forEach(i -> {

@@ -10,22 +10,34 @@ public class Noob implements Strategy {
 	public void exec(final Game game, final ArrayList<Pawn> pawns, final Ball ball) {
 		final Board board = game.getBoard();
 
-		final ArrayList<Integer> list = new ArrayList<>(Arrays.asList(0, 1)); //Choix au hasard de la commande a executer
-		Collections.shuffle(list);
+		//final ArrayList<Integer> list = new ArrayList<>(Arrays.asList(0, 1)); //Choix au hasard de la commande a executer
+		//ArrayList<Command> comList = new ArrayList<Command>();
+		Collections.shuffle(pawns);
+		final Pawn p = pawns.get(0);
+		ArrayList<Command> comList = p.movePlayable(board);
+		Collections.shuffle(comList);
+		//Peut beuger si comList vide peut être faire un if sur la taille, et appeller un exec avec la mm liste et le pion en moins
+		if(comList.size() == 0){
+			//exec différent
+			return;
+		}else{
+			final Command c = comList.get(0);
+			c.commandDo(game);
+		}
 
-		if (list.get(0) == 1) {    //faire un MovePion
+		/*if (list.get(0) == 1) {    //faire un MovePion
 			Collections.shuffle(pawns); //choix d'un pion a deplacer
 			final Pawn p = pawns.get(0);
 			final int x = p.getX();
 			final int y = p.getY();
+			final ArrayList<Command> list1 = new ArrayList<Command>();
 
 			final MovePion moveDevant = new MovePion(x, y, x, y + 1);
 			final MovePion moveDerriere = new MovePion(x, y, x, y - 1);
 			final MovePion moveGauche = new MovePion(x, y, x - 1, y);
 			final MovePion moveDroite = new MovePion(x, y, x + 1, y);
-
-			final ArrayList<Integer> list1 = new ArrayList<>(Arrays.asList(0, 1, 2, 3));
-			Collections.shuffle(list1);    //0 pour devant, 1 pour derriere, 2 pour gauche, 3 pour droite
+			Collections.shuffle(list1);
+			    //0 pour devant, 1 pour derriere, 2 pour gauche, 3 pour droite
 			final int dest = list1.get(0);
 			switch (dest) {
 				case (0):    //Si on a choisi de bouger devant
@@ -64,7 +76,7 @@ public class Noob implements Strategy {
 			Collections.shuffle(p.moveBallPossible(board));
 			final Command com = p.moveBallPossible(board).get(0);
 			com.commandDo(game);
-		}
+		}*/
 
 	}
 }

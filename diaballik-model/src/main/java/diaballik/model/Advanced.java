@@ -7,5 +7,6 @@ public class Advanced implements Strategy {
 	@Override
 	public void exec(final Game game, final ArrayList<Pawn> pions, final Ball balle) {
 
+
 	}
 }

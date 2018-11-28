@@ -63,7 +63,10 @@ public class Pawn extends Element {
 	}
 
 
-	List<Command> movePlayable(final Board gameBoard) {
+	ArrayList<Command> movePlayable(final Board gameBoard) {
+		if(this.hasBall){
+
+		}
 		final ArrayList<Command> res = new ArrayList<Command>();
 		if (gameBoard.getPiece(x + 1, y) == null) {
 			res.add(new MovePion(x, y, x + 1, y));

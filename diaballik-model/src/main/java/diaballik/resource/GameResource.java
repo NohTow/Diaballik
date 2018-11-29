@@ -70,6 +70,16 @@ public class GameResource {
 		this.saveGame();
 	}
 
+	@PUT
+	@Path("/undo")
+	public void undoGame(){
+		this.game.undo();
+	}
+	@PUT
+	@Path("redo")
+	public void redoGame(){
+		this.game.redo();
+	}
 
 	public void setUpBoard(String typeBoard) {
 		if (typeBoard.equals("Standard")) {

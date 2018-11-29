@@ -40,7 +40,7 @@ class BoardTest {
 		AmongUs builder = new AmongUs();
 		builder.placerPieces(g.getBoard());
 		ArrayList<Pawn> l = g.getBoard().getList();
-		l.forEach(p->{
+		l.stream().filter(p->p.getColor() == Color.Yellow).forEach(p->{
 			System.out.println(p.getColor()+" "+ p.getX()+" "+p.getY()+" "+ p.hasBall());
 		});
 

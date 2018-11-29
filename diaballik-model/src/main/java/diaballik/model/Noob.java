@@ -9,18 +9,13 @@ public class Noob implements Strategy {
 
 		//final ArrayList<Integer> list = new ArrayList<>(Arrays.asList(0, 1)); //Choix au hasard de la commande a executer
 		//ArrayList<Command> comList = new ArrayList<Command>();
-		Collections.shuffle(pawns);
-		final Pawn p = pawns.get(0);
-		final ArrayList<Command> comList = p.movePlayable(game);
+		//Collections.shuffle(pawns);
+		//final Pawn p = pawns.get(0);
+		final ArrayList<Command> comList = new ArrayList<Command>();
+		pawns.forEach(p->{
+			comList.addAll(p.movePlayable(game));
+		});
 		Collections.shuffle(comList);
-		//Peut beuger si comList vide peut être faire un if sur la taille, et appeller un exec avec la mm liste et le pion en moins
-		if (comList.size() == 0) {
-			//exec différent
-			return;
-		} else {
-			final Command c = comList.get(0);
-			c.commandDo(game);
-		}
-
+		comList.get(0).commandDo(game);
 	}
 }

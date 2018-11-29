@@ -12,18 +12,25 @@ public class MovePion implements Command {
 		this.newX = newX;
 		this.newY = newY;
 	}
-	/*public int getOldX(){
-		return this.oldX;
+	@Override
+	public int getNewX() {
+		return newX;
 	}
-	public int getOldY(){
-		return this.oldY;
+
+	@Override
+	public int getNewY() {
+		return newY;
 	}
-	public int getNewX(){
-		return this.newX;
+
+	@Override
+	public int getOldX() {
+		return oldX;
 	}
-	public int getNewY(){
-		return this.newY;
-	}*/
+
+	@Override
+	public int getOldY() {
+		return oldY;
+	}
 
 	@Override
 	public void commandDo(final Game game) {

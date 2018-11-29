@@ -27,6 +27,23 @@ public class MoveBall implements Command {
 		game.addUndo(this);
 	}
 
+	@Override
+	public int getNewX() {
+		return newX;
+	}
 
+	@Override
+	public int getNewY() {
+		return newY;
+	}
 
+	@Override
+	public int getOldX() {
+		return oldX;
+	}
+
+	@Override
+	public int getOldY() {
+		return oldY;
+	}
 }

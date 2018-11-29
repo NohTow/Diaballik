@@ -10,11 +10,6 @@ public class Board {
 
 	public Board() {
 		this.plateau = new Pawn[7][7];
-		/*IntStream.range(0, 6).forEach(i -> {
-			IntStream.range(0, 6).forEach(j -> {
-				this.plateau[i][j] = new Pawn(i, j, false, Color.Yellow);
-			});
-		});*/
 	}
 
 	public Pawn getPiece(final int x, final int y) {
@@ -31,9 +26,9 @@ public class Board {
 
 	public ArrayList<Pawn> getList() {
 		final ArrayList<Pawn> res = new ArrayList<>();
-		IntStream.range(0, 6).forEach(i -> {
-			IntStream.range(0, 6).forEach(j -> {
-				if (this.plateau[i][j] != null) {
+		IntStream.rangeClosed(0, 6).forEach(i -> {
+			IntStream.rangeClosed(0, 6).forEach(j -> {
+				if (this.getPiece(i, j) != null) {
 					res.add(this.plateau[i][j]);
 				}
 			});

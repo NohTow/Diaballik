@@ -98,16 +98,16 @@ public class Pawn extends Element {
 
 			});
 		} else {
-			if (gameBoard.getPiece(x + 1, y) == null) {
+			if (x != 6 && gameBoard.getPiece(x + 1, y) == null) {
 				res.add(new MovePion(x, y, x + 1, y));
 			}
-			if (gameBoard.getPiece(x, y + 1) == null) {
+			if (y != 6 && gameBoard.getPiece(x, y + 1) == null) {
 				res.add(new MovePion(x, y, x, y + 1));
 			}
-			if (gameBoard.getPiece(x - 1, y) == null) {
+			if (x != 0 && gameBoard.getPiece(x - 1, y) == null) {
 				res.add(new MovePion(x, y, x - 1, y));
 			}
-			if (gameBoard.getPiece(x, y - 1) == null) {
+			if (y != 0 && gameBoard.getPiece(x, y - 1) == null) {
 				res.add(new MovePion(x, y, x, y - 1));
 			}
 		}
@@ -116,70 +116,6 @@ public class Pawn extends Element {
 		return res;
 	}
 
-	/*List<Command> moveBallPossible(final Board gameBoard) {
-		final ArrayList<Command> res = new ArrayList<Command>();
-		IntStream.range(1, 6).forEach(i -> {
-			if (gameBoard.getPiece(x - i, y - i).isInBoard()) {
-				if (gameBoard.getPiece(x - i, y - i) != null) {
-					if (gameBoard.getPiece(x - i, y - i).color == this.getColor()) {
-						res.add(new MoveBall(x, y, x - i, y - i));
-					}
-				}
-			}
-			if (gameBoard.getPiece(x + i, y + i).isInBoard()) {
-				if (gameBoard.getPiece(x + i, y + i) != null) {
-					if (gameBoard.getPiece(x + i, y + i).color == this.getColor()) {
-						res.add(new MoveBall(x, y, x + i, y + i));
-					}
-				}
-			}
-			if (gameBoard.getPiece(x - i, y + i).isInBoard()) {
-				if (gameBoard.getPiece(x - i, y + i) != null) {
-					if (gameBoard.getPiece(x - i, y + i).color == this.getColor()) {
-						res.add(new MoveBall(x, y, x - i, y + i));
-					}
-				}
-			}
-			if (gameBoard.getPiece(x + i, y - i).isInBoard()) {
-				if (gameBoard.getPiece(x + i, y - i) != null) {
-					if (gameBoard.getPiece(x + i, y - i).color == this.getColor()) {
-						res.add(new MoveBall(x, y, x + i, y - i));
-					}
-				}
-			}
-
-			if (gameBoard.getPiece(x, y - i).isInBoard()) {
-				if (gameBoard.getPiece(x, y - i) != null) {
-					if (gameBoard.getPiece(x, y - i).color == this.getColor()) {
-						res.add(new MoveBall(x, y, x, y - i));
-					}
-				}
-			}
-			if (gameBoard.getPiece(x - i, y).isInBoard()) {
-				if (gameBoard.getPiece(x - i, y) != null) {
-					if (gameBoard.getPiece(x - i, y).color == this.getColor()) {
-						res.add(new MoveBall(x, y, x - i, y));
-					}
-				}
-			}
-			if (gameBoard.getPiece(x, y + i).isInBoard()) {
-				if (gameBoard.getPiece(x, y + i) != null) {
-					if (gameBoard.getPiece(x, y + i).color == this.getColor()) {
-						res.add(new MoveBall(x, y, x, y + i));
-					}
-				}
-			}
-			if (gameBoard.getPiece(x + i, y).isInBoard()) {
-				if (gameBoard.getPiece(x + i, y) != null) {
-					if (gameBoard.getPiece(x + i, y).color == this.getColor()) {
-						res.add(new MoveBall(x, y, x + i, y));
-					}
-				}
-			}
-
-		});
-		return res;
-	}*/
 
 	public boolean canPassDiag(final int newX, final int newY, final Board gameBoard) {
 		final ArrayList<Pawn> ennemie = new ArrayList<Pawn>();
@@ -218,6 +154,7 @@ public class Pawn extends Element {
 	}
 
 	public boolean canPassTo(final Pawn p, final Board gameBoard) {
+		if (this.x == p.getX() && this.y == p.getY()) return false;
 		if (this.x == p.getX() && this.y != p.getY() && this.canPassLineX(p.getY(), gameBoard)) {
 			return true;
 		} else if (this.y == p.getY() && this.x != p.getX() && this.canPassLineY(p.getX(), gameBoard)) {

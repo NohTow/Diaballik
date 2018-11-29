@@ -3,7 +3,7 @@ package diaballik.resource;
 import com.github.hanleyt.JerseyExtension;
 import diaballik.serialization.DiabalikJacksonProvider;
 import java.net.URI;
-import javafx.scene.paint.Color;
+//import javafx.scene.paint.Color;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;

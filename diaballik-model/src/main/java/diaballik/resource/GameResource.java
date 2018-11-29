@@ -1,18 +1,18 @@
 package diaballik.resource;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
+
 import diaballik.model.*;
 import diaballik.serialization.DiabalikJacksonProvider;
-import jdk.nashorn.internal.objects.NativeJSON;
+
 
 
 import javax.inject.Singleton;
 import javax.ws.rs.*;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
+/*import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Paths;*/
 
 
 @Singleton
@@ -41,8 +41,8 @@ public class GameResource {
 	@POST
 	@Path("/{id}")
 	public void loadGame(@PathParam("id") int idGame) throws IOException {
-		final String content = Files.readString(Paths.get("Game " + Integer.toString(idGame)), Charset.forName("utf8"));
-		this.game = new DiabalikJacksonProvider().getMapper().readValue(content, Game.class);
+		//final String content = Files.readString(Paths.get("Game " + Integer.toString(idGame)), Charset.forName("utf8"));
+		//this.game = new DiabalikJacksonProvider().getMapper().readValue(content, Game.class);
 	}
 
 	@PUT

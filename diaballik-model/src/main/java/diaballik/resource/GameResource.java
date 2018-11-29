@@ -1,7 +1,9 @@
 package diaballik.resource;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import diaballik.model.*;
 import diaballik.serialization.DiabalikJacksonProvider;
+import jdk.nashorn.internal.objects.NativeJSON;
 
 
 import javax.inject.Singleton;

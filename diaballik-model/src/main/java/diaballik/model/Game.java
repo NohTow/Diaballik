@@ -99,4 +99,13 @@ public class Game {
 			}
 		}
 	}
+	public void play(final Command command) {
+
+		command.commandDo(this);
+		this.incrNbAction();
+	}
+
+	public int getIdGame() {
+		return idGame;
+	}
 }

@@ -18,10 +18,10 @@ public class AmongUs extends BoardBuilder {
 		//Placer les pions sur le plateau dans le scénario standard
 		IntStream.range(0, 6).forEach(i -> {
 			//Placer des ennemis sur la ligne :
-			if(i == y1 || i == y2) {
+			if (i == y1 || i == y2) {
 				final Pawn temp = new Pawn(0, i, false, Color.Green);
 				board.setPiece(0, i, temp);
-			}else {
+			} else {
 				final Pawn temp = new Pawn(0, i, false, Color.Yellow);
 				board.setPiece(0, i, temp);
 			}
@@ -29,18 +29,17 @@ public class AmongUs extends BoardBuilder {
 
 		IntStream.range(0, 6).forEach(i -> {
 			//Placer des ennemis sur la ligne :
-			if(i == y1 || i == y2) {
+			if (i == y1 || i == y2) {
 				final Pawn temp = new Pawn(6, i, false, Color.Yellow);
 				board.setPiece(6, i, temp);
-			}else {
+			} else {
 				final Pawn temp = new Pawn(6, i, false, Color.Green);
 				board.setPiece(6, i, temp);
 			}
 		});
 
 		//Placer la balle sur le pion du milieu :
-		board.plateau[0][3].hasBall = true;
-		board.plateau[6][3].hasBall = true;
-
+		board.getPiece(0, 3).setHasBall(true);
+		board.getPiece(6, 3).setHasBall(true);
 	}
 }

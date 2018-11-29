@@ -13,6 +13,9 @@ public class Humain extends Player {
 
 	@Override
 	public void play(final Command command, final Game game) {
-			command.commandDo(game);
+
+		command.commandDo(game);
+		game.incrNbAction();
 	}
+
 }

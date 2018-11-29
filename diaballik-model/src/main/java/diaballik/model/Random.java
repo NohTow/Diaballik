@@ -25,9 +25,7 @@ public class Random extends BoardBuilder {
 		//Placer la balle sur un pion au hasard de chaque ligne :
 		final ArrayList<Integer> list = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6));
 		Collections.shuffle(list);
-
-		board.plateau[0][list.get(0)].hasBall = true; // A random value
-		board.plateau[6][list.get(1)].hasBall = true; // A different random value
-
+		board.getPiece(0, list.get(0)).setHasBall(true);
+		board.getPiece(6, list.get(1)).setHasBall(true);
 	}
 }

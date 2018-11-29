@@ -26,10 +26,10 @@ public class Pawn extends Element {
 
 
 	/**
-	 * @param x the initial value of x position
-	 * @param y the initial value of y position
+	 * @param x       the initial value of x position
+	 * @param y       the initial value of y position
 	 * @param hasBall does the Pawn own the ball or not
-	 * @param color the color of the player to who belong this pawn
+	 * @param color   the color of the player to who belong this pawn
 	 */
 	public Pawn(final int x, final int y, final boolean hasBall, final Color color) {
 		super(color);
@@ -75,8 +75,12 @@ public class Pawn extends Element {
 	}
 
 
-	ArrayList<Command> movePlayable(final Board gameBoard) {
+	ArrayList<Command> movePlayable(final Game game) {
+		final Board gameBoard = game.getBoard();
 		final ArrayList<Command> res = new ArrayList<Command>();
+		if (this.color != game.getColor()) {
+			return res;
+		}
 		if (this.hasBall) {
 			final Stream<Pawn> streamPiece = gameBoard.getList().stream().filter(p -> p.getColor() == this.color);
 			streamPiece.forEach(p -> {
@@ -93,20 +97,21 @@ public class Pawn extends Element {
 
 
 			});
+		} else {
+			if (gameBoard.getPiece(x + 1, y) == null) {
+				res.add(new MovePion(x, y, x + 1, y));
+			}
+			if (gameBoard.getPiece(x, y + 1) == null) {
+				res.add(new MovePion(x, y, x, y + 1));
+			}
+			if (gameBoard.getPiece(x - 1, y) == null) {
+				res.add(new MovePion(x, y, x - 1, y));
+			}
+			if (gameBoard.getPiece(x, y - 1) == null) {
+				res.add(new MovePion(x, y, x, y - 1));
+			}
 		}
 
-		if (gameBoard.getPiece(x + 1, y) == null) {
-			res.add(new MovePion(x, y, x + 1, y));
-		}
-		if (gameBoard.getPiece(x, y + 1) == null) {
-			res.add(new MovePion(x, y, x, y + 1));
-		}
-		if (gameBoard.getPiece(x - 1, y) == null) {
-			res.add(new MovePion(x, y, x - 1, y));
-		}
-		if (gameBoard.getPiece(x, y - 1) == null) {
-			res.add(new MovePion(x, y, x, y - 1));
-		}
 
 		return res;
 	}

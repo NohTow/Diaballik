@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
-import javafx.scene.paint.Color;
+import java.awt.Color;
 import javax.inject.Singleton;
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;

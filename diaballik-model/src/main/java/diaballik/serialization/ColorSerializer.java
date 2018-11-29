@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import java.io.IOException;
-import javafx.scene.paint.Color;
+import java.awt.Color;
 
 public class ColorSerializer extends StdSerializer<Color> {
 	public ColorSerializer() {

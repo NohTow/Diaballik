@@ -26,4 +26,7 @@ public class MoveBall implements Command {
 		board.getPiece(oldX, oldY).setHasBall(true);
 		game.addUndo(this);
 	}
+
+
+
 }

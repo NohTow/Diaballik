@@ -22,7 +22,9 @@ public class Standard extends BoardBuilder {
 
 
 		//Placer la balle sur le pion du milieu de chaque ligne
-		board.plateau[0][3].hasBall = true;
-		board.plateau[6][3].hasBall = true;
+		//board.plateau[0][3].hasBall = true;
+		//board.plateau[6][3].hasBall = true;
+		board.getPiece(0, 3).setHasBall(true);
+		board.getPiece(6, 3).setHasBall(true);
 	}
 }

@@ -4,6 +4,9 @@ import java.util.ArrayDeque;
 import java.util.List;
 //import java.util.Map;
 
+/*import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;*/
+
 public class Game {
 	private int nbAction;
 	private int numTurn;

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.10.1">
-<file name="C:\Users\NohTow\Desktop\Diaballik\diaballik-model\src\main\java\diaballik\model\Noob.java">
+<file name="C:\Users\Utilisateur\Documents\Cours_4_INFO\MOO\Diaballik\diaballik-model\src\main\java\diaballik\model\Pawn.java">
+<error line="78" column="9" severity="error" message="La complexité cyclomatique de la classe est de 12 alors que le maximum autorisé est de 10." source="com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck"/>
+<error line="156" column="9" severity="error" message="La complexité cyclomatique de la classe est de 11 alors que le maximum autorisé est de 10." source="com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck"/>
+</file>
+<file name="C:\Users\Utilisateur\Documents\Cours_4_INFO\MOO\Diaballik\diaballik-model\src\main\java\diaballik\model\Player.java">
+</file>
+<file name="C:\Users\Utilisateur\Documents\Cours_4_INFO\MOO\Diaballik\diaballik-model\src\main\java\diaballik\resource\GameResource.java">
+<error line="4" severity="error" message="L&apos;utilisation des import.* est prohibé - diaballik.model.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="10" severity="error" message="L&apos;utilisation des import.* est prohibé - javax.ws.rs.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+<error line="87" column="37" severity="error" message="Les chaînes littérales devraient être sur le côté gauche d&apos;une comparaison &apos;equals&apos;." source="com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck"/>
+<error line="90" column="44" severity="error" message="Les chaînes littérales devraient être sur le côté gauche d&apos;une comparaison &apos;equals&apos;." source="com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck"/>
 </file>
 </checkstyle>

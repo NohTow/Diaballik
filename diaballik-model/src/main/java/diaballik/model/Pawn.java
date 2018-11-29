@@ -154,7 +154,9 @@ public class Pawn extends Element {
 	}
 
 	public boolean canPassTo(final Pawn p, final Board gameBoard) {
-		if (this.x == p.getX() && this.y == p.getY()) return false;
+		if (this.x == p.getX() && this.y == p.getY()) {
+			return false;
+		}
 		if (this.x == p.getX() && this.y != p.getY() && this.canPassLineX(p.getY(), gameBoard)) {
 			return true;
 		} else if (this.y == p.getY() && this.x != p.getX() && this.canPassLineY(p.getX(), gameBoard)) {

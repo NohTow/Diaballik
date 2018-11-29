@@ -12,7 +12,7 @@ public class Noob implements Strategy {
 		//Collections.shuffle(pawns);
 		//final Pawn p = pawns.get(0);
 		final ArrayList<Command> comList = new ArrayList<Command>();
-		pawns.forEach(p->{
+		pawns.forEach(p -> {
 			comList.addAll(p.movePlayable(game));
 		});
 		Collections.shuffle(comList);

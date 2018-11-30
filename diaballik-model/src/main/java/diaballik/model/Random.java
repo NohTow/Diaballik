@@ -12,8 +12,8 @@ import java.util.Collections;
 public class Random extends BoardBuilder {
 
 	@Override
-	public void placerPieces(final Board board) {
-
+	public Board placerPieces() {
+		final Board board = new Board();
 		//Placer les pions sur le plateau dans le scénario standard
 		IntStream.rangeClosed(0, 6).forEach(i -> {
 			final Pawn temp = new Pawn(0, i, false, Color.Yellow);
@@ -30,5 +30,6 @@ public class Random extends BoardBuilder {
 		Collections.shuffle(list);
 		board.getPiece(0, list.get(0)).setHasBall(true);
 		board.getPiece(6, list.get(1)).setHasBall(true);
+		return board;
 	}
 }

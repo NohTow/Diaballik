@@ -9,8 +9,8 @@ import java.util.stream.IntStream;
 public class Standard extends BoardBuilder {
 
 	@Override
-	public void placerPieces(final Board board) {
-
+	public Board placerPieces() {
+		final Board board = new Board();
 		//Placer les pions sur le plateau dans le scénario standard
 		IntStream.rangeClosed(0, 6).forEach(i -> {
 			final Pawn temp = new Pawn(0, i, false, Color.Yellow);
@@ -28,5 +28,7 @@ public class Standard extends BoardBuilder {
 		//board.plateau[6][3].hasBall = true;
 		board.getPiece(0, 3).setHasBall(true);
 		board.getPiece(6, 3).setHasBall(true);
+		return board;
 	}
+
 }

@@ -28,15 +28,17 @@ public class GameResource {
 	@PUT
 	@Path("newGamePvP/{idGame}/{nom1}/{nom2}/{typeplateau}")
 	public void newPvPGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("nom2") final String nomJ2, @PathParam("typeplateau") final String typeBoard) {
-		this.game = new Game(false, idGame, nomJ1, nomJ2);
-		this.setUpBoard(typeBoard);
+		Board b = this.setUpBoard(typeBoard);
+		this.game = new Game(false, idGame, nomJ1, nomJ2, b);
+
 	}
 
 	@PUT
 	@Path("newGamePvIA/{idGame}/{nom1}/{typeplateau}/{strategieIA}")
 	public void newPvIAGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("typeplateau") final String typeBoard, @PathParam("strategieIA") final String strat) {
-		this.game = new Game(true, idGame, nomJ1, "");
-		this.setUpBoard(typeBoard);
+		Board b = this.setUpBoard(typeBoard);
+		this.game = new Game(true, idGame, nomJ1, "", b);
+
 	}
 
 	@POST
@@ -84,16 +86,16 @@ public class GameResource {
 		this.game.redo();
 	}
 
-	public void setUpBoard(final String typeBoard) {
+	public Board setUpBoard(final String typeBoard) {
 		if (typeBoard.equals("Standard")) {
 			final Standard builder = new Standard();
-			builder.placerPieces(this.game.getBoard());
+			return builder.placerPieces();
 		} else if (typeBoard.equals("Random")) {
 			final Random builder = new Random();
-			builder.placerPieces(this.game.getBoard());
+			return builder.placerPieces();
 		} else {
 			final AmongUs builder = new AmongUs();
-			builder.placerPieces(this.game.getBoard());
+			return builder.placerPieces();
 		}
 
 	}

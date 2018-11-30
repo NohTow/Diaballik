@@ -26,6 +26,7 @@ public class Game {
 	private ArrayDeque<Command> save;
 	private ArrayDeque<Command> undo;
 
+	@JsonProperty
 	private Board gameBoard;
 
 	private Player joueur1;
@@ -35,7 +36,7 @@ public class Game {
 	//TODO faire les loads/save
 
 	@JsonCreator
-	public Game(@JsonProperty("IA") final boolean IA, @JsonProperty("idGame") final int idG, @JsonProperty("player1") final String nameJ1, @JsonProperty("player2") final String nameJ2) {
+	public Game(@JsonProperty("IA") final boolean IA, @JsonProperty("idGame") final int idG, @JsonProperty("player1") final String nameJ1, @JsonProperty("player2") final String nameJ2, @JsonProperty("board") final Board b) {
 		this.nbAction = 0;
 		this.numTurn = 0;
 		this.color = Color.Yellow;
@@ -43,7 +44,7 @@ public class Game {
 		this.idGame = idG;
 		this.save = new ArrayDeque<Command>();
 		this.undo = new ArrayDeque<Command>();
-		this.gameBoard = new Board();
+		this.gameBoard = b;
 		this.joueur1 = new Humain(nameJ1, Color.Yellow);
 		if (IA) {
 			joueur2 = new IA(Color.Green, new Noob());

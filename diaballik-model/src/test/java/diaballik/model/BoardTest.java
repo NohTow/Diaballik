@@ -1,9 +1,12 @@
 package diaballik.model;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import diaballik.resource.GameResource;
+import diaballik.serialization.DiabalikJacksonProvider;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,10 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
 
-	@org.junit.jupiter.api.Test
+	/*@org.junit.jupiter.api.Test
 	public void testMain() throws Exception{
-		Game g = new Game(false, 1, "Antoine","Adrien");
-		Pawn p1 = new Pawn(0, 0, true, Color.Yellow);
+		//Standard builder = new Standard();
+		//Board b = builder.placerPieces();
+		//Game g = new Game(false, 1, "Antoine","Adrien",b);
+		/*Pawn p1 = new Pawn(0, 0, true, Color.Yellow);
 		Pawn p2 = new Pawn(1,0,false, Color.Yellow);
 		Pawn p3 = new Pawn(1,1,false,Color.Green);
 
@@ -43,7 +48,22 @@ class BoardTest {
 		l.stream().filter(p->p.getColor() == Color.Yellow).forEach(p->{
 			System.out.println(p.getColor()+" "+ p.getX()+" "+p.getY()+" "+ p.hasBall());
 		});
+	}*/
+	@Test
+	public void testMarshall() throws IOException {
+		//final Humain h = new Humain("Antoine",Color.Yellow);
+		Standard builder = new Standard();
+		Board b = builder.placerPieces();
 
+		Game h = new Game(false, 5,"Antoine","Adrien",b);
+
+
+		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
+		final String serializedObject = mapper.writeValueAsString(h);
+		System.out.println(serializedObject);
+		final Object readValue = mapper.readValue(serializedObject, h.getClass());
+
+		assertEquals(h, readValue);
 
 	}
 }

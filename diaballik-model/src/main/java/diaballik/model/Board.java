@@ -3,14 +3,13 @@ package diaballik.model;
 //import java.util.stream.IntStream;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.*;
 //import com.fasterxml.jackson.annotation.JsonProperty;
 //import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 //import java.util.Objects;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -22,6 +21,19 @@ public class Board {
 	@JsonCreator
 	public Board() {
 		this.plateau = new Pawn[7][7];
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Board board = (Board) o;
+		return Arrays.equals(plateau, board.plateau);
+	}
+
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(plateau);
 	}
 
 	public Pawn getPiece(final int x, final int y) {

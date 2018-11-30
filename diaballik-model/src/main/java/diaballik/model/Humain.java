@@ -2,6 +2,8 @@ package diaballik.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Objects;
 //import java.util.Objects;
 
 public class Humain extends Player {
@@ -22,4 +24,13 @@ public class Humain extends Player {
 		game.incrNbAction();
 	}
 
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
 }

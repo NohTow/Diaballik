@@ -2,6 +2,8 @@ package diaballik.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Objects;
 //import java.util.Objects;
 
 public class MoveBall implements Command {
@@ -16,6 +18,23 @@ public class MoveBall implements Command {
 		this.oldY = oldY;
 		this.newX = newX;
 		this.newY = newY;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		MoveBall moveBall = (MoveBall) o;
+		return getOldX() == moveBall.getOldX() &&
+				getOldY() == moveBall.getOldY() &&
+				getNewX() == moveBall.getNewX() &&
+				getNewY() == moveBall.getNewY();
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(getOldX(), getOldY(), getNewX(), getNewY());
 	}
 
 	@Override

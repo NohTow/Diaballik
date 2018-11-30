@@ -11,8 +11,8 @@ import java.util.Collections;
 
 public class AmongUs extends BoardBuilder {
 	@Override
-	public void placerPieces(final Board board) {
-
+	public Board placerPieces() {
+		final Board board = new Board();
 		final ArrayList<Integer> list = new ArrayList<>(Arrays.asList(0, 1, 2, 4, 5, 6));
 		Collections.shuffle(list);
 
@@ -45,5 +45,6 @@ public class AmongUs extends BoardBuilder {
 		//Placer la balle sur le pion du milieu :
 		board.getPiece(0, 3).setHasBall(true);
 		board.getPiece(6, 3).setHasBall(true);
+		return board;
 	}
 }

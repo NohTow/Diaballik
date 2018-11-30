@@ -1,6 +1,7 @@
 package diaballik.model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -20,13 +21,6 @@ public class Pawn extends Element {
 	/**
 	 * @return if the Pawn is in the Board
 	 */
-	public boolean isInBoard() {
-		if (this.getX() < 0 || this.getX() > 6 || this.getY() < 0 || this.getY() > 6) {
-			return false;
-		} else {
-			return true;
-		}
-	}
 
 
 	/**
@@ -79,6 +73,21 @@ public class Pawn extends Element {
 		this.hasBall = ball;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Pawn pawn = (Pawn) o;
+		return getX() == pawn.getX() &&
+				getY() == pawn.getY() &&
+				hasBall == pawn.hasBall;
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(getX(), getY(), hasBall);
+	}
 
 	ArrayList<Command> movePlayable(final Game game) {
 		final Board gameBoard = game.getBoard();

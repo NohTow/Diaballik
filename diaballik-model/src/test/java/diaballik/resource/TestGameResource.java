@@ -36,11 +36,14 @@ public class TestGameResource {
 	void testTemplate(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 
-		final Response res = client.
+		/*final Response res = client.
 			target(baseUri).
-			path("foo/bar"). //TODO
+			path("newGamePvP/3/Antoine/Adrien/Standard"). //TODO
 			request().
-			put(Entity.text(""));
+			put(Entity.text(""));*/
+
+		final Response res = client.target(baseUri).path("/game").request().get();
+		System.out.println(res);
 
 	}
 }

@@ -2,13 +2,16 @@ package diaballik.resource;
 
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import diaballik.model.*;
 import diaballik.serialization.DiabalikJacksonProvider;
-
+import io.swagger.annotations.Api;
 
 
 import javax.inject.Singleton;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.io.File;
 import java.io.IOException;
 /*import java.nio.charset.Charset;
@@ -18,6 +21,7 @@ import java.nio.file.Paths;*/
 
 @Singleton
 @Path("game")
+@Api()
 public class GameResource {
 	private Game game;
 
@@ -27,9 +31,10 @@ public class GameResource {
 
 	@PUT
 	@Path("newGamePvP/{idGame}/{nom1}/{nom2}/{typeplateau}")
-	public void newPvPGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("nom2") final String nomJ2, @PathParam("typeplateau") final String typeBoard) {
+	public Response newPvPGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("nom2") final String nomJ2, @PathParam("typeplateau") final String typeBoard) {
 		Board b = this.setUpBoard(typeBoard);
 		this.game = new Game(false, idGame, nomJ1, nomJ2, b);
+		return Response.ok().build();
 
 	}
 
@@ -64,9 +69,12 @@ public class GameResource {
 
 	@GET
 	@Path("")
-	public void saveGame() throws IOException {
+	@Produces(MediaType.APPLICATION_JSON)
+	public String saveGame() throws IOException {
 		//System.getProperty("user.dir"
-		new DiabalikJacksonProvider().getMapper().writeValue(new File("Game " + Integer.toString(this.game.getIdGame())), this.game);
+		//new DiabalikJacksonProvider().getMapper().writeValue(new File("Game " + Integer.toString(this.game.getIdGame())), this.game);
+		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
+		return mapper.writeValueAsString(this);
 	}
 
 	@PUT

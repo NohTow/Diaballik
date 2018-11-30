@@ -2,6 +2,10 @@ package diaballik.model;
 import java.util.ArrayList;
 import java.util.Collections;
 
+//import com.fasterxml.jackson.annotation.JsonCreator;
+////import com.fasterxml.jackson.annotation.JsonProperty;
+////import java.util.Objects;
+
 public class Noob implements Strategy {
 	@Override
 	public void exec(final Game game, final ArrayList<Pawn> pawns) {

@@ -1,17 +1,23 @@
 package diaballik.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+//import java.util.Objects;
+
 public class MovePion implements Command {
 	private int oldX;
 	private int oldY;
 	private int newX;
 	private int newY;
 
-	public MovePion(final int oldX, final int oldY, final int newX, final int newY) {
+	@JsonCreator
+	public MovePion(@JsonProperty("oldX") final int oldX, @JsonProperty("oldY") final int oldY, @JsonProperty("newX") final int newX, @JsonProperty("newY") final int newY) {
 		this.oldX = oldX;
 		this.oldY = oldY;
 		this.newX = newX;
 		this.newY = newY;
 	}
+
 	@Override
 	public int getNewX() {
 		return newX;

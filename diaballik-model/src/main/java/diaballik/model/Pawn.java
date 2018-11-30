@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+//import java.util.Objects;
+
 /**
  * Class of a pawn
  */
@@ -31,7 +35,8 @@ public class Pawn extends Element {
 	 * @param hasBall does the Pawn own the ball or not
 	 * @param color   the color of the player to who belong this pawn
 	 */
-	public Pawn(final int x, final int y, final boolean hasBall, final Color color) {
+	@JsonCreator
+	public Pawn(@JsonProperty("x") final int x, @JsonProperty("y") final int y, @JsonProperty("hasBall") final boolean hasBall, @JsonProperty("color") final Color color) {
 		super(color);
 		this.x = x;
 		this.y = y;

@@ -4,9 +4,19 @@ import java.util.ArrayDeque;
 import java.util.List;
 //import java.util.Map;
 
-/*import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;*/
+//import javafx.collections.FXCollections;
+//import javafx.collections.ObservableList;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+//import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+//import java.util.Objects;
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Game {
 	private int nbAction;
 	private int numTurn;
@@ -23,7 +33,9 @@ public class Game {
 
 	//Constructeur factice pour virer les unused TODO
 	//TODO faire les loads/save
-	public Game(final boolean IA, final int idG, final String nameJ1, final String nameJ2) {
+
+	@JsonCreator
+	public Game(@JsonProperty("IA") final boolean IA, @JsonProperty("idGame") final int idG, @JsonProperty("player1") final String nameJ1, @JsonProperty("player2") final String nameJ2) {
 		this.nbAction = 0;
 		this.numTurn = 0;
 		this.color = Color.Yellow;

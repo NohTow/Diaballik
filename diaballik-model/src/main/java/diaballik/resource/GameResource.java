@@ -1,6 +1,7 @@
 package diaballik.resource;
 
 
+
 import diaballik.model.*;
 import diaballik.serialization.DiabalikJacksonProvider;
 

@@ -1,7 +1,9 @@
 package diaballik.model;
 
 import java.util.ArrayDeque;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 //import java.util.Map;
 
 //import javafx.collections.FXCollections;
@@ -119,6 +121,32 @@ public class Game {
 
 		command.commandDo(this);
 		this.incrNbAction();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Game game = (Game) o;
+		//La methode equals ne fonctionne pas pour les ArrayDeque
+		return nbAction == game.nbAction &&
+				numTurn == game.numTurn &&
+				hasIA == game.hasIA &&
+				getIdGame() == game.getIdGame() &&
+				getColor() == game.getColor() &&
+				Objects.equals(gameBoard, game.gameBoard) &&
+				Objects.equals(joueur1, game.joueur1) &&
+				Objects.equals(joueur2, game.joueur2);
+	}
+
+	public ArrayDeque<Command> getSave() {
+		return save;
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(nbAction, numTurn, getColor(), hasIA, getIdGame(), save, undo, gameBoard, joueur1, joueur2);
 	}
 
 	public int getIdGame() {

@@ -28,12 +28,16 @@ public class Board {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Board board = (Board) o;
-		return Arrays.equals(plateau, board.plateau);
+		return board.getList().equals(this.getList());
 	}
 
 	@Override
 	public int hashCode() {
-		return Arrays.hashCode(plateau);
+		return Arrays.hashCode(getPlateau());
+	}
+
+	public Pawn[][] getPlateau() {
+		return plateau;
 	}
 
 	public Pawn getPiece(final int x, final int y) {

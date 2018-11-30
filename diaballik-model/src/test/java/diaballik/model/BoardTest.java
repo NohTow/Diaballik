@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,14 +59,15 @@ class BoardTest {
 		Board b = builder.placerPieces();
 
 		Game h = new Game(false, 5,"Antoine","Adrien",b);
-
-
+		h.play(new MovePion(0,0,4,4));
+		//Pawn b = new Pawn(3,5,true,Color.Yellow);
 		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
 		final String serializedObject = mapper.writeValueAsString(h);
 		System.out.println(serializedObject);
 		final Object readValue = mapper.readValue(serializedObject, h.getClass());
-
+		System.out.println(((Game) h).getSave().peek().getNewX());
 		assertEquals(h, readValue);
+
 
 	}
 }

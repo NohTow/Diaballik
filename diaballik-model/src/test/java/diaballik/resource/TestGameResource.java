@@ -6,6 +6,7 @@ import com.github.hanleyt.JerseyExtension;
 import diaballik.serialization.DiabalikJacksonProvider;
 import java.net.URI;
 import java.io.IOException;
+import java.util.stream.IntStream;
 //import javafx.scene.paint.Color;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
@@ -18,8 +19,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.junit.jupiter.api.extension.RegisterExtension;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 //import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertNotNull;
@@ -59,9 +60,41 @@ public class TestGameResource {
 		//final Game game = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text("")).readEntity(Game.class);
 		//assertEquals(game,gametest);
 		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		final Game g = res.readEntity(Game.class);
+		IntStream.rangeClosed(0,6).forEach(i->{
+			assertEquals(Color.Yellow,g.getBoard().getPiece(0,i).getColor());
+			assertEquals(Color.Green,g.getBoard().getPiece(6,i).getColor());
+			IntStream.rangeClosed(1,5).forEach(j->{
+				assertEquals(null,g.getBoard().getPiece(j,i));
+			});
+		});
+		assertEquals("Antoine",g.getJoueur1().getName());
+		assertEquals(Color.Yellow,g.getJoueur1().getColor());
+		assertEquals(Color.Green, g.getJoueur2().getColor());
+		assertEquals("Adrien",g.getJoueur2().getName());
 		Assertions.assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
 	}
+	@Test
+	void testMovePiece(final Client client, final URI baseUri){
+		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
+		Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		Pawn p = res.readEntity(Game.class).getBoard().getPiece(0,0);
+		res = client.target(baseUri).path("game/movePiece/0/1/0/0").request().put(Entity.text(""));
+		Game g = res.readEntity(Game.class);
+		assertEquals(p.getColor(),g.getBoard().getPiece(1,0).getColor());
+		assertEquals(null,g.getBoard().getPiece(0,0));
 
+	}
+
+	@Test
+	void testMoveBall(final Client client, final URI baseUri){
+		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
+		Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		res = client.target(baseUri).path("game/moveBall/0/0/3/4").request().put(Entity.text(""));
+		Game g = res.readEntity(Game.class);
+		assertTrue(g.getBoard().getPiece(0,4).hasBall());
+		assertFalse(g.getBoard().getPiece(0,3).hasBall());
+	}
 	/*@Test
 	void testMoveBall(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);

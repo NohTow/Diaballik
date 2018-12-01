@@ -161,4 +161,12 @@ public class Game {
 		//final DiabalikJacksonProvider fileToSaveIn;
 		new DiabalikJacksonProvider().getMapper().writeValue(new File(fileName), this);
 	}
+
+	public Player getJoueur1() {
+		return joueur1;
+	}
+
+	public Player getJoueur2() {
+		return joueur2;
+	}
 }

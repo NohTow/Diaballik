@@ -47,21 +47,25 @@ public class GameResource {
 	@Path("newGamePvP/{idGame}/{nom1}/{nom2}/{typeplateau}")
 	@Produces(MediaType.APPLICATION_JSON)
 	//public Response newPvPGame(...)
-	public Game newPvPGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("nom2") final String nomJ2, @PathParam("typeplateau") final String typeBoard) throws NoGameCreatedException {
+	public Response newPvPGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("nom2") final String nomJ2, @PathParam("typeplateau") final String typeBoard) throws NoGameCreatedException {
 		try {
 			Board b = this.setUpBoard(typeBoard);
 			game = new Game(false, idGame, nomJ1, nomJ2, b);
 		} catch (NoGameCreatedException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage());
 		}
-		//return Response.ok().entity(game).build();
-		return game;
+		return Response.ok().entity(game).build();
+		//return game;
 	}
 
 	@PUT
 	@Path("newGamePvIA/{idGame}/{nom1}/{typeplateau}/{strategieIA}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response newPvIAGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("typeplateau") final String typeBoard, @PathParam("strategieIA") final String strat) throws NoGameCreatedException {
+		//IA computer = null;
+		if (typeBoard.equals("Noob")) {
+			Noob computer = new Noob();
+		}
 		try {
 			Board b = this.setUpBoard(typeBoard);
 			game = new Game(true, idGame, nomJ1, "", b);
@@ -69,7 +73,6 @@ public class GameResource {
 			LOGGER.log(Level.SEVERE, e.getMessage());
 		}
 		return Response.ok().entity(game).build();
-
 	}
 
 	/*@POST

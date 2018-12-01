@@ -51,27 +51,18 @@ public class TestGameResource {
 	@Test
 	void testTemplate(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
-
-		/*final Response res = client.
-			target(baseUri).
-			path("newGamePvP/3/Antoine/Adrien/Standard"). //TODO
-			request().
-			put(Entity.text(""));*/
-
-		//final Response res = client.target(baseUri).path("/game").request().get();
-		//System.out.println(res);
 	}
 
-	/*@Test
+	@Test
 	void testGameCreation(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		//final Game game = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text("")).readEntity(Game.class);
 		//assertEquals(game,gametest);
 		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
 		Assertions.assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
-	}*/
+	}
 
-	@Test
+	/*@Test
 	void testMoveBall(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		final Game res1 = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text("")).readEntity(Game.class);
@@ -80,7 +71,7 @@ public class TestGameResource {
 		gametest.play(new MoveBall(0, 3, 0, 4));
 		//Assertions.assertEquals(res2, res1);
 		assertEquals(res, gametest);
-	}
+	}*/
 
 
 

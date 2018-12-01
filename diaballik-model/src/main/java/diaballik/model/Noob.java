@@ -7,6 +7,9 @@ import java.util.Collections;
 ////import java.util.Objects;
 
 public class Noob implements Strategy {
+	public Noob() {
+		super();
+	}
 	@Override
 	public void exec(final Game game, final ArrayList<Pawn> pawns) {
 		//final Board board = game.getBoard();

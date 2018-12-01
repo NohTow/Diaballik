@@ -1,8 +1,11 @@
 package diaballik.resource;
 
+import diaballik.model.*;
+
 import com.github.hanleyt.JerseyExtension;
 import diaballik.serialization.DiabalikJacksonProvider;
 import java.net.URI;
+import java.io.IOException;
 //import javafx.scene.paint.Color;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
@@ -12,13 +15,18 @@ import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertNotNull;
 
 public class TestGameResource {
 	@SuppressWarnings("unused") @RegisterExtension JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
+
+	Game gametest;
 
 	private Application configureJersey() {
 		return new ResourceConfig(GameResource.class).
@@ -30,6 +38,8 @@ public class TestGameResource {
 
 	@BeforeEach
 	void setUp() {
+		Board b = this.setUpBoard("Standard");
+		gametest = new Game(false, 1, "Antoine", "Adrien", b);
 	}
 
 	@Test
@@ -44,6 +54,20 @@ public class TestGameResource {
 
 		final Response res = client.target(baseUri).path("/game").request().get();
 		System.out.println(res);
+
+	}
+
+	public Board setUpBoard(final String typeBoard) {
+		if (typeBoard.equals("Standard")) {
+			final Standard builder = new Standard();
+			return builder.placerPieces();
+		} else if (typeBoard.equals("Random")) {
+			final Random builder = new Random();
+			return builder.placerPieces();
+		} else {
+			final AmongUs builder = new AmongUs();
+			return builder.placerPieces();
+		}
 
 	}
 }

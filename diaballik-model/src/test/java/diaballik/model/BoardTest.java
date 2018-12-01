@@ -59,7 +59,11 @@ class BoardTest {
 		Board b = builder.placerPieces();
 
 		Game h = new Game(false, 5,"Antoine","Adrien",b);
-		h.play(new MovePion(0,0,4,4));
+		//try {
+			h.play(new MovePion(0,0,4,4));
+		//} catch (MoveNotPossibleException e) {
+			//e.printStackTrace();
+		//}
 		//Pawn b = new Pawn(3,5,true,Color.Yellow);
 		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
 		final String serializedObject = mapper.writeValueAsString(h);

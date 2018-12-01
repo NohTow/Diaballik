@@ -40,11 +40,9 @@ public class MoveBall implements Command {
 	@Override
 	public void commandDo(final Game game) {
 		final Board board = game.getBoard();
-		if(board.getPiece(oldX, oldY).movePlayable(game).contains(this)){
-			board.getPiece(newX, newY).setHasBall(true);
-			board.getPiece(oldX, oldY).setHasBall(false);
-			game.addSave(this);
-		}
+		board.getPiece(newX, newY).setHasBall(true);
+		board.getPiece(oldX, oldY).setHasBall(false);
+		game.addSave(this);
 	}
 
 	@Override

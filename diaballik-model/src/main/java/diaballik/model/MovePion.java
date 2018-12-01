@@ -61,12 +61,10 @@ public class MovePion implements Command {
 	public void commandDo(final Game game) {
 		final Board board = game.getBoard();
 		final Pawn p = board.getPiece(this.oldX, this.oldY);
-		if(p.movePlayable(game).contains(this)) {
-			p.setPos(this.newX, this.newY);
-			board.setPiece(this.newX, this.newY, p);
-			board.setPiece(this.oldX, this.oldY, null);
-			game.addSave(this);
-		}
+		p.setPos(this.newX, this.newY);
+		board.setPiece(this.newX, this.newY, p);
+		board.setPiece(this.oldX, this.oldY, null);
+		game.addSave(this);
 	}
 
 	@Override

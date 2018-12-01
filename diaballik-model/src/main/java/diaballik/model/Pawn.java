@@ -112,21 +112,19 @@ public class Pawn extends Element {
 
 			});
 		} else {
-			if (x != 6 && gameBoard.getPiece(x + 1, y) == null) {
+			if (x < 6 && gameBoard.getPiece(x + 1, y) == null) {
 				res.add(new MovePion(x, y, x + 1, y));
 			}
-			if (y != 6 && gameBoard.getPiece(x, y + 1) == null) {
+			if (y < 6 && gameBoard.getPiece(x, y + 1) == null) {
 				res.add(new MovePion(x, y, x, y + 1));
 			}
-			if (x != 0 && gameBoard.getPiece(x - 1, y) == null) {
+			if (x > 0 && gameBoard.getPiece(x - 1, y) == null) {
 				res.add(new MovePion(x, y, x - 1, y));
 			}
-			if (y != 0 && gameBoard.getPiece(x, y - 1) == null) {
+			if (y > 0 && gameBoard.getPiece(x, y - 1) == null) {
 				res.add(new MovePion(x, y, x, y - 1));
 			}
 		}
-
-
 		return res;
 	}
 

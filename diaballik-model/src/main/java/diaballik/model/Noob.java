@@ -21,5 +21,6 @@ public class Noob implements Strategy {
 		});
 		Collections.shuffle(comList);
 		comList.get(0).commandDo(game);
+
 	}
 }

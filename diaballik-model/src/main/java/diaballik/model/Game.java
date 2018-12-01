@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 //import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import diaballik.resource.NoGameCreatedException;
 import diaballik.serialization.DiabalikJacksonProvider;
 //import java.util.Objects;
 
@@ -41,7 +42,7 @@ public class Game {
 	//TODO faire les loads/save
 
 	@JsonCreator
-	public Game(@JsonProperty("IA") final boolean IA, @JsonProperty("idGame") final int idG, @JsonProperty("player1") final String nameJ1, @JsonProperty("player2") final String nameJ2, @JsonProperty("board") final Board b) {
+	public Game(@JsonProperty("IA") final boolean IA, @JsonProperty("idGame") final int idG, @JsonProperty("player1") final String nameJ1, @JsonProperty("player2") final String nameJ2, @JsonProperty("board") final Board b)  {
 		this.nbAction = 0;
 		this.numTurn = 0;
 		this.color = Color.Yellow;
@@ -121,7 +122,6 @@ public class Game {
 		}
 	}
 	public void play(final Command command) {
-
 		command.commandDo(this);
 		this.incrNbAction();
 	}

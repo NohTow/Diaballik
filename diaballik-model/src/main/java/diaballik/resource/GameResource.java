@@ -19,13 +19,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 
 import javax.ws.rs.core.MediaType;
-//import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response;
 
 import java.io.File;
 import java.io.IOException;
 
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -39,7 +39,7 @@ import java.util.stream.Collectors;*/
 @Api(value = "game", description = "Operations on the game")
 public class GameResource {
 
-	//static final Logger LOGGER = Logger.getAnonymousLogger();
+	static final Logger LOGGER = Logger.getAnonymousLogger();
 	Game game;
 
 
@@ -48,25 +48,28 @@ public class GameResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	//public Response newPvPGame(...)
 	public Game newPvPGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("nom2") final String nomJ2, @PathParam("typeplateau") final String typeBoard) throws NoGameCreatedException {
-		Board b = this.setUpBoard(typeBoard);
-		game = new Game(false, idGame, nomJ1, nomJ2, b);
-		if (this.game == null) {
-			throw new NoGameCreatedException();
+		try {
+			Board b = this.setUpBoard(typeBoard);
+			game = new Game(false, idGame, nomJ1, nomJ2, b);
+		} catch (NoGameCreatedException e) {
+			LOGGER.log(Level.SEVERE, e.getMessage());
 		}
-		//Response.ok().build();
+		//return Response.ok().entity(game).build();
 		return game;
 	}
 
 	@PUT
 	@Path("newGamePvIA/{idGame}/{nom1}/{typeplateau}/{strategieIA}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Game newPvIAGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("typeplateau") final String typeBoard, @PathParam("strategieIA") final String strat) throws NoGameCreatedException {
-		Board b = this.setUpBoard(typeBoard);
-		game = new Game(true, idGame, nomJ1, "", b);
-		if (this.game == null) {
-			throw new NoGameCreatedException();
+	public Response newPvIAGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("typeplateau") final String typeBoard, @PathParam("strategieIA") final String strat) throws NoGameCreatedException {
+		try {
+			Board b = this.setUpBoard(typeBoard);
+			game = new Game(true, idGame, nomJ1, "", b);
+		} catch (NoGameCreatedException e) {
+			LOGGER.log(Level.SEVERE, e.getMessage());
 		}
-		return game;
+		return Response.ok().entity(game).build();
+
 	}
 
 	/*@POST
@@ -81,26 +84,26 @@ public class GameResource {
 	@Path("save/{file}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Game saveGame(final Game game, @PathParam("file") final String file) throws IOException {
+	public Response saveGame(final Game game, @PathParam("file") final String file) throws IOException {
 		game.saveGame(file);
-		return game;
+		return Response.ok().entity(game).build();
 	}
 
 	@GET
 	@Path("load/{file}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Game loadGame(@PathParam("file") final String file) throws IOException {
+	public Response loadGame(@PathParam("file") final String file) throws IOException {
 		final Game loadedGame = new DiabalikJacksonProvider().getMapper().readValue(new File("./" + file + ".json"), Game.class);
 		game = loadedGame;
-		return loadedGame;
+		return Response.ok().entity(game).build();
 	}
 
 	@DELETE
 	@Path("load/{file}")
-	public boolean deleteGame(@PathParam("file") final String file) {
+	public Response deleteGame(@PathParam("file") final String file) {
 		final File fileToDelete = new File("./" + file + ".json");
 		final boolean delete = fileToDelete.delete();
-		return delete;
+		return Response.ok().build();
 	}
 
 	@PUT
@@ -109,16 +112,17 @@ public class GameResource {
 	public Game playMoveBall(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
 		final MoveBall move = new MoveBall(oldX, oldY, newX, newY);
 		game.play(move);
+		//return Response.ok().entity(game).build();
 		return game;
 	}
 
 	@PUT
 	@Path("/movePiece/{x1}/{x2}/{y1}/{y2}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Game playMovePiece(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
+	public Response playMovePiece(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
 		final MovePion move = new MovePion(oldX, oldY, newX, newY);
 		game.play(move);
-		return game;
+		return Response.ok().entity(game).build();
 	}
 
 	/*
@@ -136,8 +140,9 @@ public class GameResource {
 	@GET
 	@Path("currentPlayer")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Color getCurrentPlayer() {
-		return game.getColor();
+	public Response getCurrentPlayer() {
+		final Color color = game.getColor();
+		return Response.ok().entity(color).build();
 	}
 
 
@@ -150,29 +155,31 @@ public class GameResource {
 	@PUT
 	@Path("/undo")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Game undoGame() {
+	public Response undoGame() {
 		game.undo();
-		return game;
+		return Response.ok().entity(game).build();
 	}
 
 	@PUT
 	@Path("redo")
 	@Produces({MediaType.APPLICATION_JSON})
-	public Game redoGame() {
+	public Response redoGame() {
 		game.redo();
-		return game;
+		return Response.ok().entity(game).build();
 	}
 
-	public Board setUpBoard(final String typeBoard) {
+	public Board setUpBoard(final String typeBoard) throws NoGameCreatedException {
 		if (typeBoard.equals("Standard")) {
 			final Standard builder = new Standard();
 			return builder.placerPieces();
 		} else if (typeBoard.equals("Random")) {
 			final Random builder = new Random();
 			return builder.placerPieces();
-		} else {
+		} else if (typeBoard.equals("AmongUs")){
 			final AmongUs builder = new AmongUs();
 			return builder.placerPieces();
+		} else {
+			throw new NoGameCreatedException("Le type de plateau doit etre Standard, Random ou AmongUs");
 		}
 
 	}

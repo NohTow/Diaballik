@@ -1,10 +1,12 @@
 package diaballik.model;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-//import java.util.Map;
+import java.util.Map;
 
 //import javafx.collections.FXCollections;
 //import javafx.collections.ObservableList;
@@ -14,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 //import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import diaballik.serialization.DiabalikJacksonProvider;
 //import java.util.Objects;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -34,7 +37,7 @@ public class Game {
 	private Player joueur1;
 	private Player joueur2;
 
-	//Constructeur factice pour virer les unused TODO
+
 	//TODO faire les loads/save
 
 	@JsonCreator
@@ -151,5 +154,11 @@ public class Game {
 
 	public int getIdGame() {
 		return idGame;
+	}
+
+
+	public void saveGame(final String fileName) throws IOException {
+		//final DiabalikJacksonProvider fileToSaveIn;
+		new DiabalikJacksonProvider().getMapper().writeValue(new File(fileName), this);
 	}
 }

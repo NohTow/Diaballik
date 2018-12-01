@@ -53,6 +53,7 @@ public class GameResource {
 
 	@PUT
 	@Path("newGamePvIA/{idGame}/{nom1}/{typeplateau}/{strategieIA}")
+	//@Produces(MediaType.APPLICATION_JSON)
 	public void newPvIAGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("typeplateau") final String typeBoard, @PathParam("strategieIA") final String strat) throws NoGameCreatedException {
 		Board b = this.setUpBoard(typeBoard);
 		this.game = new Game(true, idGame, nomJ1, "", b);
@@ -72,18 +73,20 @@ public class GameResource {
 
 	@PUT
 	@Path("/mooveBall/{x1}/{x2}/{y1}/{y2}")
-	public void playMoveBall(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response playMoveBall(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
 		final Command move = new MoveBall(oldX, oldY, newX, newY);
 		this.game.play(move);
-		Response.ok().build();
+		return Response.ok().build();
 	}
 
 	@PUT
 	@Path("/moovePiece/{x1}/{x2}/{y1}/{y2}")
-	public void playMovePiece(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response playMovePiece(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
 		final MovePion move = new MovePion(oldX, oldY, newX, newY);
 		this.game.play(move);
-		Response.ok().build();
+		return Response.ok().build();
 	}
 
 	@GET

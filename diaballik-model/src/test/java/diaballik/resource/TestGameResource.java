@@ -90,11 +90,57 @@ public class TestGameResource {
 	void testMoveBall(final Client client, final URI baseUri){
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		Pawn p = res.readEntity(Game.class).getBoard().getPiece(0,3);
 		res = client.target(baseUri).path("game/moveBall/0/0/3/4").request().put(Entity.text(""));
 		Game g = res.readEntity(Game.class);
 		assertTrue(g.getBoard().getPiece(0,4).hasBall());
 		assertFalse(g.getBoard().getPiece(0,3).hasBall());
 	}
+
+
+	@Test
+	void testSaveGame(final Client client, final URI baseUri) throws IOException {
+		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
+		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		final Game g = res.readEntity(Game.class);
+		client.target(baseUri).path("game/save/TestGameSave").request().post(Entity.json(g));
+	}
+
+	@Test
+	void testLoadGame(final Client client, final URI baseUri) {
+		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
+
+		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		final Game g = res.readEntity(Game.class);
+		client.target(baseUri).path("game/save/TestGameSave").request().post(Entity.json(g));
+
+		Game game = client.target(baseUri).path("game/load/TestGameSave").request().get().readEntity(Game.class);
+
+		IntStream.rangeClosed(0,6).forEach(i->{
+			assertEquals(game.getBoard().getPiece(0,i).getColor(), g.getBoard().getPiece(0,i).getColor());
+			assertEquals(game.getBoard().getPiece(6,i).getColor(), g.getBoard().getPiece(6,i).getColor());
+			IntStream.rangeClosed(1,5).forEach(j->{
+				assertEquals(null,game.getBoard().getPiece(j,i));
+			});
+		});
+		assertEquals(game.getJoueur1().getName(), g.getJoueur1().getName());
+		assertEquals(game.getJoueur1().getColor(), g.getJoueur1().getColor());
+		assertEquals(game.getJoueur2().getColor(), g.getJoueur2().getColor());
+		assertEquals(game.getJoueur2().getName(), g.getJoueur2().getName());
+	}
+
+	@Test
+	void testDeleteGame(final Client client, final URI baseUri) {
+		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
+
+		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		final Game g = res.readEntity(Game.class);
+		client.target(baseUri).path("game/save/TestGameSave").request().post(Entity.json(g));
+
+		Response res2 = client.target(baseUri).path("game/load/TestGameSave").request().delete();
+		Assertions.assertEquals(Response.Status.OK.getStatusCode(), res2.getStatus());
+	}
+
 	/*@Test
 	void testMoveBall(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);

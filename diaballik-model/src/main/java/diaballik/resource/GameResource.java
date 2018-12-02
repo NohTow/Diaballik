@@ -96,7 +96,7 @@ public class GameResource {
 	@Path("load/{file}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response loadGame(@PathParam("file") final String file) throws IOException {
-		final Game loadedGame = new DiabalikJacksonProvider().getMapper().readValue(new File("./" + file + ".json"), Game.class);
+		final Game loadedGame = new DiabalikJacksonProvider().getMapper().readValue(new File("./" + file), Game.class);
 		game = loadedGame;
 		return Response.ok().entity(game).build();
 	}
@@ -104,7 +104,7 @@ public class GameResource {
 	@DELETE
 	@Path("load/{file}")
 	public Response deleteGame(@PathParam("file") final String file) {
-		final File fileToDelete = new File("./" + file + ".json");
+		final File fileToDelete = new File("./" + file);
 		final boolean delete = fileToDelete.delete();
 		return Response.ok().build();
 	}

@@ -74,10 +74,14 @@ public class Pawn extends Element {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Pawn pawn = (Pawn) o;
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final Pawn pawn = (Pawn) o;
 		return getX() == pawn.getX() &&
 				getY() == pawn.getY() &&
 				hasBall == pawn.hasBall;
@@ -85,7 +89,6 @@ public class Pawn extends Element {
 
 	@Override
 	public int hashCode() {
-
 		return Objects.hash(getX(), getY(), hasBall);
 	}
 
@@ -101,33 +104,30 @@ public class Pawn extends Element {
 				if (this.canPassTo(p, gameBoard)) {
 					res.add(new MoveBall(this.x, this.y, p.getX(), p.getY()));
 				}
-				/*if (this.x == p.getX() && this.y != p.getY() && this.canPassLineX(p.getY(), gameBoard)) {
-					res.add(new MoveBall(this.x, this.y, p.getX(), p.getY()));
-				} else if (this.y == p.getY() && this.x != p.getX() && this.canPassLineY(p.getX(), gameBoard)) {
-					res.add(new MoveBall(this.x, this.y, p.getX(), p.getY()));
-				} else if (Math.abs(this.x - p.getX()) == Math.abs(this.y - p.getY()) && this.canPassDiag(p.getX(), p.getY(), gameBoard)) {
-					res.add(new MoveBall(this.x, this.y, p.getX(), p.getY()));
-				}*/
-
-
 			});
 		} else {
-			if (x < 6 && gameBoard.getPiece(x + 1, y) == null) {
-				res.add(new MovePion(x, y, x + 1, y));
-			}
-			if (y < 6 && gameBoard.getPiece(x, y + 1) == null) {
-				res.add(new MovePion(x, y, x, y + 1));
-			}
-			if (x > 0 && gameBoard.getPiece(x - 1, y) == null) {
-				res.add(new MovePion(x, y, x - 1, y));
-			}
-			if (y > 0 && gameBoard.getPiece(x, y - 1) == null) {
-				res.add(new MovePion(x, y, x, y - 1));
-			}
+			res.addAll(this.getMovePiece(game));
 		}
 		return res;
 	}
 
+	public ArrayList<Command> getMovePiece(final Game game) {
+		final Board gameBoard = game.getBoard();
+		final ArrayList<Command> res = new ArrayList<Command>();
+		if (x < 6 && gameBoard.getPiece(x + 1, y) == null) {
+			res.add(new MovePion(x, y, x + 1, y));
+		}
+		if (y < 6 && gameBoard.getPiece(x, y + 1) == null) {
+			res.add(new MovePion(x, y, x, y + 1));
+		}
+		if (x > 0 && gameBoard.getPiece(x - 1, y) == null) {
+			res.add(new MovePion(x, y, x - 1, y));
+		}
+		if (y > 0 && gameBoard.getPiece(x, y - 1) == null) {
+			res.add(new MovePion(x, y, x, y - 1));
+		}
+		return res;
+	}
 
 	public boolean canPassDiag(final int newX, final int newY, final Board gameBoard) {
 		final ArrayList<Pawn> ennemie = new ArrayList<Pawn>();
@@ -166,7 +166,7 @@ public class Pawn extends Element {
 	}
 
 	public boolean canPassTo(final Pawn p, final Board gameBoard) {
-		if (this.x == p.getX() && this.y == p.getY()) {
+		if (this.isSamePos(p)) {
 			return false;
 		}
 		if (this.x == p.getX() && this.y != p.getY() && this.canPassLineX(p.getY(), gameBoard)) {
@@ -178,4 +178,12 @@ public class Pawn extends Element {
 		}
 		return false;
 	}
+
+	public boolean isSamePos(final Pawn p) {
+		if (this.x == p.getX() && this.y == p.getY()) {
+			return true;
+		}
+		return false;
+	}
+
 }

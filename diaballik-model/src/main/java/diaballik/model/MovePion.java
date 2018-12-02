@@ -21,10 +21,14 @@ public class MovePion implements Command {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		MovePion movePion = (MovePion) o;
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final MovePion movePion = (MovePion) o;
 		return getOldX() == movePion.getOldX() &&
 				getOldY() == movePion.getOldY() &&
 				getNewX() == movePion.getNewX() &&
@@ -70,7 +74,7 @@ public class MovePion implements Command {
 	@Override
 	public void commandUndo(final Game game) {
 		final Board board = game.getBoard();
-		final Pawn p =  board.getPiece(this.newX, this.newY);
+		final Pawn p = board.getPiece(this.newX, this.newY);
 		p.setPos(this.oldX, this.oldY);
 		board.setPiece(this.oldX, this.oldY, p);
 		board.setPiece(this.newX, this.newY, null);

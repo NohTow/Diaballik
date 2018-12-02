@@ -3,8 +3,6 @@ package diaballik.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Objects;
-//import java.util.Objects;
 
 public class Humain extends Player {
 
@@ -30,7 +28,7 @@ public class Humain extends Player {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		return super.equals(obj);
 	}
 }

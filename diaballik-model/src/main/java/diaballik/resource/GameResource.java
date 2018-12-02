@@ -1,9 +1,18 @@
 package diaballik.resource;
 
 
-
 //import com.fasterxml.jackson.databind.ObjectMapper;
-import diaballik.model.*;
+
+import diaballik.model.IA;
+import diaballik.model.Color;
+import diaballik.model.Board;
+import diaballik.model.Game;
+import diaballik.model.MoveBall;
+import diaballik.model.Noob;
+import diaballik.model.Standard;
+import diaballik.model.MovePion;
+import diaballik.model.AmongUs;
+import diaballik.model.Random;
 import diaballik.serialization.DiabalikJacksonProvider;
 import io.swagger.annotations.Api;
 
@@ -49,7 +58,7 @@ public class GameResource {
 	//public Response newPvPGame(...)
 	public Response newPvPGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("nom2") final String nomJ2, @PathParam("typeplateau") final String typeBoard) throws NoGameCreatedException {
 		try {
-			Board b = this.setUpBoard(typeBoard);
+			final Board b = this.setUpBoard(typeBoard);
 			game = new Game(false, idGame, nomJ1, nomJ2, b);
 		} catch (NoGameCreatedException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage());
@@ -62,13 +71,13 @@ public class GameResource {
 	@Path("newGamePvIA/{idGame}/{nom1}/{typeplateau}/{strategieIA}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response newPvIAGame(@PathParam("idGame") final int idGame, @PathParam("nom1") final String nomJ1, @PathParam("typeplateau") final String typeBoard, @PathParam("strategieIA") final String strat) throws NoGameCreatedException {
-		//IA computer = null;
-		if (typeBoard.equals("Noob")) {
-			Noob computer = new Noob();
-		}
 		try {
-			Board b = this.setUpBoard(typeBoard);
+			final Board b = this.setUpBoard(typeBoard);
 			game = new Game(true, idGame, nomJ1, "", b);
+			if ("Noob".equals(strat)) {
+				((IA) game.getJoueur2()).changeLevel(new Noob());
+			}
+
 		} catch (NoGameCreatedException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage());
 		}
@@ -96,8 +105,8 @@ public class GameResource {
 	@Path("load/{file}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response loadGame(@PathParam("file") final String file) throws IOException {
-		final Game loadedGame = new DiabalikJacksonProvider().getMapper().readValue(new File("./" + file), Game.class);
-		game = loadedGame;
+		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./" + file), Game.class);
+
 		return Response.ok().entity(game).build();
 	}
 
@@ -106,17 +115,24 @@ public class GameResource {
 	public Response deleteGame(@PathParam("file") final String file) {
 		final File fileToDelete = new File("./" + file);
 		final boolean delete = fileToDelete.delete();
-		return Response.ok().build();
+		if (delete) {
+			return Response.ok().build();
+		} else {
+			return Response.status(Response.Status.NOT_MODIFIED).entity("La suppression n'a pas eu lieu").build();
+		}
 	}
 
 	@PUT
 	@Path("/moveBall/{x1}/{x2}/{y1}/{y2}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Game playMoveBall(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
+	public Response playMoveBall(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
 		final MoveBall move = new MoveBall(oldX, oldY, newX, newY);
 		game.play(move);
 		//return Response.ok().entity(game).build();
-		return game;
+		if (game.isFinished().isPresent()) {
+			return Response.ok().entity(game.isFinished().get()).build();
+		}
+		return Response.ok().entity(game).build();
 	}
 
 	@PUT
@@ -125,6 +141,9 @@ public class GameResource {
 	public Response playMovePiece(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
 		final MovePion move = new MovePion(oldX, oldY, newX, newY);
 		game.play(move);
+		if (game.isFinished().isPresent()) {
+			return Response.ok().entity(game.isFinished().get()).build();
+		}
 		return Response.ok().entity(game).build();
 	}
 
@@ -172,13 +191,13 @@ public class GameResource {
 	}
 
 	public Board setUpBoard(final String typeBoard) throws NoGameCreatedException {
-		if (typeBoard.equals("Standard")) {
+		if ("Standard".equals(typeBoard)) {
 			final Standard builder = new Standard();
 			return builder.placerPieces();
-		} else if (typeBoard.equals("Random")) {
+		} else if ("Random".equals(typeBoard)) {
 			final Random builder = new Random();
 			return builder.placerPieces();
-		} else if (typeBoard.equals("AmongUs")){
+		} else if ("AmongUs".equals(typeBoard)) {
 			final AmongUs builder = new AmongUs();
 			return builder.placerPieces();
 		} else {

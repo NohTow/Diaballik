@@ -21,10 +21,14 @@ public class MoveBall implements Command {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		MoveBall moveBall = (MoveBall) o;
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final MoveBall moveBall = (MoveBall) o;
 		return getOldX() == moveBall.getOldX() &&
 				getOldY() == moveBall.getOldY() &&
 				getNewX() == moveBall.getNewX() &&
@@ -33,7 +37,6 @@ public class MoveBall implements Command {
 
 	@Override
 	public int hashCode() {
-
 		return Objects.hash(getOldX(), getOldY(), getNewX(), getNewY());
 	}
 

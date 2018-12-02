@@ -39,10 +39,14 @@ public abstract class Player {
 	public abstract void play(final Command command, Game game);
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Player player = (Player) o;
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final Player player = (Player) o;
 		return Objects.equals(getName(), player.getName()) &&
 				getColor() == player.getColor();
 	}

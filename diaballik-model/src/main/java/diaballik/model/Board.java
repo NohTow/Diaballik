@@ -2,11 +2,16 @@ package diaballik.model;
 
 //import java.util.stream.IntStream;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-import com.fasterxml.jackson.annotation.*;
+
 //import com.fasterxml.jackson.annotation.JsonProperty;
 //import com.fasterxml.jackson.annotation.JsonSubTypes;
 
@@ -24,21 +29,23 @@ public class Board {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Board board = (Board) o;
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final Board board = (Board) o;
 		return board.getList().equals(this.getList());
 	}
 
 	@Override
 	public int hashCode() {
-		return Arrays.hashCode(getPlateau());
+		return Arrays.hashCode(this.plateau);
 	}
 
-	public Pawn[][] getPlateau() {
-		return plateau;
-	}
+
 
 	public Pawn getPiece(final int x, final int y) {
 		if (x >= 0 && x < 7 && y >= 0 && y < 7) {
@@ -64,5 +71,8 @@ public class Board {
 		return res;
 	}
 
+	public boolean isEmpty(final int x, final int y) {
+		return plateau[x][y] == null;
+	}
 }
 

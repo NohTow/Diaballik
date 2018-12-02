@@ -3,10 +3,11 @@ package diaballik.model;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayDeque;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.Map;
+import java.util.Optional;
+import java.util.ArrayList;
+
 
 //import javafx.collections.FXCollections;
 //import javafx.collections.ObservableList;
@@ -16,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 //import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import diaballik.resource.NoGameCreatedException;
+//import diaballik.resource.NoGameCreatedException;
 import diaballik.serialization.DiabalikJacksonProvider;
 //import java.util.Objects;
 
@@ -42,7 +43,7 @@ public class Game {
 	//TODO faire les loads/save
 
 	@JsonCreator
-	public Game(@JsonProperty("IA") final boolean IA, @JsonProperty("idGame") final int idG, @JsonProperty("player1") final String nameJ1, @JsonProperty("player2") final String nameJ2, @JsonProperty("board") final Board b)  {
+	public Game(@JsonProperty("IA") final boolean IA, @JsonProperty("idGame") final int idG, @JsonProperty("player1") final String nameJ1, @JsonProperty("player2") final String nameJ2, @JsonProperty("board") final Board b) {
 		this.nbAction = 0;
 		this.numTurn = 0;
 		this.color = Color.Yellow;
@@ -121,25 +122,27 @@ public class Game {
 			}
 		}
 	}
+
 	public void play(final Command command) {
 		command.commandDo(this);
 		this.incrNbAction();
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Game game = (Game) o;
+	public boolean equals(final Object o) {
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final Game game = (Game) o;
 		//La methode equals ne fonctionne pas pour les ArrayDeque
-		return nbAction == game.nbAction &&
+		return (nbAction == game.nbAction &&
 				numTurn == game.numTurn &&
 				hasIA == game.hasIA &&
 				getIdGame() == game.getIdGame() &&
 				getColor() == game.getColor() &&
 				Objects.equals(gameBoard, game.gameBoard) &&
 				Objects.equals(joueur1, game.joueur1) &&
-				Objects.equals(joueur2, game.joueur2);
+				Objects.equals(joueur2, game.joueur2));
 	}
 
 	public ArrayDeque<Command> getSave() {
@@ -168,5 +171,17 @@ public class Game {
 
 	public Player getJoueur2() {
 		return joueur2;
+	}
+
+
+	public Optional<Player> isFinished() {
+		final ArrayList<Pawn> list = gameBoard.getList();
+		if (list.stream().filter(p -> p.getColor() == Color.Yellow && p.getX() == 6 && p.hasBall()).count() == 1) {
+			return Optional.of(getJoueur1());
+		}
+		if (list.stream().filter(p -> p.getColor() == Color.Green && p.getX() == 0 && p.hasBall()).count() == 1) {
+			return Optional.of(getJoueur2());
+		}
+		return Optional.empty();
 	}
 }

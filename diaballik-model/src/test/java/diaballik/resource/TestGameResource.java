@@ -4,6 +4,8 @@ import diaballik.model.*;
 
 import com.github.hanleyt.JerseyExtension;
 import diaballik.serialization.DiabalikJacksonProvider;
+
+import java.io.File;
 import java.net.URI;
 import java.io.IOException;
 import java.util.stream.IntStream;
@@ -40,12 +42,8 @@ public class TestGameResource {
 
 	@BeforeEach
 	void setUp() {
-		Board b = null;
-		try {
-			b = this.setUpBoard("Standard");
-		} catch (NoGameCreatedException e) {
-			e.printStackTrace();
-		}
+		Standard builder = new Standard();
+		Board b = builder.placerPieces();
 		gametest = new Game(false, 1, "Antoine", "Adrien", b);
 	}
 
@@ -84,14 +82,14 @@ public class TestGameResource {
 		assertEquals(p.getColor(),g.getBoard().getPiece(1,0).getColor());
 		assertEquals(null,g.getBoard().getPiece(0,0));
 
+
 	}
 
 	@Test
 	void testMoveBall(final Client client, final URI baseUri){
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
-		Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
-		Pawn p = res.readEntity(Game.class).getBoard().getPiece(0,3);
-		res = client.target(baseUri).path("game/moveBall/0/0/3/4").request().put(Entity.text(""));
+		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		Response res = client.target(baseUri).path("game/moveBall/0/0/3/4").request().put(Entity.text(""));
 		Game g = res.readEntity(Game.class);
 		assertTrue(g.getBoard().getPiece(0,4).hasBall());
 		assertFalse(g.getBoard().getPiece(0,3).hasBall());
@@ -104,6 +102,7 @@ public class TestGameResource {
 		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
 		final Game g = res.readEntity(Game.class);
 		client.target(baseUri).path("game/save/TestGameSave").request().post(Entity.json(g));
+		assertTrue((new File("TestGameSave").exists()));
 	}
 
 	@Test
@@ -136,21 +135,14 @@ public class TestGameResource {
 		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
 		final Game g = res.readEntity(Game.class);
 		client.target(baseUri).path("game/save/TestGameSave").request().post(Entity.json(g));
+		assertTrue((new File("TestGameSave").exists()));
 
 		Response res2 = client.target(baseUri).path("game/load/TestGameSave").request().delete();
+		assertFalse((new File("TestGameSave").exists()));
 		Assertions.assertEquals(Response.Status.OK.getStatusCode(), res2.getStatus());
 	}
 
-	/*@Test
-	void testMoveBall(final Client client, final URI baseUri) {
-		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
-		final Game res1 = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text("")).readEntity(Game.class);
-		final Game res = client.target(baseUri).path("game/moveBall/0/3/0/4").request().put(Entity.text("")).readEntity(Game.class);
-		final Game res2 = client.target(baseUri).path("game/moveBall/0/4/0/3").request().put(Entity.text("")).readEntity(Game.class);
-		gametest.play(new MoveBall(0, 3, 0, 4));
-		//Assertions.assertEquals(res2, res1);
-		assertEquals(res, gametest);
-	}*/
+
 
 
 
@@ -167,19 +159,5 @@ public class TestGameResource {
 		}
 
 	}*/
-	public Board setUpBoard(final String typeBoard) throws NoGameCreatedException {
-		if (typeBoard.equals("Standard")) {
-			final Standard builder = new Standard();
-			return builder.placerPieces();
-		} else if (typeBoard.equals("Random")) {
-			final Random builder = new Random();
-			return builder.placerPieces();
-		} else if (typeBoard.equals("AmongUs")){
-			final AmongUs builder = new AmongUs();
-			return builder.placerPieces();
-		} else {
-			throw new NoGameCreatedException("Le type de plateau doit etre Standard, Random ou AmongUs");
-		}
 
-	}
 }

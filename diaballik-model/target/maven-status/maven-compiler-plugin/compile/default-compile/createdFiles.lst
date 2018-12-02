@@ -3,6 +3,7 @@ diaballik\resource\GameResource.class
 diaballik\model\Game.class
 diaballik\model\Advanced.class
 diaballik\model\Player.class
+diaballik\model\Progressive.class
 diaballik\model\Standard.class
 diaballik\serialization\DiabalikJacksonProvider.class
 diaballik\model\Element.class
@@ -14,6 +15,7 @@ diaballik\model\Color.class
 diaballik\model\Command.class
 diaballik\model\Ball.class
 diaballik\model\Noob.class
+diaballik\resource\NoGameCreatedException.class
 diaballik\model\Board.class
 diaballik\Main.class
 diaballik\resource\MyExceptionMapper.class

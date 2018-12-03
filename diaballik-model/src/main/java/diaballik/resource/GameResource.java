@@ -147,26 +147,13 @@ public class GameResource {
 		return Response.ok().entity(game).build();
 	}
 
-	/*
 	@GET
-	@Path("")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String saveGame() throws IOException {
-		//System.getProperty("user.dir"
-		//new DiabalikJacksonProvider().getMapper().writeValue(new File("Game " + Integer.toString(this.game.getIdGame())), this.game);
-		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
-		return mapper.writeValueAsString(this);
-	}
-	*/
-
-	@GET
-	@Path("currentPlayer")
+	@Path("/currentPlayer")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response getCurrentPlayer() {
 		final Color color = game.getColor();
 		return Response.ok().entity(color).build();
 	}
-
 
 	/*@PUT
 	@Path("/exit")
@@ -183,7 +170,7 @@ public class GameResource {
 	}
 
 	@PUT
-	@Path("redo")
+	@Path("/redo")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response redoGame() {
 		game.redo();

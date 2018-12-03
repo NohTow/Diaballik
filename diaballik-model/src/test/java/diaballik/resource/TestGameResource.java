@@ -73,7 +73,7 @@ public class TestGameResource {
 		Assertions.assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
 	}
 	@Test
-	void testMovePiece(final Client client, final URI baseUri){
+	void testMovePiece(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
 		Pawn p = res.readEntity(Game.class).getBoard().getPiece(0,0);
@@ -81,12 +81,10 @@ public class TestGameResource {
 		Game g = res.readEntity(Game.class);
 		assertEquals(p.getColor(),g.getBoard().getPiece(1,0).getColor());
 		assertEquals(null,g.getBoard().getPiece(0,0));
-
-
 	}
 
 	@Test
-	void testMoveBall(final Client client, final URI baseUri){
+	void testMoveBall(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
 		Response res = client.target(baseUri).path("game/moveBall/0/0/3/4").request().put(Entity.text(""));
@@ -142,22 +140,61 @@ public class TestGameResource {
 		Assertions.assertEquals(Response.Status.OK.getStatusCode(), res2.getStatus());
 	}
 
+	@Test
+	void testUndo(final Client client, final URI baseUri) {
+		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
+		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		Response res = client.target(baseUri).path("game/moveBall/0/0/3/4").request().put(Entity.text(""));
+		Game g = res.readEntity(Game.class);
+		assertTrue(g.getBoard().getPiece(0,4).hasBall());
+		assertFalse(g.getBoard().getPiece(0,3).hasBall());
 
+		Response res1 = client.target(baseUri).path("game/undo").request().put(Entity.text(""));
+		Game g1 = res1.readEntity(Game.class);
+		assertTrue(g1.getBoard().getPiece(0,3).hasBall());
+		assertFalse(g1.getBoard().getPiece(0,4).hasBall());
+	}
 
+	@Test
+	void testRedo(final Client client, final URI baseUri) {
+		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
+		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		Response res = client.target(baseUri).path("game/moveBall/0/0/3/4").request().put(Entity.text(""));
+		Game g = res.readEntity(Game.class);
+		assertTrue(g.getBoard().getPiece(0,4).hasBall());
+		assertFalse(g.getBoard().getPiece(0,3).hasBall());
 
+		Response res1 = client.target(baseUri).path("game/undo").request().put(Entity.text(""));
+		Game g1 = res1.readEntity(Game.class);
+		assertTrue(g1.getBoard().getPiece(0,3).hasBall());
+		assertFalse(g1.getBoard().getPiece(0,4).hasBall());
 
-	/*public Board setUpBoard(final String typeBoard) {
-		if (typeBoard.equals("Standard")) {
-			final Standard builder = new Standard();
-			return builder.placerPieces();
-		} else if (typeBoard.equals("Random")) {
-			final Random builder = new Random();
-			return builder.placerPieces();
-		} else {
-			final AmongUs builder = new AmongUs();
-			return builder.placerPieces();
-		}
+		Response res2 = client.target(baseUri).path("game/redo").request().put(Entity.text(""));
+		Game g2 = res2.readEntity(Game.class);
+		assertTrue(g2.getBoard().getPiece(0,4).hasBall());
+		assertFalse(g2.getBoard().getPiece(0,3).hasBall());
+	}
 
-	}*/
+	@Test
+	void testCurrentPlayer(final Client client, final URI baseUri) throws IOException {
+		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
+
+		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+
+		Response res1 = client.target(baseUri).path("game/currentPlayer").request().get();
+		Color color = res1.readEntity(Color.class);
+		//String stringEntity = res1.readEntity(String.class);
+		//Color color  = new DiabalikJacksonProvider().getMapper().readValue(stringEntity, Color.class);
+		assertEquals(color, Color.Yellow);
+
+		client.target(baseUri).path("game/movePiece/0/1/5/5").request().put(Entity.text(""));
+		client.target(baseUri).path("game/movePiece/0/1/6/6").request().put(Entity.text(""));
+		client.target(baseUri).path("game/movePiece/1/1/5/4").request().put(Entity.text(""));
+
+		Response res5 = client.target(baseUri).path("game/currentPlayer").request().get();
+		Color color1 = res5.readEntity(Color.class);
+		assertEquals(color1, Color.Green);
+	}
+
 
 }

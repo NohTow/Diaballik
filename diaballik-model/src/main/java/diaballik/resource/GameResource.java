@@ -31,6 +31,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 
 //import javax.ws.rs.core.GenericEntity;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -39,8 +40,10 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 //import java.util.List;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.IntStream;
 
 /*import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -100,7 +103,7 @@ public class GameResource {
 
 	@POST
 	@Path("save/{file}")
-	@Consumes(MediaType.APPLICATION_JSON)
+	//@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response saveGame(final Game game, @PathParam("file") final String file) throws IOException {
 		game.saveGame(file);
@@ -121,9 +124,9 @@ public class GameResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response replay(@PathParam("file") final String file) throws IOException {
 		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./" + file), Game.class);
-		while(game.getSave().size() != 0) {
+		IntStream.iterate(0,x->x+1).limit(game.getSave().size()).forEach(x->{
 			game.undo();
-		}
+		});
 		return Response.ok().entity(game).build();
 	}
 	@POST
@@ -195,8 +198,8 @@ public class GameResource {
 
 		if(p != null) {
 			final ArrayList<Command> list = p.movePlayable(game);
-			final String serializedObject = mapper.writeValueAsString(list);
-			return Response.ok().entity(serializedObject).build();
+			final String serializedList = mapper.writeValueAsString(list);
+			return Response.ok().entity(serializedList).build();
 		}
 		return Response.status(Response.Status.BAD_REQUEST).entity("Il n'y a pas de pièce ici !").build();
 	}

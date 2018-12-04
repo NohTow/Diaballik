@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -68,14 +69,17 @@ class BoardTest {
 		//}
 		//Pawn b = new Pawn(3,5,true,Color.Yellow);
 		//h.getBoard().getPiece(0,0).setHasBall(true);
-		//h.play(new MovePion(0,1,1,1));
+		h.play(new MovePion(0,0,1,0));
 		//h.play(new MovePion(0,2,1,2));
 		//h.play(new MovePion(0,0,1,0));
 		//System.out.println(h.getBoard().getPiece(1,0).movePlayable(h));
+		List<Command> list = h.getBoard().getPiece(1,0).movePlayable(h);
 		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
-		final String serializedObject = mapper.writeValueAsString(h);
+		final String serializedObject = mapper.writeValueAsString(list);
+		//System.out.println(serializedObject);
 		System.out.println(serializedObject);
-		//final Object readValue = mapper.readValue(serializedObject, h.getClass());
+		final ArrayList<Command> temp = mapper.readValue(serializedObject, ArrayList.class);
+		System.out.println(temp.get(0).getClass());
 		//System.out.println(((Game) h).getSave().peek().getNewX());
 		//assertEquals(h, readValue);*/
 

@@ -2,7 +2,10 @@ package diaballik.resource;
 
 
 //import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import diaballik.model.Command;
+import diaballik.model.Pawn;
 import diaballik.model.IA;
 import diaballik.model.Color;
 import diaballik.model.Board;
@@ -27,12 +30,15 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
 
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import java.io.File;
 import java.io.IOException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -110,6 +116,32 @@ public class GameResource {
 		return Response.ok().entity(game).build();
 	}
 
+	@POST
+	@Path("replay/{file}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response replay(@PathParam("file") final String file) throws IOException{
+		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./" + file), Game.class);
+		while(game.getSave().size()!=0){
+			game.undo();
+		}
+		return Response.ok().entity(game).build();
+	}
+	@POST
+	@Path("replay/forward")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response forwardReplay(){
+		game.redo();
+		return Response.ok().entity(game).build();
+	}
+
+	@POST
+	@Path("replay/backward")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response backwardReplay(){
+		game.undo();
+		return Response.ok().entity(game).build();
+	}
+
 	@DELETE
 	@Path("load/{file}")
 	public Response deleteGame(@PathParam("file") final String file) {
@@ -153,6 +185,20 @@ public class GameResource {
 	public Response getCurrentPlayer() {
 		final Color color = game.getColor();
 		return Response.ok().entity(color).build();
+	}
+
+	@GET
+	@Path("/moovePlayable/{x}/{y}")
+	public Response moovePlayable(@PathParam("x") final int x, @PathParam("y") final int y) throws JsonProcessingException {
+		Pawn p = game.getBoard().getPiece(x,y);
+		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
+
+		if(p!=null){
+			ArrayList<Command> list = p.movePlayable(game);
+			final String serializedObject = mapper.writeValueAsString(list);
+			return Response.ok().entity(serializedObject).build();
+		}
+		return Response.status(Response.Status.BAD_REQUEST).entity("Il n'y a pas de pièce ici !").build();
 	}
 
 	/*@PUT

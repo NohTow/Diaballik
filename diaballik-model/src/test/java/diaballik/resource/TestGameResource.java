@@ -1,5 +1,6 @@
 package diaballik.resource;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import diaballik.model.*;
 
 import com.github.hanleyt.JerseyExtension;
@@ -8,11 +9,14 @@ import diaballik.serialization.DiabalikJacksonProvider;
 import java.io.File;
 import java.net.URI;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.IntStream;
 //import javafx.scene.paint.Color;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -194,6 +198,17 @@ public class TestGameResource {
 		Response res5 = client.target(baseUri).path("game/currentPlayer").request().get();
 		Color color1 = res5.readEntity(Color.class);
 		assertEquals(color1, Color.Green);
+	}
+
+	@Test
+	void testMovePlayable(final Client client, final URI baseUri) throws IOException{
+		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
+		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		Response res = client.target(baseUri).path("game/moovePlayable/0/0").request().get();
+		String test = res.readEntity(String.class);
+		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
+		ArrayList<Command> krkr = mapper.readValue(test, ArrayList.class);
+		System.out.println(krkr.get(0));
 	}
 
 

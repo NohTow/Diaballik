@@ -58,7 +58,9 @@ class BoardTest {
 		Standard builder = new Standard();
 		Board b = builder.placerPieces();
 
-		Game h = new Game(false, 5,"Antoine","Adrien",b);
+		Game h = new Game(true, 5,"Antoine","",b);
+		((IA)h.getJoueur2()).changeLevel(new Noob());
+
 		//try {
 			//h.play(new MovePion(0,0,4,4));
 		//} catch (MoveNotPossibleException e) {
@@ -68,14 +70,14 @@ class BoardTest {
 		//h.getBoard().getPiece(0,0).setHasBall(true);
 		//h.play(new MovePion(0,1,1,1));
 		//h.play(new MovePion(0,2,1,2));
-		h.play(new MovePion(0,0,1,0));
-		System.out.println(h.getBoard().getPiece(1,0).movePlayable(h));
-		/*final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
+		//h.play(new MovePion(0,0,1,0));
+		//System.out.println(h.getBoard().getPiece(1,0).movePlayable(h));
+		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
 		final String serializedObject = mapper.writeValueAsString(h);
 		System.out.println(serializedObject);
-		final Object readValue = mapper.readValue(serializedObject, h.getClass());
-		System.out.println(((Game) h).getSave().peek().getNewX());
-		assertEquals(h, readValue);*/
+		//final Object readValue = mapper.readValue(serializedObject, h.getClass());
+		//System.out.println(((Game) h).getSave().peek().getNewX());
+		//assertEquals(h, readValue);*/
 
 
 	}

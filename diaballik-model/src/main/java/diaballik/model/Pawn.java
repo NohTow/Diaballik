@@ -92,7 +92,7 @@ public class Pawn extends Element {
 		return Objects.hash(getX(), getY(), hasBall);
 	}
 
-	ArrayList<Command> movePlayable(final Game game) {
+	public ArrayList<Command> movePlayable(final Game game) {
 		final Board gameBoard = game.getBoard();
 		final ArrayList<Command> res = new ArrayList<Command>();
 		if (this.color != game.getColor()) {

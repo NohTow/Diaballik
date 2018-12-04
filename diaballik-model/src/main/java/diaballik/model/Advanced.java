@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 //import java.util.Objects;
 
 public class Advanced implements Strategy {
-	
+
 	public Advanced() {
 		super();
 	}
@@ -62,7 +62,6 @@ public class Advanced implements Strategy {
 
 	@Override
 	public void exec(final Game game, final ArrayList<Pawn> pawns) {
-		//ToDo
 
 		final Board gameBoard = game.getBoard();
 		final Pawn balleAdv = null;
@@ -74,72 +73,54 @@ public class Advanced implements Strategy {
 			comList.addAll(p.getMovePiece(game));
 		});
 
-		//---------------Recherche de la balle adverse--------------------------------------------------
+		final ArrayList<Integer> choix = new ArrayList<Integer>();
+		choix.add(1);
+		choix.add(2);
+		choix.add(3);
+		choix.add(4);
+		choix.add(5);
+		choix.add(6);
+		choix.add(7);
 
-		final Stream<Pawn> pionsAdv = gameBoard.getList().stream().filter(p -> p.getColor() == Color.Green);
-		pionsAdv.forEach(p -> {
-			if (p.hasBall()) {
-				balleAdv.setPos(p.getX(), p.getY());
-				balleAdv.setColor(p.getColor());
-				balleAdv.setHasBall(true);
+		Collections.shuffle(choix);
+
+		if (choix.get(0) == 1) {				//Choisit de faire un MoveBall (une chance sur 7)
+			final Pawn maBalle = null;
+			pawns.forEach(p -> {
+				if (p.hasBall()) {
+					maBalle.setPos(p.getX(), p.getY());
+					maBalle.setColor(p.getColor());
+					maBalle.setHasBall(true);
+				}
+			});
+			Collections.shuffle(maBalle.movePlayable(game));
+			maBalle.movePlayable(game).get(0).commandDo(game);
+
+		} else {								//Choisit de faire un MovePion qui va gener l'adversaire
+
+			//---------------Recherche de la balle adverse--------------------------------------------------
+
+			final Stream<Pawn> pionsAdv = gameBoard.getList().stream().filter(p -> p.getColor() == Color.Green);
+			pionsAdv.forEach(p -> {
+				if (p.hasBall()) {
+					balleAdv.setPos(p.getX(), p.getY());
+					balleAdv.setColor(p.getColor());
+					balleAdv.setHasBall(true);
+				}
+			});
+			
+			//---------------Tente de bloquer la trajectoire de la balle adverse----------------------------
+
+			actionsPossible = bloquerBalleAdverse(balleAdv, comList);
+			if (actionsPossible.size() > 0) {
+				Collections.shuffle(actionsPossible);
+				actionsPossible.get(0).commandDo(game);
+			} else {
+				Collections.shuffle(comList);
+				comList.get(0).commandDo(game);
 			}
-		});
-		//----------------------------------------------------------------------------------------------
-
-		actionsPossible = bloquerBalleAdverse(balleAdv, comList);
-		Collections.shuffle(actionsPossible);
-		actionsPossible.get(0).commandDo(game);
-
+		}
 	}
 
-
-
-
-
-	//------------------Recherche si on peut bouger un pion sur la colonne derriere balleAdv-------
-		/*IntStream.iterate(balleAdv.getY() - 1, i -> i - 1).limit(0).forEach(positionY -> {
-			comList.stream().filter(c -> c.getNewX() == balleAdv.getX() && c.getNewY() == positionY).forEach(c -> {
-				actionsPossible.add(c);
-			});
-		});*/
-
-	//------------------Recherche si on peut bouger un pion sur la colonne devant balleAdv-------
-		/*IntStream.iterate(balleAdv.getY() + 1, i -> i + 1).limit(6).forEach(positionY -> {
-		comList.stream().filter(c -> c.getNewX() == balleAdv.getX() && c.getNewY() == positionY).forEach(c -> {
-			actionsPossible.add(c);
-		});
-	});*/
-
-	//------------------Recherche si on peut bouger un pion sur la ligne à gauche de balleAdv-------
-		/*IntStream.iterate(balleAdv.getX() - 1, i -> i - 1).limit(0).forEach(positionX -> {
-			comList.stream().filter(c -> c.getNewX() == positionX && c.getNewY() == balleAdv.getY()).forEach(c -> {
-				actionsPossible.add(c);
-			});
-		});*/
-
-	//------------------Recherche si on peut bouger un pion sur la ligne à droite de balleAdv-------
-		/*IntStream.iterate(balleAdv.getX() + 1, i -> i + 1).limit(6).forEach(positionX -> {
-			comList.stream().filter(c -> c.getNewX() == positionX && c.getNewY() == balleAdv.getY()).forEach(c -> {
-				actionsPossible.add(c);
-			});
-		});*/
-
-	//------------------Recherche si on peut bouger un pion sur la diagonale droite de ballAdv----------
-		/*IntStream.iterate(balleAdv.getX() + 1, i -> i + 1).limit(6).forEach(positionX -> {
-		IntStream.iterate(balleAdv.getY() - 1, i -> i - 1).limit(0).forEach(positionY -> {
-			comList.stream().filter(c -> c.getNewX() == positionX && c.getNewY() == positionY).forEach(c -> {
-				actionsPossible.add(c);
-			});
-		});
-	});*/
-
-	//------------------Recherche si on peut bouger un pion sur la diagonale gauche de ballAdv----------
-		/*IntStream.iterate(balleAdv.getX() - 1, i -> i - 1).limit(0).forEach(positionX -> {
-		IntStream.iterate(balleAdv.getY() - 1, i -> i - 1).limit(0).forEach(positionY -> {
-			comList.stream().filter(c -> c.getNewX() == positionX && c.getNewY() == positionY).forEach(c -> {
-				actionsPossible.add(c);
-			});
-		});
-	});*/
 }
 

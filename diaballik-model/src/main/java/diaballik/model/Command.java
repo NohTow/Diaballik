@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public interface Command {
-	/*private int oldX;
+	/*int oldX;
 	int oldY;
 	int newX;
 	int newY;*/

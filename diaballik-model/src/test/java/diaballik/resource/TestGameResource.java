@@ -205,10 +205,13 @@ public class TestGameResource {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
 		Response res = client.target(baseUri).path("game/moovePlayable/0/0").request().get();
-		String test = res.readEntity(String.class);
+		//List<Command> list = res.readEntity(new GenericType<List<Command>>(){});
+		//System.out.println(list.get(0));
+		String s = res.readEntity(String.class);
 		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
-		ArrayList<Command> krkr = mapper.readValue(test, ArrayList.class);
-		System.out.println(krkr.get(0));
+		ArrayList krkr = mapper.readValue(s, ArrayList.class);
+		System.out.println(((Command)krkr.get(0)).getNewX());
+		//System.out.println(test.get(0));
 	}
 
 

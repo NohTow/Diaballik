@@ -23,12 +23,10 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertNotNull;
 
-public class TestGameResource {
+public class GameResourceTest {
 	@SuppressWarnings("unused") @RegisterExtension JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
-	
+
 	private Application configureJersey() {
 		return new ResourceConfig(GameResource.class).
 				register(MyExceptionMapper.class).

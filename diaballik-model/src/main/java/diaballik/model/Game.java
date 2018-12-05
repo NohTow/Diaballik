@@ -165,7 +165,6 @@ public class Game {
 
 
 	public void saveGame(final String fileName) throws IOException {
-		//final DiabalikJacksonProvider fileToSaveIn;
 		new DiabalikJacksonProvider().getMapper().writeValue(new File(fileName), this);
 	}
 

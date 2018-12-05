@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 class BoardTest {
 
 	@Test
-	public void testStandardBoardCreation() {
+	public void R22_1() {
 		Standard builder = new Standard();
 		Board b = builder.placerPieces();
 		assertTrue(b.getPiece(0, 3).hasBall());
@@ -39,7 +39,7 @@ class BoardTest {
 	}
 
 	@Test
-	public void testRandomBoardCreation() {
+	public void R22_2() {
 		Standard builder = new Standard();
 		Board b = builder.placerPieces();
 		IntStream.rangeClosed(0, 6).forEach(i -> {
@@ -54,7 +54,7 @@ class BoardTest {
 	}
 
 	@Test
-	public void testAmongUsBoardCreation() {
+	public void R22_3() {
 		Standard builder = new Standard();
 		Board b = builder.placerPieces();
 

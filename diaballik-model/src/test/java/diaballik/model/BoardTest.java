@@ -6,7 +6,11 @@ import diaballik.resource.GameResource;
 import diaballik.serialization.DiabalikJacksonProvider;
 import org.junit.jupiter.api.Test;
 
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -69,17 +73,37 @@ class BoardTest {
 		//}
 		//Pawn b = new Pawn(3,5,true,Color.Yellow);
 		//h.getBoard().getPiece(0,0).setHasBall(true);
-		h.play(new MovePion(0,0,1,0));
+
 		//h.play(new MovePion(0,2,1,2));
 		//h.play(new MovePion(0,0,1,0));
 		//System.out.println(h.getBoard().getPiece(1,0).movePlayable(h));
-		List<Command> list = h.getBoard().getPiece(1,0).movePlayable(h);
+		//MovePion m = new MovePion(1,1,1,1);
+		//h.play(new MovePion(6,6,5,6));
+		h.play(new MovePion(0,0,1,0));
+		//h.play(new MovePion(6,0,5,0));
+		h.play(new MovePion(0,3,1,3));
+		ArrayList<MovePion> list = new ArrayList<MovePion>();
+		list.add(new MovePion(1,1,1,1));
+		list.add(new MovePion(1,1,1,0));
+		//System.out.println(h.getBoard().getPiece(1,3).canPassTo(h.getBoard().getPiece(1,0),h.getBoard()));
+		//System.out.println( h.getBoard().getPiece(1,3).movePlayable(h));
 		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
 		final String serializedObject = mapper.writeValueAsString(list);
+		JsonReader jsoR = Json.createReader(new StringReader(serializedObject));
+		JsonArray ja = jsoR.readArray();
+		IntStream.range(0,ja.size()).forEach(i->{
+			System.out.println(ja.getJsonObject(i).get("newX"));
+		});
+
+		System.out.println((ja.getJsonObject(0)).get("newX"));
+		//ArrayList<MovePion> kr = mapper.readValue(serializedObject, ArrayList.class);
+		//System.out.println(kr.get(0).getNewX());
+		//.out.println(mapper.readValue(serializedObject, Command.class));
 		//System.out.println(serializedObject);
-		System.out.println(serializedObject);
-		final ArrayList<Command> temp = mapper.readValue(serializedObject, ArrayList.class);
-		System.out.println(temp.get(0).getClass());
+		//System.out.println(serializedObject);
+		//final ArrayList<MovePion> temp = mapper.readValue(serializedObject, ArrayList.class);
+
+		//System.out.println(temp.get(0).getClass());
 		//System.out.println(((Game) h).getSave().peek().getNewX());
 		//assertEquals(h, readValue);*/
 

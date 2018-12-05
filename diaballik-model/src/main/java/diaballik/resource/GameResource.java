@@ -194,12 +194,25 @@ public class GameResource {
 	@Path("/moovePlayable/{x}/{y}")
 	public Response moovePlayable(@PathParam("x") final int x, @PathParam("y") final int y) throws JsonProcessingException {
 		final Pawn p = game.getBoard().getPiece(x, y);
-		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
-
 		if(p != null) {
+			final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
 			final ArrayList<Command> list = p.movePlayable(game);
-			final String serializedList = mapper.writeValueAsString(list);
-			return Response.ok().entity(serializedList).build();
+			if(p.hasBall()){
+				ArrayList<MoveBall> res = new ArrayList<MoveBall>();
+				list.forEach(c->{
+					res.add((MoveBall) c);
+				});
+				final String serializedList = mapper.writeValueAsString(list);
+				return Response.ok().entity(serializedList).build();
+			}else{
+				ArrayList<MovePion> res = new ArrayList<MovePion>();
+				list.forEach(c->{
+					res.add((MovePion) c);
+				});
+				final String serializedList = mapper.writeValueAsString(list);
+				return Response.ok().entity(serializedList).build();
+			}
+
 		}
 		return Response.status(Response.Status.BAD_REQUEST).entity("Il n'y a pas de pièce ici !").build();
 	}

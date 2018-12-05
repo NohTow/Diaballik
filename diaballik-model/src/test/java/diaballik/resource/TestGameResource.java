@@ -10,6 +10,7 @@ import java.io.File;
 import java.net.URI;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 //import javafx.scene.paint.Color;
@@ -204,13 +205,17 @@ public class TestGameResource {
 	void testMovePlayable(final Client client, final URI baseUri) throws IOException{
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
-		Response res = client.target(baseUri).path("game/moovePlayable/0/0").request().get();
+		client.target(baseUri).path("game/movePiece/0/1/0/0").request().put(Entity.text(""));
+		Response res = client.target(baseUri).path("game/moovePlayable/1/0").request().get();
 		//List<Command> list = res.readEntity(new GenericType<List<Command>>(){});
 		//System.out.println(list.get(0));
-		String s = res.readEntity(String.class);
+		String test = res.readEntity(String.class);
+		//System.out.println(test);
 		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
-		ArrayList krkr = mapper.readValue(s, ArrayList.class);
-		System.out.println(((Command)krkr.get(0)).getNewX());
+		//mapper.registerSubtypes(MovePion.class, MoveBall.class);
+		//mapper.registerSubtypes(MovePion.class, MovePion.class);
+		//System.out.println(krkr[0]);
+		//System.out.println(test.get(0).getClass());
 		//System.out.println(test.get(0));
 	}
 

@@ -133,9 +133,9 @@ public class Pawn extends Element {
 		final ArrayList<Pawn> ennemie = new ArrayList<Pawn>();
 		final int dx = (newX > this.x) ? 1 : -1;
 		final int dy = (newY > this.y) ? 1 : -1;
-		IntStream.iterate(this.x, x -> x + dx).limit(Math.abs(this.x - newX)).forEach((int valX) -> {
-			IntStream.iterate(this.y, y -> y + dy).limit(Math.abs(this.y - newY)).forEach((int valY) -> {
-				if (gameBoard.getPiece(valX, valY) != null && gameBoard.getPiece(valX, valY).getColor() != this.color) {
+		IntStream.iterate(this.x+dx, x -> x + dx).limit((Math.abs(this.x - newX))-1).forEach((int valX) -> {
+			IntStream.iterate(this.y+dy, y -> y + dy).limit((Math.abs(this.y - newY))-1).forEach((int valY) -> {
+				if (gameBoard.getPiece(valX, valY) != null) {
 					ennemie.add(gameBoard.getPiece(valX, valY));
 				}
 			});
@@ -146,8 +146,8 @@ public class Pawn extends Element {
 	public boolean canPassLineX(final int newY, final Board gameBoard) {
 		final ArrayList<Pawn> ennemie = new ArrayList<Pawn>();
 		final int dy = (newY > this.y) ? 1 : -1;
-		IntStream.iterate(this.y, y -> y + dy).limit(Math.abs(this.y - newY)).forEach((int valY) -> {
-			if (gameBoard.getPiece(this.x, valY) != null && gameBoard.getPiece(this.x, valY).getColor() != this.color) {
+		IntStream.iterate(this.y+dy, y -> y + dy).limit((Math.abs(this.y - newY))-1).forEach((int valY) -> {
+			if (gameBoard.getPiece(this.x, valY) != null) {
 				ennemie.add(gameBoard.getPiece(this.x, valY));
 			}
 		});
@@ -157,8 +157,8 @@ public class Pawn extends Element {
 	public boolean canPassLineY(final int newX, final Board gameBoard) {
 		final ArrayList<Pawn> ennemie = new ArrayList<Pawn>();
 		final int dx = (newX > this.x) ? 1 : -1;
-		IntStream.iterate(this.x, x -> x + dx).limit(Math.abs(this.x - newX)).forEach((int valX) -> {
-			if (gameBoard.getPiece(valX, this.y) != null && gameBoard.getPiece(valX, this.y).getColor() != this.color) {
+		IntStream.iterate(this.x+dx, x -> x + dx).limit((Math.abs(this.x - newX))-1).forEach((int valX) -> {
+			if (gameBoard.getPiece(valX, this.y) != null) {
 				ennemie.add(gameBoard.getPiece(valX, this.y));
 			}
 		});

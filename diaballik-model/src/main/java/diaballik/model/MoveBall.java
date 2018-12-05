@@ -2,22 +2,16 @@ package diaballik.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.Objects;
 //import java.util.Objects;
 
-public class MoveBall implements Command {
-	private int oldX;
-	private int oldY;
-	private int newX;
-	private int newY;
+public class MoveBall extends Command {
 
 	@JsonCreator
 	public MoveBall(@JsonProperty("oldX") final int oldX, @JsonProperty("oldY") final int oldY, @JsonProperty("newX") final int newX, @JsonProperty("newY") final int newY) {
-		this.oldX = oldX;
-		this.oldY = oldY;
-		this.newX = newX;
-		this.newY = newY;
+		super(oldX, oldY, newX, newY);
 	}
 
 	@Override
@@ -56,23 +50,5 @@ public class MoveBall implements Command {
 		game.addUndo(this);
 	}
 
-	@Override
-	public int getNewX() {
-		return newX;
-	}
 
-	@Override
-	public int getNewY() {
-		return newY;
-	}
-
-	@Override
-	public int getOldX() {
-		return oldX;
-	}
-
-	@Override
-	public int getOldY() {
-		return oldY;
-	}
 }

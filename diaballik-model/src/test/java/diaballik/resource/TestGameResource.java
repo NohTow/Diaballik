@@ -1,23 +1,17 @@
 package diaballik.resource;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import diaballik.model.*;
-
 import com.github.hanleyt.JerseyExtension;
 import diaballik.serialization.DiabalikJacksonProvider;
-
 import java.io.File;
+
 import java.net.URI;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
 import java.util.stream.IntStream;
-//import javafx.scene.paint.Color;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
-import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -34,9 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestGameResource {
 	@SuppressWarnings("unused") @RegisterExtension JerseyExtension jerseyExtension = new JerseyExtension(this::configureJersey);
-
-	Game gametest;
-
+	
 	private Application configureJersey() {
 		return new ResourceConfig(GameResource.class).
 				register(MyExceptionMapper.class).
@@ -47,9 +39,7 @@ public class TestGameResource {
 
 	@BeforeEach
 	void setUp() {
-		Standard builder = new Standard();
-		Board b = builder.placerPieces();
-		gametest = new Game(false, 1, "Antoine", "Adrien", b);
+
 	}
 
 	@Test
@@ -58,10 +48,8 @@ public class TestGameResource {
 	}
 
 	@Test
-	void testGameCreation(final Client client, final URI baseUri) {
+	void testGameCreationPVP(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
-		//final Game game = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text("")).readEntity(Game.class);
-		//assertEquals(game,gametest);
 		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
 		final Game g = res.readEntity(Game.class);
 		IntStream.rangeClosed(0,6).forEach(i->{
@@ -77,6 +65,26 @@ public class TestGameResource {
 		assertEquals("Adrien",g.getJoueur2().getName());
 		Assertions.assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
 	}
+
+	@Test
+	void testGameCreationPVIA(final Client client, final URI baseUri) {
+		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
+		final Response res = client.target(baseUri).path("game/newGamePvIA/1/Antoine/Standard/Noob").request().put(Entity.text(""));
+		final Game g = res.readEntity(Game.class);
+		IntStream.rangeClosed(0,6).forEach(i->{
+			assertEquals(Color.Green,g.getBoard().getPiece(6,i).getColor());
+			assertEquals(Color.Yellow,g.getBoard().getPiece(0,i).getColor());
+			IntStream.rangeClosed(1,5).forEach(j->{
+				assertEquals(null,g.getBoard().getPiece(j,i));
+			});
+		});
+		assertEquals("Antoine",g.getJoueur1().getName());
+		assertEquals(Color.Yellow,g.getJoueur1().getColor());
+		assertEquals(Color.Green, g.getJoueur2().getColor());
+		assertEquals("Computer",g.getJoueur2().getName());
+		Assertions.assertEquals(Response.Status.OK.getStatusCode(), res.getStatus());
+	}
+
 	@Test
 	void testMovePiece(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
@@ -140,7 +148,7 @@ public class TestGameResource {
 		client.target(baseUri).path("game/save/TestGameSave").request().post(Entity.json(g));
 		assertTrue((new File("TestGameSave").exists()));
 
-		Response res2 = client.target(baseUri).path("game/load/TestGameSave").request().delete();
+		Response res2 = client.target(baseUri).path("game/delete/TestGameSave").request().delete();
 		assertFalse((new File("TestGameSave").exists()));
 		Assertions.assertEquals(Response.Status.OK.getStatusCode(), res2.getStatus());
 	}
@@ -183,13 +191,9 @@ public class TestGameResource {
 	@Test
 	void testCurrentPlayer(final Client client, final URI baseUri) throws IOException {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
-
 		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
-
 		Response res1 = client.target(baseUri).path("game/currentPlayer").request().get();
 		Color color = res1.readEntity(Color.class);
-		//String stringEntity = res1.readEntity(String.class);
-		//Color color  = new DiabalikJacksonProvider().getMapper().readValue(stringEntity, Color.class);
 		assertEquals(color, Color.Yellow);
 
 		client.target(baseUri).path("game/movePiece/0/1/5/5").request().put(Entity.text(""));
@@ -207,17 +211,35 @@ public class TestGameResource {
 		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
 		client.target(baseUri).path("game/movePiece/0/1/0/0").request().put(Entity.text(""));
 		Response res = client.target(baseUri).path("game/moovePlayable/1/0").request().get();
-		//List<Command> list = res.readEntity(new GenericType<List<Command>>(){});
-		//System.out.println(list.get(0));
-		//String test = res.readEntity(String.class);
-		//System.out.println(test);
-		//final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
-		//mapper.registerSubtypes(MovePion.class, MoveBall.class);
-		//mapper.registerSubtypes(MovePion.class, MovePion.class);
-		//System.out.println(krkr[0]);
-		//System.out.println(test.get(0).getClass());
-		//System.out.println(test.get(0));
+		System.out.println(res.readEntity(String.class));
+		/*JsonReader jr=  Json.createReader(new StringReader(res.readEntity(String.class)));
+		JsonArray ja = jr.readArray();
+		System.out.println(ja.getJsonObject(0).get("newX"));
+		JsonObject jo = ja.getJsonObject(0);*/
 	}
 
+	@Test
+	void testReplay(final Client client, final URI baseUri) throws IOException{
+		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
+		Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
+		final Game g = res.readEntity(Game.class);
+		res = client.target(baseUri).path("game/movePiece/0/1/0/0").request().put(Entity.text(""));
+		final Game g2 = res.readEntity(Game.class);
+		res = client.target(baseUri).path("game/movePiece/0/1/1/1").request().put(Entity.text(""));
+		final Game g7 = res.readEntity(Game.class);
+		client.target(baseUri).path("game/save/TestGameSave").request().post(Entity.json(g7));
+		res = client.target(baseUri).path("game/replay/TestGameSave").request().get();
+		final Game g3 = res.readEntity(Game.class);
+		System.out.println(g3.getSave()+" "+g3.getUndo());
+		res = client.target(baseUri).path("game/replay/forward").request().put(Entity.text(""));
+		final Game g4 = res.readEntity(Game.class);
+		res = client.target(baseUri).path("game/replay/backward").request().put(Entity.text(""));
+		final Game g5 = res.readEntity(Game.class);
+		//Les equals de Game ne test pas les listes de commandes
+		assertEquals(g,g3);
+		assertEquals(g2,g4);
+		assertEquals(g5,g);
+
+	}
 
 }

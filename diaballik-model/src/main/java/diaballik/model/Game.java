@@ -149,6 +149,10 @@ public class Game {
 		return save;
 	}
 
+	public ArrayDeque<Command> getUndo() {
+		return undo;
+	}
+
 	@Override
 	public int hashCode() {
 

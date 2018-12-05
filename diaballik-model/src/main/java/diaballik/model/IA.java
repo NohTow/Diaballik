@@ -16,9 +16,14 @@ public class IA extends Player {
 	public void changeLevel(final Strategy newLevel) {
 		this.level = newLevel;
 	}
+
 	@Override
 	public void play(final Command command, final Game game) {
 		command.commandDo(game);
+	}
+
+	public Strategy getLevel() {
+		return this.level;
 	}
 
 }

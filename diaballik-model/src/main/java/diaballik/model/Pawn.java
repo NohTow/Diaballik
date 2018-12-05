@@ -87,6 +87,9 @@ public class Pawn extends Element {
 				hasBall == pawn.hasBall;
 	}
 
+	/**
+	 * @return the hashCode of the Pawn
+	 */
 	@Override
 	public int hashCode() {
 		return Objects.hash(getX(), getY(), hasBall);

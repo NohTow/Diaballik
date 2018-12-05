@@ -1,20 +1,19 @@
 package diaballik.resource;
 
-
-//import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import diaballik.model.Command;
-import diaballik.model.Pawn;
-import diaballik.model.IA;
-import diaballik.model.Color;
+
 import diaballik.model.Board;
 import diaballik.model.Game;
-import diaballik.model.MoveBall;
+import diaballik.model.IA;
 import diaballik.model.Noob;
-import diaballik.model.Standard;
+import diaballik.model.Advanced;
+import diaballik.model.Color;
+import diaballik.model.Pawn;
+import diaballik.model.Command;
 import diaballik.model.MovePion;
+import diaballik.model.MoveBall;
+import diaballik.model.Standard;
 import diaballik.model.AmongUs;
 import diaballik.model.Random;
 import diaballik.serialization.DiabalikJacksonProvider;
@@ -41,12 +40,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
 
-/*import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;*/
 
 @Singleton
 @Path("game")
@@ -69,7 +62,6 @@ public class GameResource {
 			LOGGER.log(Level.SEVERE, e.getMessage());
 		}
 		return Response.ok().entity(game).build();
-		//return game;
 	}
 
 	@PUT
@@ -82,6 +74,9 @@ public class GameResource {
 			if ("Noob".equals(strat)) {
 				((IA) game.getJoueur2()).changeLevel(new Noob());
 			}
+			if ("Advanced".equals(strat)) {
+				((IA) game.getJoueur2()).changeLevel(new Advanced());
+			}
 
 		} catch (NoGameCreatedException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage());
@@ -89,13 +84,6 @@ public class GameResource {
 		return Response.ok().entity(game).build();
 	}
 
-	/*@POST
-	@Path("/{id}")
-	public void loadGame(@PathParam("id") final int idGame) throws IOException {
-		//final String content = Files.readString(Paths.get("Game " + Integer.toString(idGame)), Charset.forName("utf8"));
-		//this.game = new DiabalikJacksonProvider().getMapper().readValue(content, Game.class);
-		//ToDo
-	}*/
 
 	@POST
 	@Path("save/{file}")
@@ -115,7 +103,7 @@ public class GameResource {
 		return Response.ok().entity(game).build();
 	}
 
-	@POST
+	@GET
 	@Path("replay/{file}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response replay(@PathParam("file") final String file) throws IOException {
@@ -126,7 +114,7 @@ public class GameResource {
 		return Response.ok().entity(game).build();
 	}
 
-	@POST
+	@PUT
 	@Path("replay/forward")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response forwardReplay() {
@@ -134,7 +122,7 @@ public class GameResource {
 		return Response.ok().entity(game).build();
 	}
 
-	@POST
+	@PUT
 	@Path("replay/backward")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response backwardReplay() {
@@ -143,7 +131,7 @@ public class GameResource {
 	}
 
 	@DELETE
-	@Path("load/{file}")
+	@Path("delete/{file}")
 	public Response deleteGame(@PathParam("file") final String file) {
 		final File fileToDelete = new File("./" + file);
 		final boolean delete = fileToDelete.delete();
@@ -155,12 +143,33 @@ public class GameResource {
 	}
 
 	@PUT
+	@Path("mooveIA")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response iaPlay() {
+		IntStream.range(0, 3).forEach(i -> {
+			((IA) game.getJoueur2()).getLevel().exec(game);
+		});
+		return Response.ok().entity(game).build();
+	}
+
+	@PUT
+	@Path("moove/{x1}/{x2}/{y1}/{y2}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response play(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
+		if (game.getBoard().getPiece(oldX, oldY).hasBall()) {
+			game.play(new MoveBall(oldX, oldY, newX, newY));
+		} else {
+			game.play(new MovePion(oldX, oldY, newX, newY));
+		}
+		return Response.ok().entity(game).build();
+	}
+
+	@PUT
 	@Path("/moveBall/{x1}/{x2}/{y1}/{y2}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response playMoveBall(@PathParam("x1") final int oldX, @PathParam("x2") final int newX, @PathParam("y1") final int oldY, @PathParam("y2") final int newY) {
 		final MoveBall move = new MoveBall(oldX, oldY, newX, newY);
 		game.play(move);
-		//return Response.ok().entity(game).build();
 		if (game.isFinished().isPresent()) {
 			return Response.ok().entity(game.isFinished().get()).build();
 		}
@@ -213,12 +222,6 @@ public class GameResource {
 		}
 		return Response.status(Response.Status.BAD_REQUEST).entity("Il n'y a pas de pièce ici !").build();
 	}
-
-	/*@PUT
-	@Path("/exit")
-	public void leaveGame() throws IOException {
-		this.saveGame();
-	}*/
 
 	@PUT
 	@Path("/undo")

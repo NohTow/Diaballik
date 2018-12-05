@@ -1,12 +1,4 @@
 package diaballik.model;
-
-//import com.fasterxml.jackson.annotation.JsonCreator;
-
-
-//import com.fasterxml.jackson.annotation.JsonProperty;
-
-//import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -17,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 
 @JsonSubTypes({
-		@JsonSubTypes.Type(value = MoveBall.class, name = "MBall"),
-		@JsonSubTypes.Type(value = MovePion.class, name = "MPION")
+		@JsonSubTypes.Type(value = MoveBall.class, name = "MoveBall"),
+		@JsonSubTypes.Type(value = MovePion.class, name = "MovePion")
 })
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)

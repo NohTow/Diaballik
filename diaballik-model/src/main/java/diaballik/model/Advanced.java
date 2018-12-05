@@ -3,8 +3,9 @@ package diaballik.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.stream.Stream;
+import java.util.Optional;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 //import com.fasterxml.jackson.annotation.JsonCreator;
 //import com.fasterxml.jackson.annotation.JsonProperty;
@@ -61,16 +62,19 @@ public class Advanced implements Strategy {
 
 
 	@Override
-	public void exec(final Game game, final ArrayList<Pawn> pawns) {
-
+	public void exec(final Game game) {
+		final Stream<Pawn> streamPawns = game.getBoard().getList().stream().filter(p -> p.getColor() == Color.Green);
+		final ArrayList<Pawn> pawns = new ArrayList<Pawn>();
+		streamPawns.forEach(p -> {
+			pawns.add(p);
+		});
 		final Board gameBoard = game.getBoard();
-		final Pawn balleAdv = null;
-		//ArrayList<Command> actionsPossible = new ArrayList<Command>();
+
 
 		//----------------Liste de tous les MovePion possibles----------------------------------------
 		final ArrayList<Command> comList = new ArrayList<Command>();
-		pawns.stream().filter(p -> p.hasBall() == false).forEach(p -> {
-			comList.addAll(p.getMovePiece(game));
+		pawns.stream().filter(p -> !(p.hasBall())).forEach(p -> {
+			comList.addAll(p.movePlayable(game));
 		});
 
 		final ArrayList<Integer> choix = new ArrayList<Integer>();
@@ -85,31 +89,26 @@ public class Advanced implements Strategy {
 
 		Collections.shuffle(choix);
 
-		if (choix.get(0) == 1) {				//Choisit de faire un MoveBall (une chance sur 7)
-			final Pawn maBalle = null;
-			pawns.forEach(p -> {
-				if (p.hasBall()) {
-					maBalle.setPos(p.getX(), p.getY());
-					maBalle.setColor(p.getColor());
-					maBalle.setHasBall(true);
-				}
-			});
-			Collections.shuffle(maBalle.movePlayable(game));
-			maBalle.movePlayable(game).get(0).commandDo(game);
+		if (choix.get(0) == 1) {                //Choisit de faire un MoveBall (une chance sur 7)
+			final Optional<Pawn> maBalle = game.getBoard().getList().stream().filter(p -> p.getColor() == Color.Green && p.hasBall()).findFirst();
+			Pawn p = new Pawn(0, 0, false, Color.Green);
+			if (maBalle.isPresent()) {
+				p = maBalle.get();
+			}
+			final ArrayList<Command> list = p.movePlayable(game);
+			Collections.shuffle(list);
+			list.get(0).commandDo(game);
 
-		} else {								//Choisit de faire un MovePion qui va gener l'adversaire
+		} else {                                //Choisit de faire un MovePion qui va gener l'adversaire
 
 			//---------------Recherche de la balle adverse--------------------------------------------------
 
-			final Stream<Pawn> pionsAdv = gameBoard.getList().stream().filter(p -> p.getColor() == Color.Green);
-			pionsAdv.forEach(p -> {
-				if (p.hasBall()) {
-					balleAdv.setPos(p.getX(), p.getY());
-					balleAdv.setColor(p.getColor());
-					balleAdv.setHasBall(true);
-				}
-			});
-			
+			final Optional<Pawn> poBallAdv = gameBoard.getList().stream().filter(p -> p.getColor() == Color.Yellow && p.hasBall()).findFirst();
+			Pawn balleAdv = new Pawn(0, 0, false, Color.Yellow);
+			if (poBallAdv.isPresent()) {
+				balleAdv = poBallAdv.get();
+			}
+
 			//---------------Tente de bloquer la trajectoire de la balle adverse----------------------------
 
 			final ArrayList<Command> actionsPossible = bloquerBalleAdverse(balleAdv, comList);

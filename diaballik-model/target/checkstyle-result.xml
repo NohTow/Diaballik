@@ -1,24 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.10.1">
-<file name="C:\Users\NohTow\Desktop\Diaballik\diaballik-model\src\main\java\diaballik\model\Game.java">
-</file>
-<file name="C:\Users\NohTow\Desktop\Diaballik\diaballik-model\src\main\java\diaballik\model\Pawn.java">
-</file>
-<file name="C:\Users\NohTow\Desktop\Diaballik\diaballik-model\src\main\java\diaballik\resource\GameResource.java">
-<error line="33" column="8" severity="error" message="Import inutilisé - javax.ws.rs.core.GenericEntity." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
-<error line="41" column="8" severity="error" message="Import inutilisé - java.util.List." source="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck"/>
-<error line="122" column="88" severity="error" message="Il manque un espace avant &apos;{&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="124" severity="error" message="La ligne correspond au motif illégal &apos;while&apos;." source="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck"/>
-<error line="124" column="44" severity="error" message="Il manque un espace avant &apos;!=&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="124" column="46" severity="error" message="Il manque un espace après &apos;!=&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="124" column="48" severity="error" message="Il manque un espace avant &apos;{&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="132" column="40" severity="error" message="Il manque un espace avant &apos;{&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="140" column="41" severity="error" message="Il manque un espace avant &apos;{&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="193" column="22" severity="error" message="La variable &apos;p&apos; devrait être finale." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-<error line="193" column="53" severity="error" message="Il manque un espace après &apos;,&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck"/>
-<error line="196" column="21" severity="error" message="Il manque un espace avant &apos;!=&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="196" column="23" severity="error" message="Il manque un espace après &apos;!=&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="196" column="28" severity="error" message="Il manque un espace avant &apos;{&apos;." source="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"/>
-<error line="197" column="44" severity="error" message="La variable &apos;list&apos; devrait être finale." source="com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"/>
-</file>
 </checkstyle>

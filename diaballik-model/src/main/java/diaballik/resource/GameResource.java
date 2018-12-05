@@ -2,6 +2,7 @@ package diaballik.resource;
 
 
 //import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import diaballik.model.Command;
@@ -28,10 +29,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
-import javax.ws.rs.Consumes;
 
-//import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -39,8 +37,6 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
-//import java.util.List;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
@@ -124,11 +120,12 @@ public class GameResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response replay(@PathParam("file") final String file) throws IOException {
 		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./" + file), Game.class);
-		IntStream.iterate(0,x->x+1).limit(game.getSave().size()).forEach(x->{
+		IntStream.iterate(0, x -> x + 1).limit(game.getSave().size()).forEach(x -> {
 			game.undo();
 		});
 		return Response.ok().entity(game).build();
 	}
+
 	@POST
 	@Path("replay/forward")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -194,19 +191,19 @@ public class GameResource {
 	@Path("/moovePlayable/{x}/{y}")
 	public Response moovePlayable(@PathParam("x") final int x, @PathParam("y") final int y) throws JsonProcessingException {
 		final Pawn p = game.getBoard().getPiece(x, y);
-		if(p != null) {
+		if (p != null) {
 			final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
 			final ArrayList<Command> list = p.movePlayable(game);
-			if(p.hasBall()){
-				ArrayList<MoveBall> res = new ArrayList<MoveBall>();
-				list.forEach(c->{
+			if (p.hasBall()) {
+				final ArrayList<MoveBall> res = new ArrayList<MoveBall>();
+				list.forEach(c -> {
 					res.add((MoveBall) c);
 				});
 				final String serializedList = mapper.writeValueAsString(list);
 				return Response.ok().entity(serializedList).build();
-			}else{
-				ArrayList<MovePion> res = new ArrayList<MovePion>();
-				list.forEach(c->{
+			} else {
+				final ArrayList<MovePion> res = new ArrayList<MovePion>();
+				list.forEach(c -> {
 					res.add((MovePion) c);
 				});
 				final String serializedList = mapper.writeValueAsString(list);

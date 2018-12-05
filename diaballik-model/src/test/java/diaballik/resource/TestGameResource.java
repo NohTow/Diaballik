@@ -209,9 +209,9 @@ public class TestGameResource {
 		Response res = client.target(baseUri).path("game/moovePlayable/1/0").request().get();
 		//List<Command> list = res.readEntity(new GenericType<List<Command>>(){});
 		//System.out.println(list.get(0));
-		String test = res.readEntity(String.class);
+		//String test = res.readEntity(String.class);
 		//System.out.println(test);
-		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
+		//final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
 		//mapper.registerSubtypes(MovePion.class, MoveBall.class);
 		//mapper.registerSubtypes(MovePion.class, MovePion.class);
 		//System.out.println(krkr[0]);

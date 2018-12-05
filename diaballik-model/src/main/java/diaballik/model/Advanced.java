@@ -65,7 +65,7 @@ public class Advanced implements Strategy {
 
 		final Board gameBoard = game.getBoard();
 		final Pawn balleAdv = null;
-		ArrayList<Command> actionsPossible = new ArrayList<Command>();
+		//ArrayList<Command> actionsPossible = new ArrayList<Command>();
 
 		//----------------Liste de tous les MovePion possibles----------------------------------------
 		final ArrayList<Command> comList = new ArrayList<Command>();
@@ -81,6 +81,7 @@ public class Advanced implements Strategy {
 		choix.add(5);
 		choix.add(6);
 		choix.add(7);
+
 
 		Collections.shuffle(choix);
 
@@ -111,7 +112,7 @@ public class Advanced implements Strategy {
 			
 			//---------------Tente de bloquer la trajectoire de la balle adverse----------------------------
 
-			actionsPossible = bloquerBalleAdverse(balleAdv, comList);
+			final ArrayList<Command> actionsPossible = bloquerBalleAdverse(balleAdv, comList);
 			if (actionsPossible.size() > 0) {
 				Collections.shuffle(actionsPossible);
 				actionsPossible.get(0).commandDo(game);

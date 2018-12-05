@@ -8,18 +8,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ArrayList;
 
-
-//import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
-//import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-//import diaballik.resource.NoGameCreatedException;
 import diaballik.serialization.DiabalikJacksonProvider;
-//import java.util.Objects;
+
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 
@@ -45,7 +40,7 @@ public class Game {
 	@JsonCreator
 	public Game(@JsonProperty("IA") final boolean IA, @JsonProperty("idGame") final int idG, @JsonProperty("player1") final String nameJ1, @JsonProperty("player2") final String nameJ2, @JsonProperty("board") final Board b) {
 		this.nbAction = 0;
-		this.numTurn = 0;
+		this.numTurn = 1;
 		this.color = Color.Yellow;
 		this.hasIA = IA;
 		this.idGame = idG;
@@ -186,5 +181,13 @@ public class Game {
 			return Optional.of(getJoueur2());
 		}
 		return Optional.empty();
+	}
+
+	public int getNumTurn() {
+		return this.numTurn;
+	}
+
+	public int getNbAction() {
+		return this.nbAction;
 	}
 }

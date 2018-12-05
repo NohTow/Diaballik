@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-//import com.fasterxml.jackson.annotation.JsonCreator;
-//import com.fasterxml.jackson.annotation.JsonProperty;
-//import java.util.Objects;
 
+/**
+ *
+ */
 public class Random extends BoardBuilder {
 
+	/**
+	 * @return a board with the "random" organisation
+	 */
 	@Override
 	public Board placerPieces() {
 		final Board board = new Board();

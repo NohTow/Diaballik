@@ -1,0 +1,22 @@
+div {
+    --size-cell: 100px;
+    --border-cell: 5px;
+}
+.board {
+   box-sizing: border-box;
+   border: var(--border-cell) solid;
+   background-color: rgba(225, 40, 231, 0.658);
+   width: var(--size-cell);
+   height: var(--size-cell);
+   float: left;
+   padding: 0;
+   margin: 0;
+}
+.aclass {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+    

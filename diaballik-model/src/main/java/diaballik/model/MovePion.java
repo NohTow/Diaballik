@@ -7,9 +7,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Objects;
 
 
+/**
+ * Representation of the movement from a place to another one of a pawn
+ */
 public class MovePion extends Command {
 
 
+	/**
+	 * @param oldX old x coordinate
+	 * @param oldY old y coordinate
+	 * @param newX new x coordinate
+	 * @param newY new y coordinate
+	 */
 	@JsonCreator
 	public MovePion(@JsonProperty("oldX") final int oldX, @JsonProperty("oldY") final int oldY, @JsonProperty("newX") final int newX, @JsonProperty("newY") final int newY) {
 		super(oldX, oldY, newX, newY);
@@ -56,6 +65,11 @@ public class MovePion extends Command {
 		return oldY;
 	}
 
+	/**
+	 * Old coordinate is set to null (so there's no pawn anymore)
+	 * New coordinate is set to the Pawn
+	 * The action is added to save list
+	 */
 	@Override
 	public void commandDo(final Game game) {
 		final Board board = game.getBoard();
@@ -66,6 +80,10 @@ public class MovePion extends Command {
 		game.addSave(this);
 	}
 
+	/**
+	 * Inverse of commandDo
+	 * The action is added to undo list
+	 */
 	@Override
 	public void commandUndo(final Game game) {
 		final Board board = game.getBoard();

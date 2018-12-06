@@ -106,7 +106,7 @@ public class GameResourceTest {
 
 
 	@Test
-	void testSaveGame(final Client client, final URI baseUri) throws IOException {
+	void R25_5(final Client client, final URI baseUri) throws IOException {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
 		final Game g = res.readEntity(Game.class);
@@ -115,7 +115,7 @@ public class GameResourceTest {
 	}
 
 	@Test
-	void testLoadGame(final Client client, final URI baseUri) {
+	void R25_25_2(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 
 		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
@@ -210,14 +210,11 @@ public class GameResourceTest {
 		client.target(baseUri).path("game/movePiece/0/1/0/0").request().put(Entity.text(""));
 		Response res = client.target(baseUri).path("game/moovePlayable/1/0").request().get();
 		System.out.println(res.readEntity(String.class));
-		/*JsonReader jr=  Json.createReader(new StringReader(res.readEntity(String.class)));
-		JsonArray ja = jr.readArray();
-		System.out.println(ja.getJsonObject(0).get("newX"));
-		JsonObject jo = ja.getJsonObject(0);*/
+
 	}
 
 	@Test
-	void testReplay(final Client client, final URI baseUri) throws IOException{
+	void R25_6(final Client client, final URI baseUri) throws IOException{
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
 		final Game g = res.readEntity(Game.class);
@@ -228,7 +225,7 @@ public class GameResourceTest {
 		client.target(baseUri).path("game/save/TestGameSave").request().post(Entity.json(g7));
 		res = client.target(baseUri).path("game/replay/TestGameSave").request().get();
 		final Game g3 = res.readEntity(Game.class);
-		System.out.println(g3.getSave()+" "+g3.getUndo());
+		//System.out.println(g3.getSave()+" "+g3.getUndo());
 		res = client.target(baseUri).path("game/replay/forward").request().put(Entity.text(""));
 		final Game g4 = res.readEntity(Game.class);
 		res = client.target(baseUri).path("game/replay/backward").request().put(Entity.text(""));

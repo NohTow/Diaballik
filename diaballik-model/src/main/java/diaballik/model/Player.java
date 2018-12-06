@@ -8,8 +8,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.util.Objects;
-//import java.util.Objects;
 
+/**
+ * Abstract representation of a player
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 
 @JsonSubTypes({
@@ -22,6 +24,10 @@ public abstract class Player {
 	protected String name;
 	protected Color color;
 
+	/**
+	 * @param name the name of the player
+	 * @param color the color of the player
+	 */
 	@JsonCreator
 	public Player(@JsonProperty("name") final String name, @JsonProperty("color") final Color color) {
 		this.name = name;

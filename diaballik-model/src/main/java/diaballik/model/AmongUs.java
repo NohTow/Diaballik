@@ -10,6 +10,9 @@ import java.util.Collections;
 //import java.util.Objects;
 
 public class AmongUs extends BoardBuilder {
+	/**
+	 * @return a board with the organisation "AmongUs"
+	 */
 	@Override
 	public Board placerPieces() {
 		final Board board = new Board();

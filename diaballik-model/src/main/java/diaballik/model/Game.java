@@ -16,6 +16,11 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import diaballik.serialization.DiabalikJacksonProvider;
 
 
+/**
+ * Main class of the game
+ * Contains : 2 player, the gameboard, current turn Color, turn counter, 2 ArrayDeque to Undo/Redo
+ *
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
@@ -69,6 +74,10 @@ public class Game {
 		this.undo.add(command);
 	}
 
+	/**
+	 * To undo, we get the last saved moove, pop it, undo the command and decr the number of action done this
+	 * turn (so we swap turn if needed) and save it to the undo list
+	 */
 	public void undo() {
 		final Command c = save.pollLast();
 		c.commandUndo(this);
@@ -76,6 +85,10 @@ public class Game {
 		undo.add(c);
 	}
 
+	/**
+	 * To redo, we get the last undoed moove, pop it, redo the command and incr the number of action
+	 * (we also add it to the save list)
+	 */
 	public void redo() {
 		final Command c = undo.pollLast();
 		c.commandDo(this);
@@ -83,15 +96,22 @@ public class Game {
 		save.add(c);
 	}
 
+	/**
+	 * @param x
+	 * @param y
+	 * @return every possible moove for the piece located at (x,y), see the movePlayable function in Pawn
+	 */
 	public List<Command> getMoovePlayable(final int x, final int y) {
 		return this.gameBoard.getPiece(x, y).movePlayable(this);
-		// est-ce qu'on ne devrait pas mettre la fonction moovePlayable dans le gameBoard ?
 	}
 
 	public Color getColor() {
 		return this.color;
 	}
 
+	/**
+	 * Handle the turn part (swapping color after 3 actions and adding 1 to action counter)
+	 */
 	public void incrNbAction() {
 		this.nbAction++;
 		if (this.nbAction == 3) {
@@ -105,6 +125,9 @@ public class Game {
 		}
 	}
 
+	/**
+	 * Inverse of incrNbAction
+	 */
 	public void decrNbAction() {
 		this.nbAction--;
 		if (this.nbAction == -1) {
@@ -118,6 +141,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * @param command
+	 * Applying the given command and call to incrNbAction
+	 * This is the method used to launch command
+	 */
 	public void play(final Command command) {
 		command.commandDo(this);
 		this.incrNbAction();
@@ -172,6 +200,9 @@ public class Game {
 	}
 
 
+	/**
+	 * @return Optional.empty() if the game isn't finished or the player who won if it is
+	 */
 	public Optional<Player> isFinished() {
 		final ArrayList<Pawn> list = gameBoard.getList();
 		if (list.stream().filter(p -> p.getColor() == Color.Yellow && p.getX() == 6 && p.hasBall()).count() == 1) {

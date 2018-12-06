@@ -8,6 +8,9 @@ import java.util.stream.IntStream;
 
 public class Standard extends BoardBuilder {
 
+	/**
+	 * @return a board with a "Standard" organisation
+	 */
 	@Override
 	public Board placerPieces() {
 		final Board board = new Board();

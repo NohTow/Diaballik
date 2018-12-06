@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-//import java.util.Objects;
+
 
 /**
  * Class of a pawn
@@ -50,15 +50,6 @@ public class Pawn extends Element {
 		this.color = color;
 	}
 
-	/*
-	public void setX(final int x) {
-		this.x = x;
-	}
-	*/
-
-	/*public int getId() {
-		return this.id;
-	}*/
 
 	public boolean hasBall() {
 		return this.hasBall;
@@ -95,12 +86,17 @@ public class Pawn extends Element {
 		return Objects.hash(getX(), getY(), hasBall);
 	}
 
+	/**
+	 * @return the list of possible moove of this pawn
+	 */
 	public ArrayList<Command> movePlayable(final Game game) {
 		final Board gameBoard = game.getBoard();
 		final ArrayList<Command> res = new ArrayList<Command>();
+		//if it's not the turn of the pawn's player
 		if (this.color != game.getColor()) {
 			return res;
 		}
+		//if it has the ball, we check every other pawn and see if we can pass the ball to it
 		if (this.hasBall) {
 			final Stream<Pawn> streamPiece = gameBoard.getList().stream().filter(p -> p.getColor() == this.color);
 			streamPiece.forEach(p -> {
@@ -109,11 +105,15 @@ public class Pawn extends Element {
 				}
 			});
 		} else {
+			//if it doesn't have the ball, we check if it can move
 			res.addAll(this.getMovePiece(game));
 		}
 		return res;
 	}
 
+	/**
+	 * @return every MovePiece which can be performed by the pawn
+	 */
 	public ArrayList<Command> getMovePiece(final Game game) {
 		final Board gameBoard = game.getBoard();
 		final ArrayList<Command> res = new ArrayList<Command>();
@@ -132,6 +132,12 @@ public class Pawn extends Element {
 		return res;
 	}
 
+	/**
+	 * Check if a pass is possible (in a diag)
+	 * @param newX x coordinate of the pawn we want to pass
+	 * @param newY y coordinate of the pawn we want to pass
+	 * @return true if we can pass the ball to the (newX,newY) pawn
+	 */
 	public boolean canPassDiag(final int newX, final int newY, final Board gameBoard) {
 		final ArrayList<Pawn> ennemie = new ArrayList<Pawn>();
 		final int dx = (newX > this.x) ? 1 : -1;
@@ -146,6 +152,10 @@ public class Pawn extends Element {
 		return ennemie.size() <= 0;
 	}
 
+	/**
+	 * @param newY y coordinate of the pawn we want to pass
+	 * @return true if we can pass to the (this.x, newY) pawn
+	 */
 	public boolean canPassLineX(final int newY, final Board gameBoard) {
 		final ArrayList<Pawn> ennemie = new ArrayList<Pawn>();
 		final int dy = (newY > this.y) ? 1 : -1;
@@ -157,6 +167,10 @@ public class Pawn extends Element {
 		return ennemie.size() <= 0;
 	}
 
+	/**
+	 * @param newX x coordinate of the pawn we want to pass
+	 * @return true if we can pass to the (newX, this.y) pawn
+	 */
 	public boolean canPassLineY(final int newX, final Board gameBoard) {
 		final ArrayList<Pawn> ennemie = new ArrayList<Pawn>();
 		final int dx = (newX > this.x) ? 1 : -1;
@@ -168,6 +182,10 @@ public class Pawn extends Element {
 		return ennemie.size() <= 0;
 	}
 
+	/**
+	 * @param p the pawn we want to try to pass to
+	 * @return true if we can pass the ball to this pawn
+	 */
 	public boolean canPassTo(final Pawn p, final Board gameBoard) {
 		if (this.isSamePos(p)) {
 			return false;
@@ -182,6 +200,10 @@ public class Pawn extends Element {
 		return false;
 	}
 
+	/**
+	 * @param p
+	 * @return true if p is at the same position as this pawn
+	 */
 	public boolean isSamePos(final Pawn p) {
 		if (this.x == p.getX() && this.y == p.getY()) {
 			return true;

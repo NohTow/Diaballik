@@ -1,7 +1,7 @@
 #!/bin/sh
 
-name1="prenom-NOM"
-name2="prenom-NOM"
+name1="Adrien-BURIDANT"
+name2="Antoine-CHAFFIN"
 release="D2"-$name1-$name2
 
 # cleaning the release files
@@ -16,9 +16,9 @@ zip -r diaballik-bundle/$release/diaballik-D2-$name1-$name2-sources.zip diaballi
 # building Docker containers
 ## Docker container of the back-end
 cd diaballik-model
-docker build -t diaballik-backend .
+#docker build -t diaballik-backend .
 cd ../diaballik-bundle
-docker save diaballik-backend | xz > $release/diaballik-$name1-$name2-backend-docker.tar.xz
+#docker save diaballik-backend | xz > $release/diaballik-$name1-$name2-backend-docker.tar.xz
 
 # docker stop diaballik-backend-run
 # docker rm diaballik-backend-run

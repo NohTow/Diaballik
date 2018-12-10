@@ -21,6 +21,7 @@ public class TestMarshalling {
 		final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
 		final String serializedObject = mapper.writeValueAsString(g);
 		assertEquals(g, mapper.readValue(serializedObject, Game.class));
+		System.out.println(serializedObject);
 	}
 
 	@Test

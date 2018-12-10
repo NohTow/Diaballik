@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { BoardComponentComponent } from './board-component/board-component.component';
 import { MenuComponent } from './menu/menu.component';
+import { MyData } from './mydata';
 
 const appRoutes: Routes = [
   { path: '',
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule
   ],
+  providers: [MyData],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

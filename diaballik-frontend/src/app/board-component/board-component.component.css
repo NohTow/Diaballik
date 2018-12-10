@@ -21,14 +21,15 @@ div {
 .circle{
     width: 100%;
     height: 100%;
-    background-color: rgba(248, 9, 9, 0.658);
+    background-color: ngStyle;
     border-radius: 50%;
 }
+
 .hasBall{
     position: relative;
     top:25%;
     margin-left: auto;
-    margin-right:auto;
+    margin-right: auto;
     width:50%;
     height:50%;
 

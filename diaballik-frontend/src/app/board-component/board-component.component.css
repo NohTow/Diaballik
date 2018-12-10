@@ -19,20 +19,22 @@ div {
 }
 
 .circle{
-    width: 100%;
-    height: 100%;
-    background-color: ngStyle;
+    width: 90%;
+    height: 90%;
     border-radius: 50%;
+    border: 3px solid black;
+    position:relative;
+    top:2%;
+    left:2%;
 }
-
 .hasBall{
     position: relative;
-    top:25%;
+    top:22%;
     margin-left: auto;
-    margin-right: auto;
+    margin-right:auto;
     width:50%;
     height:50%;
-
+    border: 3px solid black;
     background-color:white;
     border-radius: 50%;
 }

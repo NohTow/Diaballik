@@ -25,9 +25,13 @@ export class BoardComponentComponent implements OnInit {
   public redo(){
     this.http.put("game/redo",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
   }
+  public iaPlay(){
+    this.http.put("game/mooveIA",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
+  }
   public leftClick(x: number, y: number): void {
     if(this.dataGame.storage === ""){
-      this.http.put("game/newGamePvP/5/Antoine/Adrien/Random", {}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
+      //this.http.put("game/newGamePvP/5/Antoine/Adrien/Random", {}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
+      this.http.put("game/newGamePvIA/1/Antoine/Standard/Noob",{}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
     }
     console.log(this.dataGame.storage)
     if(!(this.dataGame.isInList(x,y))){

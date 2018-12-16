@@ -145,6 +145,7 @@ public class Advanced implements Strategy {
 			} else {
 				Collections.shuffle(comList);
 				comList.get(0).commandDo(game);
+				game.incrNbAction();
 			}
 		}
 	}

@@ -146,10 +146,13 @@ public class GameResource {
 	@Path("mooveIA")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response iaPlay() {
-		IntStream.range(0, 3).forEach(i -> {
-			((IA) game.getJoueur2()).getLevel().exec(game);
-		});
-		return Response.ok().entity(game).build();
+		if (game.getColor().equals(Color.Green)) {
+			IntStream.range(0, 3).forEach(i -> {
+				((IA) game.getJoueur2()).getLevel().exec(game);
+			});
+			return Response.ok().entity(game).build();
+		}
+		return Response.status(Response.Status.BAD_REQUEST).entity("Ce n'est pas au tour de l'IA !").build();
 	}
 
 	@PUT
@@ -227,7 +230,7 @@ public class GameResource {
 	@Path("/undo")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response undoGame() {
-		if(game.getSave().size()!=0){
+		if (game.getSave().size() != 0) {
 			game.undo();
 			return Response.ok().entity(game).build();
 		}
@@ -238,7 +241,7 @@ public class GameResource {
 	@Path("/redo")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response redoGame() {
-		if(game.getUndo().size()!=0){
+		if (game.getUndo().size() != 0) {
 			game.redo();
 			return Response.ok().entity(game).build();
 		}

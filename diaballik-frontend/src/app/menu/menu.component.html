@@ -5,10 +5,11 @@
     <option value="AmongUs">Among Us</option>
   </select><br/>
   
-  <input type="radio" name="typeGame" value="PVP" id="pvp"><label for="pvp">PVP</label>
-  <input type="radio" name="typeGame" value="PVP" id="pvia"><label for="piva">PVIA</label><br/>
+  <input type="radio" ng-model="game.type"name="typeGame" value="PVP" id="pvp"><label for="pvp">PVP</label>
+  <input type="radio" ng-model="game.type" name="typeGame" value="PVIA" id="pvia"><label for="piva">PVIA</label><br/>
   <label for="nj1">Nom du joueur 1 : </label>
   <input type="text" placeholder="Nom joueur 1" id="nj1">
+  <input ng-if="data.storage.color=='Green'" type="text" placeholder="Nom Joueur 2" id ="nj2">
 </form>
   
 

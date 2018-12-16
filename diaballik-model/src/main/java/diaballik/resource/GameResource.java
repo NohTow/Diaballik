@@ -164,6 +164,9 @@ public class GameResource {
 		} else {
 			game.play(new MovePion(oldX, oldY, newX, newY));
 		}
+		if (game.isFinished().isPresent()) {
+			return Response.ok().entity(game.isFinished().get()).build();
+		}
 		return Response.ok().entity(game).build();
 	}
 

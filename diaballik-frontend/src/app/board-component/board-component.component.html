@@ -1,6 +1,5 @@
 <main>
   <div class="left">
-  <h1>{{title}}</h1>
   <h2 style="margin-left:50%;">{{data.storage.joueur1.name}}</h2>
   <div class="aclass" *ngFor="let x of [0,1,2,3,4,5,6]"[attr.data-x]=x >
     <div class="board" *ngFor="let y of [0,1,2,3,4,5,6]"[attr.data-y]=y [ngStyle]="data.isInList(x,y) && {'background-color':'grey'}" (click)="leftClick(x,y)">

@@ -45,13 +45,6 @@ public class GameResourceTest {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 	}
 	@Test
-	void randomTest(final Client client, final URI baseUri){
-		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
-		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
-		Response res = res = client.target(baseUri).path("game/moovePlayable/0/5").request().get();
-		System.out.println(res.readEntity(String.class));
-	}
-	@Test
 	void testGameCreationPVP(final Client client, final URI baseUri) {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));

@@ -19,7 +19,12 @@ export class BoardComponentComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  public undo(){
+    this.http.put("game/undo",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
+  }
+  public redo(){
+    this.http.put("game/redo",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
+  }
   public leftClick(x: number, y: number): void {
     if(this.dataGame.storage === ""){
       this.http.put("game/newGamePvP/5/Antoine/Adrien/Random", {}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);

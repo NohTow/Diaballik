@@ -41,3 +41,11 @@ div {
     background-color:white;
     border-radius: 50%;
 }
+.left{
+    width:700px;
+    float: left;
+}
+.right{
+    float:right;
+    margin-right:25%;
+}

@@ -1,4 +1,5 @@
 <main>
+  <div class="left">
   <h1>{{title}}</h1>
   <h2 style="margin-left:50%;">{{data.storage.joueur1.name}}</h2>
   <div class="aclass" *ngFor="let x of [0,1,2,3,4,5,6]"[attr.data-x]=x >
@@ -11,4 +12,12 @@
     </div>
   </div>
   <h2 style="margin-left:50%">{{data.storage.joueur2.name}}</h2>
+</div>
+<div class="right">
+  <p>Tour de : {{data.storage.color}}</p>
+  <p>Tour n° : {{data.storage.numTurn}}</p>
+  <p>Nombre d'actions effectuée : {{data.storage.nbAction}}</p>
+  <button (click) ="undo()">UNDO</button>
+  <button (click) = "redo()">REDO</button>
+</div>
 </main>

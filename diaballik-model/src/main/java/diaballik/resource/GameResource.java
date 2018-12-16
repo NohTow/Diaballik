@@ -227,16 +227,22 @@ public class GameResource {
 	@Path("/undo")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response undoGame() {
-		game.undo();
-		return Response.ok().entity(game).build();
+		if(game.getSave().size()!=0){
+			game.undo();
+			return Response.ok().entity(game).build();
+		}
+		return Response.status(Response.Status.BAD_REQUEST).entity("Aucun mouvement à undo !").build();
 	}
 
 	@PUT
 	@Path("/redo")
 	@Produces({MediaType.APPLICATION_JSON})
 	public Response redoGame() {
-		game.redo();
-		return Response.ok().entity(game).build();
+		if(game.getUndo().size()!=0){
+			game.redo();
+			return Response.ok().entity(game).build();
+		}
+		return Response.status(Response.Status.BAD_REQUEST).entity("Aucun mouvement à redo !").build();
 	}
 
 	public Board setUpBoard(final String typeBoard) throws NoGameCreatedException {

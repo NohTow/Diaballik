@@ -12,6 +12,9 @@ div {
    padding: 0;
    margin: 0;
 }
+.grey {
+    background-color: grey !important;
+}
 .aclass {
     display: table;
     margin-left: auto;

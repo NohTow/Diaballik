@@ -1,16 +1,29 @@
-<form>
-  <select name="typeBoard">
+
+  <select name="typeBoard" (input)="mode=$event.target.value">
     <option value="Standard">Standard</option>
     <option value="Random">Random</option>
     <option value="AmongUs">Among Us</option>
   </select><br/>
   
-  <input type="radio" ng-model="game.type"name="typeGame" value="PVP" id="pvp"><label for="pvp">PVP</label>
-  <input type="radio" ng-model="game.type" name="typeGame" value="PVIA" id="pvia"><label for="piva">PVIA</label><br/>
+  <input type="radio" name="typeGame" value="PVP" id="pvp" (change)="ia=false" checked required><label for="pvp">PVP</label>
+  <input type="radio" name="typeGame" value="PVIA" id="pvia"(change)="ia=true" required><label for="piva">PVIA</label><br/>
   <label for="nj1">Nom du joueur 1 : </label>
-  <input type="text" placeholder="Nom joueur 1" id="nj1">
-  <input ng-if="data.storage.color=='Green'" type="text" placeholder="Nom Joueur 2" id ="nj2">
-</form>
+  <input type="text" (input)="n1=$event.target.value" name="nomJ1" placeholder="Nom joueur 1" id="nj1" required><br/>
+  <div *ngIf="!this.ia">  
+    <label for="nj2">Nom du joueur 2 : </label>
+    <input type="text" placeholder="Nom Joueur 2" (input)="n2=$event.target.value" id ="nj2" required><br/>
+  </div>
+  <div *ngIf="this.ia">
+    <label for="lvlIA">Niveau de l'IA : </label>
+    <select name="difficulty" (input)="diff=$event.target.value" id="lvlIA">
+    <option value="Noob">Noob</option>
+    <option value="Advanced">Advanced</option>
+    <option value="Progressive">Progressive</option>
+  </select><br/>
+</div>
+  <button (click)="onVali()">Créér la partie</button>
+  
+
   
 
 

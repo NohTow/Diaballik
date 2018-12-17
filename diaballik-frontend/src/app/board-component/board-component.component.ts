@@ -9,15 +9,35 @@ import { MyData } from '../mydata';
   styleUrls: ['./board-component.component.css']
 })
 export class BoardComponentComponent implements OnInit {
-
+  
   title = 'Game Board :';
   public dataGame: MyData;
+  public IA: boolean;
   
   constructor(private http: HttpClient, private router: Router, private data: MyData) { 
     this.dataGame = data;
+    const URL = this.router.parseUrl(this.router.url);
+    var ia = (URL.queryParams.ia);
+    var nj1 = (URL.queryParams.n1);
+    
+    var mode = (URL.queryParams.mode);
+    console.log(mode);
+    if(ia==='false'){
+      var nj2 = (URL.queryParams.n2);
+      this.IA = false;
+      this.http.put("game/newGamePvP/5/"+nj1+"/"+nj2+"/"+mode, {}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
+     
+    }else{
+      this.IA = true;
+      var difficulity = (URL.queryParams.diff);
+      this.http.put("game/newGamePvIA/1/"+nj1+"/"+mode+"/Advanced",{}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
+  
+    }
+    
   }
 
   ngOnInit() {
+    
   }
   public undo(){
     this.http.put("game/undo",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
@@ -33,11 +53,6 @@ export class BoardComponentComponent implements OnInit {
     this.http.put("game/mooveIA",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
   }
   public leftClick(x: number, y: number): void {
-    if(this.dataGame.storage === ""){
-      //this.http.put("game/newGamePvP/5/Antoine/Adrien/Random", {}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
-      this.http.put("game/newGamePvIA/1/Antoine/Standard/Advanced",{}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
-    }
-    console.log(this.dataGame.storage)
     if(!(this.dataGame.isInList(x,y))){
       this.dataGame.actualCase = JSON.parse('{"x":'+x+',"y":'+y+'}');
      // console.log(this.dataGame.actualCase);

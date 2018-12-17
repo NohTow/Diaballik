@@ -10,7 +10,7 @@ import { MyData } from './mydata';
 
 const appRoutes: Routes = [
   { path: '',
-    redirectTo: '/config',
+    redirectTo: '/menu',
     pathMatch: 'full'
   },
   {

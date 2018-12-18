@@ -16,7 +16,8 @@
   <p>Le joueur gagnant est {{dataGame.storage.name}}</p>
 </div>
 <div class="right">
-  <p>Tour de : {{dataGame.storage.color}}</p>
+  <p>Nom de la partie : {{nameGame}} </p>
+  <p>Tour de : {{dataGame.storage.color==='Yellow' ? dataGame.storage.joueur1.name : dataGame.storage.joueur2.name}} ({{dataGame.storage.color}})</p>
   <p>Tour n° : {{dataGame.storage.numTurn}}</p>
   <p>Nombre d'actions effectuée : {{dataGame.storage.nbAction}}</p>
   <p>Nombre d'actions à undo : {{dataGame.storage.save.length}} </p>

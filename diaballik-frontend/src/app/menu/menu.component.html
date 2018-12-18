@@ -1,7 +1,7 @@
 <div class="wrapper">
-    <input type="radio"  name="typeJeu" value="newgame" id="newgame" (change)="typeJeu='newgame'" checked required><label class="labtn" for="newgame">New Game</label>
-    <input type="radio" name="typeJeu" value="load" id="load"(change)="typeJeu='load'" required><label class="labtn" for="load">Load Game</label>
-    <input type="radio" name="typeJeu" value="replay" id="replay"(change)="typeJeu='replay'" required><label class="labtn" for="replay">Replay a game</label>
+    <input type="radio"  name="typeJeu"  value="newgame" id="newgame" (change)="typeJeu='newgame'" checked required><label [ngStyle]="typeJeu==='newgame' &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="newgame" >New Game</label>
+    <input type="radio" name="typeJeu" value="load" id="load"(change)="typeJeu='load'" required><label id="labeload" [ngStyle]="typeJeu==='load' &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="load">Load Game</label>
+    <input type="radio" name="typeJeu" value="replay" id="replay"(change)="typeJeu='replay'" required><label id="labelreplay" [ngStyle]="typeJeu==='replay' &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="replay">Replay a game</label>
     <div class="center">
     <div *ngIf="typeJeu==='newgame'" class="choixplateau">
       <label for="choixplateau">Type du plateau : 
@@ -11,9 +11,9 @@
         <option value="AmongUs">Among Us</option>
       </select></label><br/>
     </div>
-    <div *ngIf="typeJeu==='newgame'" class="ChoixIA">  
-      <label class="labtn" for="pvp">PVP <input type="radio" name="typeGame" value="PVP" id="pvp" (change)="ia=false" checked required></label>
-      <label class="labtn" for="pvia">PVIA<input type="radio" name="typeGame" value="PVIA" id="pvia"(change)="ia=true" required></label><br/>
+    <div *ngIf="typeJeu==='newgame'" class="choixia">  
+      <label [ngStyle]="ia==false &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="pvp">PVP <input type="radio" name="typeGame" value="PVP" id="pvp" (change)="ia=false" checked required></label>
+      <label [ngStyle]="ia===true &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="pvia">PVIA<input type="radio" name="typeGame" value="PVIA" id="pvia"(change)="ia=true" required></label><br/><br/><br/>
     </div>
   </div>
   <div *ngIf="typeJeu==='newgame'" class="nom">
@@ -26,7 +26,7 @@
       <input type="text" placeholder="Nom Joueur 2" (input)="n2=$event.target.value" id ="nj2" required><br/>
     </div>
   </div>
-  <div *ngIf="this.ia && typeJeu==='newgame'">
+  <div class="nom" *ngIf="this.ia && typeJeu==='newgame'">
     <label for="lvlIA">Niveau de l'IA : 
     <select name="difficulty" (input)="diff=$event.target.value" id="lvlIA">
       <option value="Noob">Noob</option>
@@ -39,7 +39,7 @@
   </div>
   <p *ngIf="typeJeu==='load' || typeJeu==='replay'">Nom de la partie à charger : {{nomGame}}</p>
   <ul *ngIf="typeJeu==='load' || typeJeu==='replay'" class="listenom">
-    <li class="listName" *ngFor="let nameGame of listeGame" (click)="nomGame=nameGame">{{nameGame}}</li>
+    <li class="listName" *ngFor="let nameGame of listeGame" [ngStyle]="nomGame===nameGame &&  {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame">{{nameGame}}</li>
   </ul>
   <div *ngIf="typeJeu==='load'" class="center">
     <button class="btn"(click)="onVali()">Load this game !</button>

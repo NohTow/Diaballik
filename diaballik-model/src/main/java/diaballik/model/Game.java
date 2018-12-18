@@ -81,7 +81,7 @@ public class Game {
 		final Command c = save.pollLast();
 		c.commandUndo(this);
 		this.decrNbAction();
-		undo.add(c);
+		//undo.add(c); déjà ajouté dans commandUndo
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class Game {
 		final Command c = undo.pollLast();
 		c.commandDo(this);
 		incrNbAction();
-		save.add(c);
+		//save.add(c); déjà ajouté dans commandDo
 	}
 
 	/**

@@ -50,13 +50,20 @@ export class BoardComponentComponent implements OnInit {
     
   }
   public undo(){
-    this.http.put("game/undo",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
-   // this.data.testlist = "";
-   // this.data.actualCase = "";
+    //beug de devoir appuyer 2 fois sur undo
+    this.http.put("game/undo",{}).subscribe(returnedData =>{
+      this.dataGame.storage = returnedData;
+      console.log(this.dataGame.storage.undo);
+    });
+    this.data.testlist = "";
+    this.data.actualCase = "";
   }
   public redo(){
     //rajouter le gagnant en redoant => renvoie un player dans le back
-    this.http.put("game/redo",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
+    this.http.put("game/redo",{}).subscribe(returnedData =>{
+      this.dataGame.storage = returnedData;
+      console.log(this.dataGame.storage.save);
+    } );
     this.data.testlist = "";
     this.data.actualCase = "";
   }
@@ -78,6 +85,7 @@ export class BoardComponentComponent implements OnInit {
   }else{
     this.http.put("game/moove/"+this.dataGame.actualCase.x+"/"+x+"/"+this.dataGame.actualCase.y+"/"+y,{}).subscribe(returnedData =>{
     this.dataGame.storage = returnedData;
+    console.log(this.dataGame.storage.save);
     this.dataGame.actualCase = "";
     this.data.testlist = "";
     });

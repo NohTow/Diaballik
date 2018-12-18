@@ -19,6 +19,8 @@
   <p>Tour de : {{dataGame.storage.color}}</p>
   <p>Tour n° : {{dataGame.storage.numTurn}}</p>
   <p>Nombre d'actions effectuée : {{dataGame.storage.nbAction}}</p>
+  <p>Nombre d'actions à undo : {{dataGame.storage.save.length}} </p>
+  <p>Nombre d'actions à redo : {{dataGame.storage.undo.length}}</p>
   <button (click) ="undo()">UNDO</button>
   <button (click) = "redo()">REDO</button>
   <button (click)="save()">SAVE</button>

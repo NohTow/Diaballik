@@ -19,7 +19,6 @@ import diaballik.serialization.DiabalikJacksonProvider;
 /**
  * Main class of the game
  * Contains : 2 player, the gameboard, current turn Color, turn counter, 2 ArrayDeque to Undo/Redo
- *
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 
@@ -142,9 +141,8 @@ public class Game {
 	}
 
 	/**
-	 * @param command
-	 * Applying the given command and call to incrNbAction
-	 * This is the method used to launch command
+	 * @param command Applying the given command and call to incrNbAction
+	 *                This is the method used to launch command
 	 */
 	public void play(final Command command) {
 		command.commandDo(this);
@@ -188,7 +186,7 @@ public class Game {
 
 
 	public void saveGame(final String fileName) throws IOException {
-		new DiabalikJacksonProvider().getMapper().writeValue(new File(fileName), this);
+		new DiabalikJacksonProvider().getMapper().writeValue(new File("./savegame/" + fileName + ".json"), this);
 	}
 
 	public Player getJoueur1() {

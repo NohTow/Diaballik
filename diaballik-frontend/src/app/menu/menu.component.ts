@@ -10,20 +10,27 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  public listeGame: any;
   public ia: boolean;
   public n1: String;
   public n2: String;
   public mode: String;
   public diff: String;
   public dataGame: MyData;
+  public nomGame: String;
+  public typeJeu: String;
+  
   
   constructor(private http: HttpClient, private router: Router, private data: MyData){
+    this.typeJeu="newgame";
+    this.nomGame="";
     this.dataGame = data;
     this.ia = false;
     this.n1=""
     this.n2=""
     this.diff="Noob";
     this.mode="Standard";
+    this.http.get("game/savedgame").subscribe(returnedData => this.listeGame = returnedData);
   }
 
   ngOnInit() {
@@ -36,7 +43,7 @@ export class MenuComponent implements OnInit {
      
       
      // this.http.put("game/newGamePvP/5/Antoine/Adrien/Random", {}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
-      this.router.navigate(['board-component'],{queryParams: {ia:this.ia, n1:this.n1, n2:this.n2, mode:this.mode, diff: this.diff}});
+      this.router.navigate(['board-component'],{queryParams: {ia:this.ia, n1:this.n1, n2:this.n2, mode:this.mode, diff: this.diff, nameGame: this.nomGame, typeJeu: this.typeJeu}});
       //Mettre les valeurs necessaires à la création de la game dans les queryParams pour créer le board component dans onInit avec ces params (pour les f5)
       //On pourrait créer la game ici, mais les f5 la casserait
   }

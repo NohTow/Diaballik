@@ -26,7 +26,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
-import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 
 import javax.ws.rs.core.MediaType;
@@ -84,12 +83,20 @@ public class GameResource {
 		return Response.ok().entity(game).build();
 	}
 
+	@GET
+	@Path("savedgame")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response listSavedGame() {
+		final File dossier = new File("./savegame");
+		final String[] listNom = dossier.list();
+		return Response.ok().entity(listNom).build();
+	}
 
-	@POST
+	@PUT
 	@Path("save/{file}")
 	//@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response saveGame(final Game game, @PathParam("file") final String file) throws IOException {
+	public Response saveGame(@PathParam("file") final String file) throws IOException {
 		game.saveGame(file);
 		return Response.ok().entity(game).build();
 	}
@@ -98,7 +105,7 @@ public class GameResource {
 	@Path("load/{file}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response loadGame(@PathParam("file") final String file) throws IOException {
-		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./" + file), Game.class);
+		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./savegame/" + file), Game.class);
 
 		return Response.ok().entity(game).build();
 	}
@@ -107,7 +114,7 @@ public class GameResource {
 	@Path("replay/{file}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response replay(@PathParam("file") final String file) throws IOException {
-		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./" + file), Game.class);
+		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./savegame/" + file), Game.class);
 		IntStream.iterate(0, x -> x + 1).limit(game.getSave().size()).forEach(x -> {
 			game.undo();
 		});
@@ -133,7 +140,7 @@ public class GameResource {
 	@DELETE
 	@Path("delete/{file}")
 	public Response deleteGame(@PathParam("file") final String file) {
-		final File fileToDelete = new File("./" + file);
+		final File fileToDelete = new File("./savegame/" + file + ".json");
 		final boolean delete = fileToDelete.delete();
 		if (delete) {
 			return Response.ok().build();

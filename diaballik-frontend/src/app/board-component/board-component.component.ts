@@ -13,26 +13,36 @@ export class BoardComponentComponent implements OnInit {
   title = 'Game Board :';
   public dataGame: MyData;
   public IA: boolean;
-  
+  public typeJeu: String;
+  public nameGame: String;
   constructor(private http: HttpClient, private router: Router, private data: MyData) { 
+    
+    
     this.dataGame = data;
     const URL = this.router.parseUrl(this.router.url);
     var ia = (URL.queryParams.ia);
     var nj1 = (URL.queryParams.n1);
-    
+    this.nameGame=(URL.queryParams.nameGame);
+    this.typeJeu = (URL.queryParams.typeJeu);
     var mode = (URL.queryParams.mode);
     console.log(mode);
-    if(ia==='false'){
-      var nj2 = (URL.queryParams.n2);
-      this.IA = false;
-      this.http.put("game/newGamePvP/5/"+nj1+"/"+nj2+"/"+mode, {}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
-     
+    if(this.typeJeu==="newgame"){
+      if(ia==='false'){
+        var nj2 = (URL.queryParams.n2);
+        this.IA = false;
+        this.http.put("game/newGamePvP/5/"+nj1+"/"+nj2+"/"+mode, {}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
+      }else{
+        this.IA = true;
+        var difficulity = (URL.queryParams.diff);
+        this.http.put("game/newGamePvIA/1/"+nj1+"/"+mode+"/Advanced",{}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
+    
+      }
+    }else if(this.typeJeu==='replay'){
+      this.http.get("game/replay/"+this.nameGame,{}).subscribe(returnedData => this.dataGame.storage = returnedData);
     }else{
-      this.IA = true;
-      var difficulity = (URL.queryParams.diff);
-      this.http.put("game/newGamePvIA/1/"+nj1+"/"+mode+"/Advanced",{}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
-  
+      this.http.get("game/load/"+this.nameGame,{}).subscribe(returnedData => this.dataGame.storage = returnedData);
     }
+    
     
   }
 
@@ -41,10 +51,11 @@ export class BoardComponentComponent implements OnInit {
   }
   public undo(){
     this.http.put("game/undo",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
-    this.data.testlist = "";
-    this.data.actualCase = "";
+   // this.data.testlist = "";
+   // this.data.actualCase = "";
   }
   public redo(){
+    //rajouter le gagnant en redoant => renvoie un player dans le back
     this.http.put("game/redo",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
     this.data.testlist = "";
     this.data.actualCase = "";
@@ -61,7 +72,8 @@ export class BoardComponentComponent implements OnInit {
         console.log("game/moovePlayable/"+x+"/"+y+"");
         console.log(returnedData);
         this.dataGame.testlist = returnedData;
-        //console.log(this.dataGame.testlist);
+      
+        console.log(this.dataGame.storage.type);
     });
   }else{
     this.http.put("game/moove/"+this.dataGame.actualCase.x+"/"+x+"/"+this.dataGame.actualCase.y+"/"+y,{}).subscribe(returnedData =>{
@@ -80,6 +92,20 @@ export class BoardComponentComponent implements OnInit {
    // this.http.put("game/newGamePvP/5/Antoine/Adrien/Random", {}, {}).subscribe(returnedData => console.log(returnedData));
       
    // });
+  }
+  public save(): void{
+    this.http.put("game/save/"+this.nameGame,{}).subscribe();
+    
+  }
+
+  public download(): void{
+    //peut être faire un get GAME avant (au cas où la partie soit fini, ie storage = le joueur gagnant)
+    var data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.data.storage));
+    var downloader = document.createElement('a');
+
+    downloader.setAttribute('href', data);
+    downloader.setAttribute('download', 'file.json');
+    downloader.click();
   }
 
 

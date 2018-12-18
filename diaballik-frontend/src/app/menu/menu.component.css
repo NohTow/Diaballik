@@ -1,13 +1,106 @@
 .wrapper{
    margin-left: auto;
    margin-right: auto;
-   width:30%;
+   width:50%;
+}
+label{
+    color:white;
 }
 .center{
     margin-left: auto;
     margin-right: auto;
     width:50%;
+    
 }
-.fullpage{
-    background-color: red;
+
+.btn{
+    color: #0099CC;
+    background: white;
+    border: 2px solid rgb(160, 160, 160);
+    border-radius: 6px;
+    color: #0099CC;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.btn:hover{
+    border-color:#0099CC;
+    background-color: #008CBA;
+    color: white;
+}
+
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 2px solid  black;
+    width:500px;
+  }
+   
+  li {
+    font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+    border-bottom: 2px solid  #008CBA;
+  }
+   
+  li:last-child {
+    border: none;
+  }
+   
+  li {
+    background-color:white;
+    text-align:center;
+    text-decoration: none;
+    color:  #008CBA;
+    display: block;
+    width: 500px;
+    -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+    transition: font-size 0.3s ease, background-color 0.3s ease;
+  }
+   
+  li:hover {
+    font-size: 30px;
+    color:white;
+    background-color: #008CBA;
+  }
+  #newgame, #load, #replay, #pvp, #pvia{
+    margin-bottom:10px;
+    margin-top:10px;
+  }
+  .labtn{
+      background-color:white;
+      color:#008CBA;
+      border:2px solid rgb(160, 160, 160);
+      border-radius:6px;
+      padding: 10px;
+      text-align: center;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+      cursor: pointer;
+      text-decoration: none;
+      text-transform: uppercase;
+  }
+    
+  .labtn:hover{
+    border-color: #0099CC;
+    color:white;
+    background-color:#008CBA;
+  }
+  
+body{
+    background-color:#008CBA
 }

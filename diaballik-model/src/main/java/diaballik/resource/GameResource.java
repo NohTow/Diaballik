@@ -106,7 +106,9 @@ public class GameResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response loadGame(@PathParam("file") final String file) throws IOException {
 		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./savegame/" + file), Game.class);
-
+		if (game.isFinished().isPresent()) {
+			return Response.ok().entity(game.isFinished().get()).build();
+		}
 		return Response.ok().entity(game).build();
 	}
 
@@ -253,6 +255,9 @@ public class GameResource {
 	public Response redoGame() {
 		if (game.getUndo().size() != 0) {
 			game.redo();
+			if (game.isFinished().isPresent()) {
+				return Response.ok().entity(game.isFinished().get()).build();
+			}
 			return Response.ok().entity(game).build();
 		}
 		return Response.status(Response.Status.BAD_REQUEST).entity("Aucun mouvement à redo !").build();

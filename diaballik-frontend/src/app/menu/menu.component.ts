@@ -36,6 +36,9 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     
   }
+  onSubmit(){
+    this.router.navigate(['board-component'],{queryParams: {ia:this.ia, n1:this.n1, n2:this.n2, mode:this.mode, diff: this.diff, nameGame: this.nomGame, typeJeu: this.typeJeu}});
+  }
   onClick(){
     this.router.navigate(['board-component']);
   }

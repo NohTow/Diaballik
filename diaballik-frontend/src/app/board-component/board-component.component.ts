@@ -85,7 +85,9 @@ export class BoardComponentComponent implements OnInit {
   }else{
     this.http.put("game/moove/"+this.dataGame.actualCase.x+"/"+x+"/"+this.dataGame.actualCase.y+"/"+y,{}).subscribe(returnedData =>{
     this.dataGame.storage = returnedData;
-    console.log(this.dataGame.storage.save);
+    if(this.dataGame.storage.type!=='Game'){
+      this.http.put("game/save/"+this.nameGame,{}).subscribe();
+    }
     this.dataGame.actualCase = "";
     this.data.testlist = "";
     });

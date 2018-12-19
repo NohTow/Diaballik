@@ -134,6 +134,7 @@ public class Pawn extends Element {
 
 	/**
 	 * Check if a pass is possible (in a diag)
+	 *
 	 * @param newX x coordinate of the pawn we want to pass
 	 * @param newY y coordinate of the pawn we want to pass
 	 * @return true if we can pass the ball to the (newX,newY) pawn
@@ -142,13 +143,20 @@ public class Pawn extends Element {
 		final ArrayList<Pawn> ennemie = new ArrayList<Pawn>();
 		final int dx = (newX > this.x) ? 1 : -1;
 		final int dy = (newY > this.y) ? 1 : -1;
-		IntStream.iterate(this.x + dx, x -> x + dx).limit((Math.abs(this.x - newX)) - 1).forEach((int valX) -> {
+		/*IntStream.iterate(this.x + dx, x -> x + dx).limit((Math.abs(this.x - newX)) - 1).forEach((int valX) -> {
 			IntStream.iterate(this.y + dy, y -> y + dy).limit((Math.abs(this.y - newY)) - 1).forEach((int valY) -> {
 				if (gameBoard.getPiece(valX, valY) != null) {
 					ennemie.add(gameBoard.getPiece(valX, valY));
 				}
-			});
+			});//on check tout les y pour une valeur de x
+		});*/
+		IntStream.range(1, Math.abs(this.x - newX)).forEach(i -> {
+			if (gameBoard.getPiece(this.x + i * dx, this.y + i * dy) != null) {
+				ennemie.add(gameBoard.getPiece(this.x + i * dx, this.y + i * dy));
+			}
 		});
+
+
 		return ennemie.size() <= 0;
 	}
 

@@ -38,9 +38,9 @@ export class BoardComponentComponent implements OnInit {
     
       }
     }else if(this.typeJeu==='replay'){
-      this.http.get("game/replay/"+this.nameGame,{}).subscribe(returnedData => this.dataGame.storage = returnedData);
+      this.http.get("game/replay/"+this.nameGame+'.json',{}).subscribe(returnedData => this.dataGame.storage = returnedData);
     }else{
-      this.http.get("game/load/"+this.nameGame,{}).subscribe(returnedData => this.dataGame.storage = returnedData);
+      this.http.get("game/load/"+this.nameGame+'.json',{}).subscribe(returnedData => this.dataGame.storage = returnedData);
     }
     
     
@@ -86,8 +86,16 @@ export class BoardComponentComponent implements OnInit {
     this.http.put("game/moove/"+this.dataGame.actualCase.x+"/"+x+"/"+this.dataGame.actualCase.y+"/"+y,{}).subscribe(returnedData =>{
     this.dataGame.storage = returnedData;
     if(this.dataGame.storage.type!=='Game'){
-      this.http.put("game/save/"+this.nameGame,{}).subscribe();
+      this.http.put("game/save/finishedgame/"+this.nameGame,{}).subscribe();
     }
+   /* else{
+      (this.dataGame.storage.hasIA==='true' && this.dataGame.storage.color==='Green'){
+        for(var i =0;i<3; i++){
+          this.http.put("game/mooveIA",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
+          setTimeout(()=>{},9000);
+        }
+      } 
+    }*/
     this.dataGame.actualCase = "";
     this.data.testlist = "";
     });
@@ -104,7 +112,7 @@ export class BoardComponentComponent implements OnInit {
    // });
   }
   public save(): void{
-    this.http.put("game/save/"+this.nameGame,{}).subscribe();
+    this.http.put("game/save/savedgame/"+this.nameGame,{}).subscribe();
     
   }
 
@@ -118,6 +126,9 @@ export class BoardComponentComponent implements OnInit {
     downloader.click();
   }
 
+  public retourMenu(): void{
+    this.router.navigate(['menu'],{queryParams: {}});
+  }
 
 
 }

@@ -83,29 +83,31 @@ public class GameResource {
 		return Response.ok().entity(game).build();
 	}
 
+
 	@GET
-	@Path("savedgame")
+	@Path("save/{dir}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response listSavedGame() {
-		final File dossier = new File("./savegame");
+	public Response listFinishedGame(@PathParam("dir") final String dir) {
+		final File dossier = new File("./" + dir);
 		final String[] listNom = dossier.list();
 		return Response.ok().entity(listNom).build();
 	}
 
 	@PUT
-	@Path("save/{file}")
+	@Path("save/{dir}/{file}")
 	//@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response saveGame(@PathParam("file") final String file) throws IOException {
-		game.saveGame(file);
+	public Response saveGame(@PathParam("dir") final String dir, @PathParam("file") final String file) throws IOException {
+		game.saveGame(dir + '/' + file);
 		return Response.ok().entity(game).build();
 	}
+
 
 	@GET
 	@Path("load/{file}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response loadGame(@PathParam("file") final String file) throws IOException {
-		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./savegame/" + file), Game.class);
+		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./savedgame/" + file), Game.class);
 		if (game.isFinished().isPresent()) {
 			return Response.ok().entity(game.isFinished().get()).build();
 		}
@@ -116,7 +118,7 @@ public class GameResource {
 	@Path("replay/{file}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response replay(@PathParam("file") final String file) throws IOException {
-		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./savegame/" + file), Game.class);
+		game = new DiabalikJacksonProvider().getMapper().readValue(new File("./finishedgame/" + file), Game.class);
 		IntStream.iterate(0, x -> x + 1).limit(game.getSave().size()).forEach(x -> {
 			game.undo();
 		});
@@ -140,9 +142,9 @@ public class GameResource {
 	}
 
 	@DELETE
-	@Path("delete/{file}")
-	public Response deleteGame(@PathParam("file") final String file) {
-		final File fileToDelete = new File("./savegame/" + file + ".json");
+	@Path("delete/{dir}/{file}")
+	public Response deleteGame(@PathParam("dir") final String dir, @PathParam("file") final String file) {
+		final File fileToDelete = new File("./" + dir + "/" + file + ".json");
 		final boolean delete = fileToDelete.delete();
 		if (delete) {
 			return Response.ok().build();
@@ -156,9 +158,7 @@ public class GameResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response iaPlay() {
 		if (game.getColor().equals(Color.Green)) {
-			IntStream.range(0, 3).forEach(i -> {
-				((IA) game.getJoueur2()).getLevel().exec(game);
-			});
+			((IA) game.getJoueur2()).getLevel().exec(game);
 			return Response.ok().entity(game).build();
 		}
 		return Response.status(Response.Status.BAD_REQUEST).entity("Ce n'est pas au tour de l'IA !").build();

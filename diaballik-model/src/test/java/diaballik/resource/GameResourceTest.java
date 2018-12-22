@@ -114,8 +114,8 @@ public class GameResourceTest {
 	void R25_5(final Client client, final URI baseUri) throws IOException {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
-		client.target(baseUri).path("game/save/TestGameSave").request().put(Entity.text(""));
-		assertTrue((new File("./savegame/TestGameSave.json").exists()));
+		client.target(baseUri).path("game/save/savedgame/TestGameSave").request().put(Entity.text(""));
+		assertTrue((new File("./savedgame/TestGameSave.json").exists()));
 	}
 
 	@Test
@@ -124,7 +124,7 @@ public class GameResourceTest {
 
 		final Response res = client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
 		final Game g = res.readEntity(Game.class);
-		client.target(baseUri).path("game/save/TestGameSave").request().put(Entity.text(""));
+		client.target(baseUri).path("game/save/savedgame/TestGameSave").request().put(Entity.text(""));
 
 		Game game = client.target(baseUri).path("game/load/TestGameSave.json").request().get().readEntity(Game.class);
 
@@ -146,11 +146,11 @@ public class GameResourceTest {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 
 		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
-		client.target(baseUri).path("game/save/TestGameSave").request().put(Entity.text(""));
-		assertTrue((new File("./savegame/TestGameSave.json").exists()));
+		client.target(baseUri).path("game/save/savedgame/TestGameSave").request().put(Entity.text(""));
+		assertTrue((new File("./savedgame/TestGameSave.json").exists()));
 
-		Response res2 = client.target(baseUri).path("game/delete/TestGameSave").request().delete();
-		assertFalse((new File("./savegame/TestGameSave.json").exists()));
+		Response res2 = client.target(baseUri).path("game/delete/savedgame/TestGameSave").request().delete();
+		assertFalse((new File("./savegamed/TestGameSave.json").exists()));
 		Assertions.assertEquals(Response.Status.OK.getStatusCode(), res2.getStatus());
 	}
 
@@ -224,7 +224,7 @@ public class GameResourceTest {
 		res = client.target(baseUri).path("game/movePiece/0/1/0/0").request().put(Entity.text(""));
 		final Game g2 = res.readEntity(Game.class);
 		res = client.target(baseUri).path("game/movePiece/0/1/1/1").request().put(Entity.text(""));
-		client.target(baseUri).path("game/save/TestGameSave").request().put(Entity.text(""));
+		client.target(baseUri).path("game/save/finishedgame/TestGameSave").request().put(Entity.text(""));
 		res = client.target(baseUri).path("game/replay/TestGameSave.json").request().get();
 		final Game g3 = res.readEntity(Game.class);
 		//System.out.println(g3.getSave()+" "+g3.getUndo());
@@ -244,10 +244,10 @@ public class GameResourceTest {
 	void testNom(final Client client, final URI baseUri) throws IOException {
 		client.register(JacksonFeature.class).register(DiabalikJacksonProvider.class);
 		client.target(baseUri).path("game/newGamePvP/1/Antoine/Adrien/Standard").request().put(Entity.text(""));
-		client.target(baseUri).path("game/save/TestGameSave1").request().put(Entity.text(""));
-		client.target(baseUri).path("game/save/TestGameSave2").request().put(Entity.text(""));
-		client.target(baseUri).path("game/save/TestGameSave3").request().put(Entity.text(""));
-		final Response res = client.target(baseUri).path("game/savedgame").request().get();
+		client.target(baseUri).path("game/save/savedgame/TestGameSave1").request().put(Entity.text(""));
+		client.target(baseUri).path("game/save/savedgame/TestGameSave2").request().put(Entity.text(""));
+		client.target(baseUri).path("game/save/savedgame/TestGameSave3").request().put(Entity.text(""));
+		final Response res = client.target(baseUri).path("game/save/savedgame").request().get();
 		System.out.println(res.readEntity(String.class));
 
 	}

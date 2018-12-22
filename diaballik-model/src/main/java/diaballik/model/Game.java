@@ -186,8 +186,9 @@ public class Game {
 
 
 	public void saveGame(final String fileName) throws IOException {
-		new DiabalikJacksonProvider().getMapper().writeValue(new File("./savegame/" + fileName + ".json"), this);
+		new DiabalikJacksonProvider().getMapper().writeValue(new File("./" + fileName + ".json"), this);
 	}
+
 
 	public Player getJoueur1() {
 		return joueur1;

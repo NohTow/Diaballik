@@ -10,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  public listeGame: any;
+  public listSave: any;
+  public listFinish: any;
   public ia: boolean;
   public n1: String;
   public n2: String;
@@ -30,7 +31,8 @@ export class MenuComponent implements OnInit {
     this.n2=""
     this.diff="Noob";
     this.mode="Standard";
-    this.http.get("game/savedgame").subscribe(returnedData => this.listeGame = returnedData);
+    this.http.get("game/save/savedgame").subscribe(returnedData => this.listSave = returnedData);
+    this.http.get("game/save/finishedgame").subscribe(returnedData => this.listFinish = returnedData);
   }
 
   ngOnInit() {

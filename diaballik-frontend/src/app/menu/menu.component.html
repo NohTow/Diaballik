@@ -18,7 +18,7 @@
   </div>
   <div *ngIf="typeJeu==='newgame'" class="nom">
     <label for="nomGame">Nom de la partie : </label>
-    <input type="text" (input)="nomGame=$event.target.value" id="nomGame" placeholder="Nom de la partie" required><br/>
+    <input type="text" (input)="nomGame=$event.target.value" id="nomGame" placeholder="Nom de la partie" required value="{{nomGame}}"><br/>
     <label for="nj1">Nom du joueur 1 : </label>
     <input type="text" (input)="n1=$event.target.value" name="nomJ1" placeholder="Nom joueur 1" id="nj1" required><br/>
     <div *ngIf="!this.ia">  
@@ -37,9 +37,14 @@
   <div *ngIf="typeJeu==='newgame'"class="center">
     <button class="btn" (click)="onVali()">Créér la partie</button>
   </div>
-  <p *ngIf="typeJeu==='load' || typeJeu==='replay'">Nom de la partie à charger : {{nomGame}}</p>
-  <ul *ngIf="typeJeu==='load' || typeJeu==='replay'" class="listenom">
-    <li class="listName" *ngFor="let nameGame of listeGame" [ngStyle]="nomGame===nameGame &&  {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame">{{nameGame}}</li>
+  <p *ngIf="typeJeu==='load'">Nom de la partie à charger : {{nomGame.replace('.json','')}}</p>
+  <ul *ngIf="typeJeu==='load'" class="listenom">
+    <li class="listName" *ngFor="let nameGame of listSave" [ngStyle]="nomGame===nameGame &&  {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li><!--Retirer le .json du nom pour ne pas avoir un .json.json dans la save si on load et qu'on resave-->
+  </ul>
+
+  <p *ngIf="typeJeu=='replay'">Nom de la partie à replay : {{nomGame.replace('.json','')}}</p>
+  <ul *ngIf="typeJeu=='replay'" class="listenom">
+    <li class="listName" *ngFor="let nameGame of listFinish"  [ngStyle]="nomGame===nameGame && {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li>
   </ul>
   <div *ngIf="typeJeu==='load'" class="center">
     <button class="btn"(click)="onVali()">Load this game !</button>

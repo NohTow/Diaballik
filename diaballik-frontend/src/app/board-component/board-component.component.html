@@ -19,9 +19,9 @@
   <p>Nom de la partie : {{nameGame}} </p>
   <p>Tour de : {{dataGame.storage.color==='Yellow' ? dataGame.storage.joueur1.name : dataGame.storage.joueur2.name}} ({{dataGame.storage.color}})</p>
   <p>Tour n° : {{dataGame.storage.numTurn}}</p>
-  <p>Nombre d'actions effectuée : {{dataGame.storage.nbAction}}</p>
-  <p>Nombre d'actions à undo : {{dataGame.storage.save.length}} </p>
-  <p>Nombre d'actions à redo : {{dataGame.storage.undo.length}}</p>
+  <p>Nombre d'actions effectuee : {{dataGame.storage.nbAction}}</p>
+  <p>Nombre d'actions a undo : {{dataGame.storage.save.length}} </p>
+  <p>Nombre d'actions a redo : {{dataGame.storage.undo.length}}</p>
   <button (click) ="undo()">UNDO</button>
   <button (click) = "redo()">REDO</button>
   <button (click)="save()">SAVE</button>

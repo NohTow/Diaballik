@@ -1,4 +1,7 @@
-
+@font-face {
+    font-family: sudden;
+    src: url(../../assets/font/SuddenDesires.ttf) format("truetype");
+  }
 div {
     --size-cell: 100px;
     --border-cell: 5px;
@@ -48,8 +51,15 @@ div {
 }
 .right{
     float:right;
-    margin-right:25%;
-    margin-top:50px;
+    margin-right:auto;
+    margin-left:auto;
+    width:40%;
+    margin-top:270px;
 }
 
 
+p, h2{
+    font-family:'sudden', 'arial';
+    color:white;
+    
+}

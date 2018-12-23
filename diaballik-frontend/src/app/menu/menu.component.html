@@ -1,43 +1,32 @@
-
-  <div class="wrapper">
-    <div class="choixTypeJeu">
-      <input type="radio"  name="typeJeu"  value="newgame" id="newgame" (change)="typeJeu='newgame'" checked required><label [ngStyle]="typeJeu==='newgame' &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="newgame" >New Game</label>
-      <input type="radio" name="typeJeu" value="load" id="load"(change)="typeJeu='load'" required><label id="labeload" [ngStyle]="typeJeu==='load' &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="load">Load Game</label>
-      <input type="radio" name="typeJeu" value="replay" id="replay"(change)="typeJeu='replay'" required><label id="labelreplay" [ngStyle]="typeJeu==='replay' &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="replay">Replay a game</label>
-    </div> 
-    <div class="center">
-      <div *ngIf="typeJeu==='newgame'" class="choixplateau">
-        <label for="choixplateau" class="nameBoard">Type du plateau : 
-        <select name="typeBoard" (input)="mode=$event.target.value" id="choixplateau">
-          <option value="Standard">Standard</option>
-          <option value="Random">Random</option>
-          <option value="AmongUs">Among Us</option>
-        </select></label><br/>
-      </div>
-      <div *ngIf="typeJeu==='newgame'" class="choixia">  
-        <label [ngStyle]="ia==false &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn1" for="pvp">PVP <input type="radio" name="typeGame" value="PVP" id="pvp" (change)="ia=false" checked required></label>
-        <label [ngStyle]="ia===true &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn1" for="pvia">PVIA<input type="radio" name="typeGame" value="PVIA" id="pvia"(change)="ia=true" required></label><br/><br/><br/>
-      </div>
-    </div>
-    <div *ngIf="typeJeu==='newgame'" class="nom">
-      <label for="nomGame" class="nameGame">Nom de la partie : </label>
-      <input type="text" (input)="nomGame=$event.target.value" id="nomGame" placeholder="Nom de la partie" required><br/> <!--value="{{nomGame}}" pour pré-remplir-->
-      <label for="nj1" class="nameJ1">Nom du joueur 1 : </label>
-      <input type="text" (input)="n1=$event.target.value" name="nomJ1" placeholder="Nom joueur 1" id="nj1" required><br/>
-      <div *ngIf="!this.ia">  
-        <label for="nj2" class="nameJ2">Nom du joueur 2 : </label>
-        <input type="text" placeholder="Nom Joueur 2" (input)="n2=$event.target.value" id ="nj2" required><br/>
-      </div>
-    </div>
-    <div class="nom" *ngIf="this.ia && typeJeu==='newgame'">
-      <label for="lvlIA" class="levelIA">Niveau de l'IA : 
-      <select name="difficulty" (input)="diff=$event.target.value" id="lvlIA">
-        <option value="Noob">Noob</option>
-        <option value="Advanced">Advanced</option>
-        <option value="Progressive">Progressive</option>
+<div class="wrapper">
+  <div class="choixTypeJeu">
+    <input type="radio"  name="typeJeu"  value="newgame" id="newgame" (change)="typeJeu='newgame'" checked required><label [ngStyle]="typeJeu==='newgame' &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="newgame" >New Game</label>
+    <input type="radio" name="typeJeu" value="load" id="load"(change)="typeJeu='load'" required><label id="labeload" [ngStyle]="typeJeu==='load' &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="load">Load Game</label>
+    <input type="radio" name="typeJeu" value="replay" id="replay"(change)="typeJeu='replay'" required><label id="labelreplay" [ngStyle]="typeJeu==='replay' &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="replay">Replay a game</label>
+  </div> 
+  <div class="center">
+    <div *ngIf="typeJeu==='newgame'" class="choixplateau">
+      <label for="choixplateau">Type du plateau : 
+      <select name="typeBoard" (input)="mode=$event.target.value" id="choixplateau">
+        <option value="Standard">Standard</option>
+        <option value="Random">Random</option>
+        <option value="AmongUs">Among Us</option>
       </select></label><br/>
     </div>
-<<<<<<< HEAD
+    <div *ngIf="typeJeu==='newgame'" class="choixia">  
+      <label [ngStyle]="ia==false &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="pvp">PVP <input type="radio" name="typeGame" value="PVP" id="pvp" (change)="ia=false" checked required></label>
+      <label [ngStyle]="ia===true &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="pvia">PVIA<input type="radio" name="typeGame" value="PVIA" id="pvia"(change)="ia=true" required></label><br/><br/><br/>
+    </div>
+  </div>
+  <div *ngIf="typeJeu==='newgame'" class="nom">
+    <label for="nomGame">Nom de la partie : </label>
+    <input type="text" (input)="nomGame=$event.target.value" id="nomGame" placeholder="Nom de la partie" required><br/> <!--value="{{nomGame}}" pour pré-remplir-->
+    <label for="nj1">Nom du joueur 1 : </label>
+    <input type="text" (input)="n1=$event.target.value" name="nomJ1" placeholder="Nom joueur 1" id="nj1" required><br/>
+    <div *ngIf="!this.ia">  
+      <label for="nj2">Nom du joueur 2 : </label>
+      <input type="text" placeholder="Nom Joueur 2" (input)="n2=$event.target.value" id ="nj2" required><br/>
+    </div>
   </div>
   <div class="nom" *ngIf="this.ia && typeJeu==='newgame'">
     <label for="lvlIA">Niveau de l'IA : 
@@ -52,37 +41,18 @@
   </div>
   <p *ngIf="typeJeu==='load'" class="labellist">Nom de la partie a charger : {{nomGame.replace('.json','')}}</p>
   <ul *ngIf="typeJeu==='load'" class="listenom">
-    <li class="listName" *ngFor="let nameGame of listSave" [ngStyle]="nomGame===nameGame.replace('.json','') &&  {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li><!--Retirer le .json du nom pour ne pas avoir un .json.json dans la save si on load et qu'on resave-->
+    <li class="listName" *ngFor="let nameGame of listSave" [ngStyle]="nomGame===nameGame &&  {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li><!--Retirer le .json du nom pour ne pas avoir un .json.json dans la save si on load et qu'on resave-->
   </ul>
 
   <p *ngIf="typeJeu=='replay'" class="labellist">Nom de la partie a replay : {{nomGame.replace('.json','')}}</p>
   <ul *ngIf="typeJeu=='replay'" class="listenom">
-    <li class="listName" *ngFor="let nameGame of listFinish"  [ngStyle]="nomGame===nameGame.replace('.json','') && {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li>
+    <li class="listName" *ngFor="let nameGame of listFinish"  [ngStyle]="nomGame===nameGame && {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li>
   </ul>
   <div *ngIf="typeJeu==='load'" class="center">
     <button class="btn"(click)="onVali()">Load this game !</button>
   </div>
   <div *ngIf="typeJeu==='replay'" class="center">
     <button class="btn" (click)="onVali()">Replay this game !</button>
-=======
-    <div *ngIf="typeJeu==='newgame'"class="center">
-      <button class="btn" (click)="onVali()">Create this game !</button>
-    </div>
-    <p *ngIf="typeJeu==='load'" class="labellist">Nom de la partie a charger : {{nomGame.replace('.json','')}}</p>
-    <ul *ngIf="typeJeu==='load'" class="listenom">
-      <li class="listName" *ngFor="let nameGame of listSave" [ngStyle]="nomGame===nameGame &&  {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li><!--Retirer le .json du nom pour ne pas avoir un .json.json dans la save si on load et qu'on resave-->
-    </ul>
-
-    <p *ngIf="typeJeu=='replay'" class="labellist">Nom de la partie a replay : {{nomGame.replace('.json','')}}</p>
-    <ul *ngIf="typeJeu=='replay'" class="listenom">
-      <li class="listName" *ngFor="let nameGame of listFinish"  [ngStyle]="nomGame===nameGame && {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li>
-    </ul>
-    <div *ngIf="typeJeu==='load'" class="center">
-      <button class="btn"(click)="onVali()">Load this game !</button>
-    </div>
-    <div *ngIf="typeJeu==='replay'" class="center">
-      <button class="btn" (click)="onVali()">Replay this game !</button>
-    </div>
->>>>>>> 70a37ee873354fa318d3359e1ccf9ec231c060c2
   </div>
+</div>
 

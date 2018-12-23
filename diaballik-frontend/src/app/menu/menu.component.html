@@ -41,12 +41,12 @@
   </div>
   <p *ngIf="typeJeu==='load'" class="labellist">Nom de la partie a charger : {{nomGame.replace('.json','')}}</p>
   <ul *ngIf="typeJeu==='load'" class="listenom">
-    <li class="listName" *ngFor="let nameGame of listSave" [ngStyle]="nomGame===nameGame.replace('.json','') &&  {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li><!--Retirer le .json du nom pour ne pas avoir un .json.json dans la save si on load et qu'on resave-->
+    <li class="listName" *ngFor="let nameGame of listSave" [ngStyle]="nomGame===nameGame &&  {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li><!--Retirer le .json du nom pour ne pas avoir un .json.json dans la save si on load et qu'on resave-->
   </ul>
 
   <p *ngIf="typeJeu=='replay'" class="labellist">Nom de la partie a replay : {{nomGame.replace('.json','')}}</p>
   <ul *ngIf="typeJeu=='replay'" class="listenom">
-    <li class="listName" *ngFor="let nameGame of listFinish"  [ngStyle]="nomGame===nameGame.replace('.json','') && {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li>
+    <li class="listName" *ngFor="let nameGame of listFinish"  [ngStyle]="nomGame===nameGame && {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li>
   </ul>
   <div *ngIf="typeJeu==='load'" class="center">
     <button class="btn"(click)="onVali()">Load this game !</button>

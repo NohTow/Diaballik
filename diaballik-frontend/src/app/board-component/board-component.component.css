@@ -72,11 +72,16 @@ p, h2{
 }
 
 button{
-    background-color: purple;
+    background-color: rgb(2, 20, 189);
     font-weight: bold;
     font-size: 25px;
     padding: 10px 20px;
     border-radius: 20px;
+    color: white;
+}
+
+button:hover{
+    background-color: rgb(211, 12, 168);
 }
 
 h2{
@@ -84,3 +89,7 @@ h2{
     font-weight: bold;
     font-size: 200%;
 }
+
+/*main{
+    background-color: #18E3F4;
+}*/

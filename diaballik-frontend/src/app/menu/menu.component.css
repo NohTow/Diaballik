@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 @font-face {
   font-family: sudden;
   src: url(../../assets/font/SuddenDesires.ttf) format("truetype");
 }
 
+=======
+>>>>>>> parent of d59d569... Amélioration du design/ajout d'une font
 .wrapper{
    margin-left: auto;
    margin-right: auto;
@@ -10,9 +13,12 @@
    border:1px solid rgb(4, 2, 121);
    border-radius:6px;
    padding:10px;
+<<<<<<< HEAD
    font-family:'sudden', 'arial';
    color:white;
    
+=======
+>>>>>>> parent of d59d569... Amélioration du design/ajout d'une font
 }
 label{
     color:white;
@@ -76,7 +82,7 @@ ul {
     text-decoration: none;
     color:  #0099CC;
     display: block;
-    width: 100%;
+    width: 500px;
     -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
     -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
     -o-transition: font-size 0.3s ease, background-color 0.3s ease;
@@ -102,7 +108,7 @@ ul {
       border-radius:6px;
       padding: 10px;
       text-align: center;
-      /*display: inline-block;*/
+      display: inline-block;
       font-size: 15px;
       margin: 4px 2px;
       -webkit-transition-duration: 0.4s; /* Safari */
@@ -165,6 +171,7 @@ ul {
   .choixplateau{
     width:40%;
     margin-left:28%;
+<<<<<<< HEAD
   }
   li, button{
     font-family:'sudden';
@@ -227,3 +234,6 @@ ul {
   }
 
   
+=======
+  }
+>>>>>>> parent of d59d569... Amélioration du design/ajout d'une font

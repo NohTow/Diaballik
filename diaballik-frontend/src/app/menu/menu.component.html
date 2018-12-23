@@ -14,8 +14,8 @@
       </select></label><br/>
     </div>
     <div *ngIf="typeJeu==='newgame'" class="choixia">  
-      <label [ngStyle]="ia==false &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="pvp">PVP <input type="radio" name="typeGame" value="PVP" id="pvp" (change)="ia=false" checked required></label>
-      <label [ngStyle]="ia===true &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn" for="pvia">PVIA<input type="radio" name="typeGame" value="PVIA" id="pvia"(change)="ia=true" required></label><br/><br/><br/>
+      <label [ngStyle]="ia==false &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn1" for="pvp">PVP <input type="radio" name="typeGame" value="PVP" id="pvp" (change)="ia=false" checked required></label>
+      <label [ngStyle]="ia===true &&  {'border-color': '#0099CC','color':'white','background-color':'#008CBA'}" class="labtn1" for="pvia">PVIA<input type="radio" name="typeGame" value="PVIA" id="pvia"(change)="ia=true" required></label><br/><br/><br/>
     </div>
   </div>
   <div *ngIf="typeJeu==='newgame'" class="nom">

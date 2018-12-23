@@ -38,7 +38,7 @@
       </select></label><br/>
     </div>
     <div *ngIf="typeJeu==='newgame'"class="center">
-      <button class="btn" (click)="onVali()">Creer la partie</button>
+      <button class="btn" (click)="onVali()">Create this game !</button>
     </div>
     <p *ngIf="typeJeu==='load'" class="labellist">Nom de la partie a charger : {{nomGame.replace('.json','')}}</p>
     <ul *ngIf="typeJeu==='load'" class="listenom">

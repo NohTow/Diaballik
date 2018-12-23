@@ -37,6 +37,34 @@
         <option value="Progressive">Progressive</option>
       </select></label><br/>
     </div>
+<<<<<<< HEAD
+  </div>
+  <div class="nom" *ngIf="this.ia && typeJeu==='newgame'">
+    <label for="lvlIA">Niveau de l'IA : 
+    <select name="difficulty" (input)="diff=$event.target.value" id="lvlIA">
+      <option value="Noob">Noob</option>
+      <option value="Advanced">Advanced</option>
+      <option value="Progressive">Progressive</option>
+    </select></label><br/>
+  </div>
+  <div *ngIf="typeJeu==='newgame'"class="center">
+    <button class="btn" (click)="onVali()">Creer la partie</button>
+  </div>
+  <p *ngIf="typeJeu==='load'" class="labellist">Nom de la partie a charger : {{nomGame.replace('.json','')}}</p>
+  <ul *ngIf="typeJeu==='load'" class="listenom">
+    <li class="listName" *ngFor="let nameGame of listSave" [ngStyle]="nomGame===nameGame.replace('.json','') &&  {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li><!--Retirer le .json du nom pour ne pas avoir un .json.json dans la save si on load et qu'on resave-->
+  </ul>
+
+  <p *ngIf="typeJeu=='replay'" class="labellist">Nom de la partie a replay : {{nomGame.replace('.json','')}}</p>
+  <ul *ngIf="typeJeu=='replay'" class="listenom">
+    <li class="listName" *ngFor="let nameGame of listFinish"  [ngStyle]="nomGame===nameGame.replace('.json','') && {'font-size': '30px','color':'white','background-color':'#008CBA'}" (click)="nomGame=nameGame.replace('.json','')">{{nameGame.replace('.json','')}}</li>
+  </ul>
+  <div *ngIf="typeJeu==='load'" class="center">
+    <button class="btn"(click)="onVali()">Load this game !</button>
+  </div>
+  <div *ngIf="typeJeu==='replay'" class="center">
+    <button class="btn" (click)="onVali()">Replay this game !</button>
+=======
     <div *ngIf="typeJeu==='newgame'"class="center">
       <button class="btn" (click)="onVali()">Create this game !</button>
     </div>
@@ -55,5 +83,6 @@
     <div *ngIf="typeJeu==='replay'" class="center">
       <button class="btn" (click)="onVali()">Replay this game !</button>
     </div>
+>>>>>>> 70a37ee873354fa318d3359e1ccf9ec231c060c2
   </div>
 

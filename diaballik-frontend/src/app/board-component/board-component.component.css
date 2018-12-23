@@ -1,7 +1,4 @@
-@font-face {
-    font-family: sudden;
-    src: url(../../assets/font/SuddenDesires.ttf) format("truetype");
-  }
+
 div {
     --size-cell: 100px;
     --border-cell: 5px;
@@ -57,10 +54,8 @@ div {
 }
 .right{
     float:right;
-    margin-right:auto;
-    margin-left:auto;
-    width:40%;
-    margin-top:270px;
+    margin-right:25%;
+    margin-top:50px;
 }
 
 .right p{
@@ -70,6 +65,7 @@ div {
 }
 
 
+<<<<<<< HEAD
 p, h2{
     font-family:'sudden', 'arial';
     color:white;
@@ -95,3 +91,5 @@ h2{
     font-size: 200%;
 }
 
+=======
+>>>>>>> parent of d59d569... Amélioration du design/ajout d'une font

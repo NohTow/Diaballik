@@ -33,8 +33,9 @@ export class BoardComponentComponent implements OnInit {
         this.http.put("game/newGamePvP/5/"+nj1+"/"+nj2+"/"+mode, {}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
       }else{
         this.IA = true;
-        var difficulity = (URL.queryParams.diff);
-        this.http.put("game/newGamePvIA/1/"+nj1+"/"+mode+"/Advanced",{}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
+        var difficulty = (URL.queryParams.diff);
+        //console.log("game/newGamePvIA/1"+nj1+"/"+mode+"/"+difficulty);
+        this.http.put("game/newGamePvIA/1/"+nj1+"/"+mode+"/"+difficulty,{}, {}).subscribe(returnedData => this.dataGame.storage = returnedData);
     
       }
     }else if(this.typeJeu==='replay'){

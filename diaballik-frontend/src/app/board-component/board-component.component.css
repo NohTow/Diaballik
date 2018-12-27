@@ -1,68 +1,7 @@
 @font-face {
     font-family: sudden;
     src: url(../../assets/font/SuddenDesires.ttf) format("truetype");
-  }
-/*div {
-    --size-cell: 100px;
-    --border-cell: 5px;
 }
-.board {
-   box-sizing: border-box;
-   border: var(--border-cell) solid;
-   background-color: rgba(255, 255, 255, 0.658);
-   width: var(--size-cell);
-   height: var(--size-cell);
-   float: left;
-   padding: 0;
-   margin: 0;
-}
-.grey {
-    background-color: grey !important;
-}
-.aclass {
-    display: table;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.circle{
-    width: 90%;
-    height: 90%;
-    border-radius: 50%;
-    border: 3px solid black;
-    position:relative;
-    top:2%;
-    left:2%;
-}
-.hasBall{
-    position: relative;
-    top:22%;
-    margin-left: auto;
-    margin-right:auto;
-    width:50%;
-    height:50%;
-    border: 3px solid black;
-    background-color:white;
-    border-radius: 50%;
-}
-.left{
-    width:700px;
-    float: left;
-}
-.right{
-    float:right;
-    margin-right:auto;
-    margin-left:auto;
-    width:40%;
-    margin-top:270px;
-}
-
-
-p, h2{
-    font-family:'sudden', 'arial';
-    color:white;
-    
-}*/
 
 div {
     --size-cell: 100px;

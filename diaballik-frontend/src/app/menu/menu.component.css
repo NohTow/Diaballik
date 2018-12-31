@@ -92,6 +92,17 @@
    #newgame, #load, #replay, #pvp, #pvia{
      display:none;
    }
+   #labelnewgame{
+     float:left;
+   }
+   #labelreplay{
+     margin-left:auto;
+     margin-right:auto;
+     display:block;
+   }
+   #labeload{
+     float:right;
+   }
    .labtn{
        background-color:white;
        color:purple;
@@ -101,16 +112,13 @@
        text-align: center;
        /*display: inline-block;*/
        font-size: 15px;
-       margin: 4px 2px;
        -webkit-transition-duration: 0.4s; /* Safari */
        transition-duration: 0.4s;
        cursor: pointer;
        text-decoration: none;
        text-transform: uppercase;
-       float:left;
-       margin-right:5%;
        width:20%;
-       margin-left:5%;
+       
        border-radius: 30px;
    }
  
@@ -182,6 +190,7 @@
      width:90%;
      margin-left:auto;
      margin-right:auto;
+     margin-bottom:5px;
    }
    .listenom{
      width:49%;

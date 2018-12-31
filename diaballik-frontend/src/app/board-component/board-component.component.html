@@ -24,7 +24,9 @@
   <p>Nombre d'actions a redo : {{dataGame.storage.undo.length}}</p>
   <button (click) ="undo()">UNDO</button>
   <button (click) = "redo()">REDO</button>
-  <button (click)="save()">SAVE</button>
-  <button *ngIf="IA == true"(click) = "iaPlay()">Make IA Play</button>
+  <div style="display:block">
+  <button (click)="save()">SAVE YOUR GAME</button>
+  <button *ngIf="IA == true"(click) = "iaPlay()">MAKE IA PLAY</button>
+  </div>
 </div>
 </main>

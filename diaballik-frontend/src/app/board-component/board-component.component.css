@@ -58,10 +58,8 @@ div {
 }
 .right{
     float:right;
-    margin-right:auto;
-    margin-left:auto;
-    width:40%;
-    margin-top:270px;
+    width:28%;
+    margin-top:70px;
 }
 
 .right p{
@@ -80,15 +78,17 @@ p, h2{
 button{
     background-color: rgb(141, 0, 54);
     font-weight: bold;
-    font-size: 25px;
-    padding: 10px 20px;
+    font-size: 18px;
+    padding: 10px;
     border-radius: 20px;
     color: white;
+    width:150px;
 }
 
 button:hover{
     background-color: rgb(182, 7, 144);
 }
+
 
 h2{
     color: purple;

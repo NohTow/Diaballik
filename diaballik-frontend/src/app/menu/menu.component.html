@@ -1,6 +1,6 @@
 <div class="wrapper">
   <div class="choixTypeJeu">
-    <input type="radio"  name="typeJeu"  value="newgame" id="newgame" (change)="typeJeu='newgame'" checked required><label [ngStyle]="typeJeu==='newgame' &&  {'border-color': '#0099CC','color':'white','background-color':'purple'}" class="labtn" for="newgame" >New Game</label>
+    <input type="radio"  name="typeJeu"  value="newgame" id="newgame" (change)="typeJeu='newgame'" checked required><label id="labelnewgame" [ngStyle]="typeJeu==='newgame' &&  {'border-color': '#0099CC','color':'white','background-color':'purple'}" class="labtn" for="newgame" >New Game</label>
     <input type="radio" name="typeJeu" value="load" id="load"(change)="typeJeu='load'" required><label id="labeload" [ngStyle]="typeJeu==='load' &&  {'border-color': '#0099CC','color':'white','background-color':'purple'}" class="labtn" for="load">Load a Game</label>
     <input type="radio" name="typeJeu" value="replay" id="replay"(change)="typeJeu='replay'" required><label id="labelreplay" [ngStyle]="typeJeu==='replay' &&  {'border-color': '#0099CC','color':'white','background-color':'purple'}" class="labtn" for="replay">Replay a Game</label>
   </div> 

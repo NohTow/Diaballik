@@ -21,9 +21,9 @@
      margin-left: auto;
      margin-right: auto;
      width:50%;   
+     text-align:center;
  }
  .center button{
-   padding: 20px 25px;
    border-radius: 40px;
  }
  
@@ -32,7 +32,7 @@
      background: white;
      border: 2px solid rgb(160, 160, 160);
      border-radius: 6px;
-     padding: 16px 32px;
+     padding: 20px 25px;
      text-align: center;
      display: inline-block;
      font-size: 18px;
@@ -41,7 +41,6 @@
      transition-duration: 0.4s;
      cursor: pointer;
      text-decoration: none;
-     margin-left:25%;
      text-transform: uppercase;
  }
  .btn:hover{
@@ -91,8 +90,6 @@
      background-color: rgb(0, 199, 206);
    }
    #newgame, #load, #replay, #pvp, #pvia{
-     margin-bottom:10px;
-     margin-top:10px;
      display:none;
    }
    .labtn{
@@ -133,9 +130,7 @@
      text-decoration: none;
      text-transform: uppercase;
      float:left;
-     margin-right:5%;
-     width:20%;
-     margin-left:5%;
+     width:57px;
      border-radius: 50px;
  
  }
@@ -155,16 +150,25 @@
    }
  
    .nom{
-     width:16%;
-     margin:0 auto;
+     width:160px;
+     margin-left:auto;
+     margin-right:auto;
+     text-align:center;
    }
+   .nom input{
+     margin-top:5px;
+     margin-bottom:5px;
+   }
+
    .choixia{
-     width: 64%;
-     margin-left: 23%;
+     width: 170px;
+     margin-left: auto;
+     margin-right:auto;
    }
    .choixplateau{
      width:40%;
-     margin-left:28%;
+     margin-left:auto;
+     margin-right:auto;
    }
    li, button{
      font-family:'sudden';
@@ -175,6 +179,9 @@
    }*/
    .choixTypeJeu{
      height:42px;
+     width:90%;
+     margin-left:auto;
+     margin-right:auto;
    }
    .listenom{
      width:49%;
@@ -187,6 +194,7 @@
      color: #020495;
      font-weight: bold;
      font-size: 120%;
+     text-align:center;
    }
  
  

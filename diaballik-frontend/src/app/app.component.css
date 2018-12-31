@@ -1,10 +1,12 @@
 h1 {
     color: #0329E8 ;
     font-weight: bold; 
-    font-family: 'Broadway';
+    font-family: 'sudden';
     font-size: 500%;
+    letter-spacing:7px;
     text-align: center;
     font-style: italic;
     text-shadow:5px 5px 2px rgb(120, 11, 223);
+    cursor:pointer;
 
 }

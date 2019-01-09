@@ -35,7 +35,6 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
-import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
@@ -48,7 +47,6 @@ public class GameResource {
 
 	static final Logger LOGGER = Logger.getAnonymousLogger();
 	Game game;
-	private Consumer<Command> commandConsumer;
 
 
 	@PUT
@@ -227,7 +225,9 @@ public class GameResource {
 			final ArrayList<Command> list = p.movePlayable(game);
 			if (p.hasBall()) {
 				final ArrayList<MoveBall> res = new ArrayList<MoveBall>();
-				list.forEach(commandConsumer);
+				list.forEach(c -> {
+					res.add((MoveBall) c);
+				});
 				final String serializedList = mapper.writeValueAsString(list);
 				return Response.ok().entity(serializedList).build();
 			} else {

@@ -26,8 +26,8 @@
   <button (click) = "redo()">REDO</button>
   <div style="display:block">
   <button (click)="save()">SAVE YOUR GAME</button>
-  <button *ngIf="IA == true"(click) = "iaPlay()">MAKE IA PLAY</button>
-  <button *ngIf="IA != true" style="background-color:grey" disabled>MAKE IA PLAY</button>
+  <button *ngIf="dataGame.storage.hasIA == true && typeJeu != 'replay' "(click) = "iaPlay()">MAKE IA PLAY</button>
+  <button *ngIf="dataGame.storage.hasIA == false || typeJeu =='replay'" style="background-color:grey" disabled>MAKE IA PLAY</button>
   </div>
 </div>
 </main>

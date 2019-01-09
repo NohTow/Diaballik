@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-#Wed Jan 09 19:06:08 CET 2019
+#Wed Jan 09 18:57:13 CET 2019
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\IA.java=1547056044757
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Random.java=1547056000580
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\serialization\\ColorSerializer.java=1545593954546
@@ -18,44 +17,13 @@ C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diabal
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Command.java=1545593954434
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\serialization\\ColorDeserializer.java=1545593954538
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Standard.java=1547056036093
-configuration*?=3509F0FAB6D07099556E92490A91BE8121F6699E
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Progressive.java=1545593954482
+configuration*?=3509F0FAB6D07099556E92490A91BE8121F6699E
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\AmongUs.java=1547055958758
-C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Noob.java=1547056084250
-C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Pawn.java=1547055958742
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\resource\\GameResource.java=1547055837950
+C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Pawn.java=1547055958742
+C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Noob.java=1547056084250
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Humain.java=1545593954446
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\resource\\NoGameCreatedException.java=1545593954526
-C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\Main.java=1545593954394
 C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\model\\Advanced.java=1547056053577
-=======
-#Wed Jan 09 19:20:59 CET 2019
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/resource/MyExceptionMapper.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/resource/GameResource.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Random.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Standard.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/BoardBuilder.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Color.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Element.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/AmongUs.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/resource/NoGameCreatedException.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Pawn.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Advanced.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/serialization/ColorSerializer.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Progressive.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/Main.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Game.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/IA.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Ball.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Command.java=1547057942000
-configuration*?=B5507455F970DDE33D29CBC1F33CBD56E0953637
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/serialization/DiabalikJacksonProvider.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Player.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/MovePion.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Board.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/serialization/ColorDeserializer.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/MoveBall.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Strategy.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Noob.java=1547057942000
-/home-reseau/aburidan/Documents/Diaballik/Diaballik/diaballik-model/src/main/java/diaballik/model/Humain.java=1547057942000
->>>>>>> 9751de952e245ccdb70b8e691a9ae46c2352312c
+C\:\\Users\\NohTow\\Desktop\\Diaballik\\diaballik-model\\src\\main\\java\\diaballik\\Main.java=1545593954394

@@ -7,10 +7,6 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-//import com.fasterxml.jackson.annotation.JsonCreator;
-//import com.fasterxml.jackson.annotation.JsonProperty;
-//import java.util.Objects;
-
 /**
  * The advanced level of an AI
  */

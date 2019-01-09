@@ -39,7 +39,7 @@ public class Game {
 	private Player joueur2;
 
 
-	//TODO faire les loads/save
+
 
 	@JsonCreator
 	public Game(@JsonProperty("IA") final boolean IA, @JsonProperty("idGame") final int idG, @JsonProperty("player1") final String nameJ1, @JsonProperty("player2") final String nameJ2, @JsonProperty("board") final Board b) {

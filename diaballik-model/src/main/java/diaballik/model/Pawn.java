@@ -15,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Pawn extends Element {
 	protected int x;
 	protected int y;
-	//protected int id;
 	protected boolean hasBall;
 
 	/**
@@ -34,7 +33,6 @@ public class Pawn extends Element {
 		super(color);
 		this.x = x;
 		this.y = y;
-		//this.id = id;
 		this.hasBall = hasBall;
 	}
 

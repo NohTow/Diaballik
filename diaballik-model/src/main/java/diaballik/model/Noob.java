@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.stream.Stream;
 
-//import com.fasterxml.jackson.annotation.JsonCreator;
-////import com.fasterxml.jackson.annotation.JsonProperty;
-////import java.util.Objects;
 
 /**
  * The noob level of an IA

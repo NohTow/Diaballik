@@ -1,6 +1,6 @@
 package diaballik.model;
 
-//import java.util.stream.IntStream;
+
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -12,10 +12,7 @@ import java.util.Arrays;
 import java.util.stream.IntStream;
 
 
-//import com.fasterxml.jackson.annotation.JsonProperty;
-//import com.fasterxml.jackson.annotation.JsonSubTypes;
 
-//import java.util.Objects;
 
 /**
  * The class representing the gaming board

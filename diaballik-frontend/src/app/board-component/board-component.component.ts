@@ -75,8 +75,6 @@ export class BoardComponentComponent implements OnInit {
     if(this.typeJeu!="replay"){
       if(!(this.dataGame.isInList(x,y))){
         this.dataGame.actualCase = JSON.parse('{"x":'+x+',"y":'+y+'}');
-      // console.log(this.dataGame.actualCase);
-      //this.http.put("game/newGamePvP/5/Antoine/Adrien/Random", {}, {}).subscribe(returnedData => console.log(returnedData));
         this.http.get("game/moovePlayable/"+x+"/"+y+"",{}).subscribe(returnedData =>{
           console.log("game/moovePlayable/"+x+"/"+y+"");
           console.log(returnedData);
@@ -84,12 +82,12 @@ export class BoardComponentComponent implements OnInit {
         
           console.log(this.dataGame.storage.type);
       });
-    }else{
+      }else{
       this.http.put("game/moove/"+this.dataGame.actualCase.x+"/"+x+"/"+this.dataGame.actualCase.y+"/"+y,{}).subscribe(returnedData =>{
       this.dataGame.storage = returnedData;
-      if(this.dataGame.storage.type!=='Game'){
-        this.http.put("game/save/finishedgame/"+this.nameGame,{}).subscribe();
-      }
+        if(this.dataGame.storage.type!=='Game'){
+          this.http.put("game/save/finishedgame/"+this.nameGame,{}).subscribe();
+        }
     /* else{
         (this.dataGame.storage.hasIA==='true' && this.dataGame.storage.color==='Green'){
           for(var i =0;i<3; i++){
@@ -101,18 +99,8 @@ export class BoardComponentComponent implements OnInit {
       this.dataGame.actualCase = "";
       this.data.testlist = "";
       });
-    }  
-  }
-    //this.dataGame.testlist = JSON.parse('{"list":[{"x":'+x+',"y":'+y+'},{"x":3,"y":7}]}');
-   // this.http.put("game/newGamePvP/5/Antoine/Asn/Random", {}, {}).subscribe(returnedData => {
-     // console.log(returnedData);
-     // this.dataGame.storage = returnedData;
-     // console.log(this.dataGame.storage.joueur2.name);
-    //console.log(this.dataGame.isInList(1,1));
-    //console.log(this.dataGame.isInList(7,5));
-   // this.http.put("game/newGamePvP/5/Antoine/Adrien/Random", {}, {}).subscribe(returnedData => console.log(returnedData));
-      
-   // });
+      }  
+    }
   }
   public save(): void{
     this.http.put("game/save/savedgame/"+this.nameGame,{}).subscribe();
@@ -120,7 +108,6 @@ export class BoardComponentComponent implements OnInit {
   }
 
   public download(): void{
-    //peut être faire un get GAME avant (au cas où la partie soit fini, ie storage = le joueur gagnant)
     var data = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.data.storage));
     var downloader = document.createElement('a');
 

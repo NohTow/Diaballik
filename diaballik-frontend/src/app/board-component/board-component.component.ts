@@ -72,34 +72,36 @@ export class BoardComponentComponent implements OnInit {
     this.http.put("game/mooveIA",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
   }
   public leftClick(x: number, y: number): void {
-    if(!(this.dataGame.isInList(x,y))){
-      this.dataGame.actualCase = JSON.parse('{"x":'+x+',"y":'+y+'}');
-     // console.log(this.dataGame.actualCase);
-     //this.http.put("game/newGamePvP/5/Antoine/Adrien/Random", {}, {}).subscribe(returnedData => console.log(returnedData));
-       this.http.get("game/moovePlayable/"+x+"/"+y+"",{}).subscribe(returnedData =>{
-        console.log("game/moovePlayable/"+x+"/"+y+"");
-        console.log(returnedData);
-        this.dataGame.testlist = returnedData;
-      
-        console.log(this.dataGame.storage.type);
-    });
-  }else{
-    this.http.put("game/moove/"+this.dataGame.actualCase.x+"/"+x+"/"+this.dataGame.actualCase.y+"/"+y,{}).subscribe(returnedData =>{
-    this.dataGame.storage = returnedData;
-    if(this.dataGame.storage.type!=='Game'){
-      this.http.put("game/save/finishedgame/"+this.nameGame,{}).subscribe();
-    }
-   /* else{
-      (this.dataGame.storage.hasIA==='true' && this.dataGame.storage.color==='Green'){
-        for(var i =0;i<3; i++){
-          this.http.put("game/mooveIA",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
-          setTimeout(()=>{},9000);
-        }
-      } 
-    }*/
-    this.dataGame.actualCase = "";
-    this.data.testlist = "";
-    });
+    if(this.typeJeu!="replay"){
+      if(!(this.dataGame.isInList(x,y))){
+        this.dataGame.actualCase = JSON.parse('{"x":'+x+',"y":'+y+'}');
+      // console.log(this.dataGame.actualCase);
+      //this.http.put("game/newGamePvP/5/Antoine/Adrien/Random", {}, {}).subscribe(returnedData => console.log(returnedData));
+        this.http.get("game/moovePlayable/"+x+"/"+y+"",{}).subscribe(returnedData =>{
+          console.log("game/moovePlayable/"+x+"/"+y+"");
+          console.log(returnedData);
+          this.dataGame.testlist = returnedData;
+        
+          console.log(this.dataGame.storage.type);
+      });
+    }else{
+      this.http.put("game/moove/"+this.dataGame.actualCase.x+"/"+x+"/"+this.dataGame.actualCase.y+"/"+y,{}).subscribe(returnedData =>{
+      this.dataGame.storage = returnedData;
+      if(this.dataGame.storage.type!=='Game'){
+        this.http.put("game/save/finishedgame/"+this.nameGame,{}).subscribe();
+      }
+    /* else{
+        (this.dataGame.storage.hasIA==='true' && this.dataGame.storage.color==='Green'){
+          for(var i =0;i<3; i++){
+            this.http.put("game/mooveIA",{}).subscribe(returnedData => this.dataGame.storage = returnedData);
+            setTimeout(()=>{},9000);
+          }
+        } 
+      }*/
+      this.dataGame.actualCase = "";
+      this.data.testlist = "";
+      });
+    }  
   }
     //this.dataGame.testlist = JSON.parse('{"list":[{"x":'+x+',"y":'+y+'},{"x":3,"y":7}]}');
    // this.http.put("game/newGamePvP/5/Antoine/Asn/Random", {}, {}).subscribe(returnedData => {
@@ -126,10 +128,4 @@ export class BoardComponentComponent implements OnInit {
     downloader.setAttribute('download', 'file.json');
     downloader.click();
   }
-
-  public retourMenu(): void{
-    this.router.navigate(['menu'],{queryParams: {}});
-  }
-
-
 }

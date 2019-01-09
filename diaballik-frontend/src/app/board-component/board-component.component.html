@@ -1,6 +1,6 @@
 <main>
   <div *ngIf="dataGame.storage.type=='Game'" class="left">
-  <h2 style="margin-left:50%;">{{dataGame.storage.joueur1.name}}</h2>
+  <h2 style="color:Yellow">{{dataGame.storage.joueur1.name}}</h2>
   <div class="aclass" *ngFor="let x of [0,1,2,3,4,5,6]"[attr.data-x]=x >
     <div class="board" *ngFor="let y of [0,1,2,3,4,5,6]"[attr.data-y]=y [ngStyle]="dataGame.isInList(x,y) && {'background-color':'grey'}" (click)="leftClick(x,y)">
       <div *ngIf="dataGame.storage.board.plateau[x][y]!=null"class="circle" [ngStyle]="{'background-color':dataGame.storage.board.plateau[x][y].color}">
@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-  <h2 style="margin-left:50%">{{dataGame.storage.joueur2.name}}</h2>
+  <h2 style="color:Green">{{dataGame.storage.joueur2.name}}</h2>
 </div>
 <div *ngIf="dataGame.storage.type!=='Game'"class="left">
   <p>Le joueur gagnant est {{dataGame.storage.name}}</p>

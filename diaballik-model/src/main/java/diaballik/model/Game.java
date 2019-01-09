@@ -220,4 +220,15 @@ public class Game {
 	public int getNbAction() {
 		return this.nbAction;
 	}
+
+	/**
+	 * Clear the redoable command list
+	 */
+	public void flushUndo() {
+		this.undo.clear();
+	}
+
+	public boolean hasIA() {
+		return hasIA;
+	}
 }

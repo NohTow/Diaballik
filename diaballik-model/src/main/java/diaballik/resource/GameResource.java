@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.IntStream;
@@ -47,6 +48,7 @@ public class GameResource {
 
 	static final Logger LOGGER = Logger.getAnonymousLogger();
 	Game game;
+	private Consumer<Command> commandConsumer;
 
 
 	@PUT
@@ -159,6 +161,7 @@ public class GameResource {
 	public Response iaPlay() {
 		if (game.getColor().equals(Color.Green)) {
 			((IA) game.getJoueur2()).getLevel().exec(game);
+			game.flushUndo();
 			return Response.ok().entity(game).build();
 		}
 		return Response.status(Response.Status.BAD_REQUEST).entity("Ce n'est pas au tour de l'IA !").build();
@@ -173,6 +176,7 @@ public class GameResource {
 		} else {
 			game.play(new MovePion(oldX, oldY, newX, newY));
 		}
+		game.flushUndo();
 		if (game.isFinished().isPresent()) {
 			return Response.ok().entity(game.isFinished().get()).build();
 		}
@@ -215,14 +219,15 @@ public class GameResource {
 	@Path("/moovePlayable/{x}/{y}")
 	public Response moovePlayable(@PathParam("x") final int x, @PathParam("y") final int y) throws JsonProcessingException {
 		final Pawn p = game.getBoard().getPiece(x, y);
+		if (game.hasIA() && game.getColor() == Color.Green) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("C'est au tour de l'IA de jouer !").build();
+		}
 		if (p != null) {
 			final ObjectMapper mapper = new DiabalikJacksonProvider().getMapper();
 			final ArrayList<Command> list = p.movePlayable(game);
 			if (p.hasBall()) {
 				final ArrayList<MoveBall> res = new ArrayList<MoveBall>();
-				list.forEach(c -> {
-					res.add((MoveBall) c);
-				});
+				list.forEach(commandConsumer);
 				final String serializedList = mapper.writeValueAsString(list);
 				return Response.ok().entity(serializedList).build();
 			} else {
